@@ -1,0 +1,34 @@
+[ 
+  {  
+    "nome": "John",  
+    "pontuacao": 2000
+  }, 
+  { 
+     "nome": "Smith", 
+     "pontuacao": 1999
+  },
+  {  
+    "nome": "Paul",  
+    "pontuacao": 2500
+  }, 
+  { 
+     "nome": "Jared", 
+     "pontuacao": 3500
+  },
+  {  
+    "nome": "Oliver",  
+    "pontuacao": 100
+  }, 
+  { 
+     "nome": "Maria", 
+     "pontuacao": 1500
+  },
+  {  
+    "nome": "Rick",  
+    "pontuacao": 2345
+  }, 
+  { 
+     "nome": "Amie", 
+     "pontuacao": 1346
+  }
+] 

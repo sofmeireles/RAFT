@@ -1,0 +1,22 @@
+[
+    {
+        "pergunta": "cena cena cena",
+        "opcoes": ["opcao1","opcao2","opcao3","opcao4"],
+        "correta": "opcao 3"
+    },
+    {
+        "pergunta": "cena cena cena2",
+        "opcoes": ["opcao1","opcao2","opcao3","opcao4"],
+        "correta": "opcao 1"
+    },
+    {
+        "pergunta": "cena cena cena3",
+        "opcoes": ["opcao1","opcao2","opcao3","opcao4"],
+        "correta": "opcao 1"
+    },
+    {
+        "pergunta": "cena cena cena4",
+        "opcoes": ["opcao1","opcao2","opcao3","opcao4"],
+        "correta": "opcao 4"
+    }
+]
