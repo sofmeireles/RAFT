@@ -1,22 +1,22 @@
 [
     {
-        "pergunta": "cena cena cena",
-        "opcoes": ["opcao1","opcao2","opcao3","opcao4"],
-        "correta": "opcao 3"
+        "pergunta": "Um logotipo simples tem letras vermelhas sobre fundo branco.\nQue codec não usar na sua representação?",
+        "opcoes": ["BMP","GIF","JPEG","PNG"],
+        "correta": "JPEG"
     },
     {
-        "pergunta": "cena cena cena2",
-        "opcoes": ["opcao1","opcao2","opcao3","opcao4"],
-        "correta": "opcao 1"
+        "pergunta": "O CMYK é um:",
+        "opcoes": ["modelo subtrativo","espaço de cor aditivo","modelo de cor aditivo","espaço de cor subtrativo"],
+        "correta": "modelo subtrativo"
     },
     {
-        "pergunta": "cena cena cena3",
-        "opcoes": ["opcao1","opcao2","opcao3","opcao4"],
-        "correta": "opcao 1"
+        "pergunta": "Com o objetivo de arquivar músicas para memória histórica,\nqual dos seguintes codecs não deve ser usado?",
+        "opcoes": ["FLAC","mp3","Monkey's Audio","PCM"],
+        "correta": "FLAC"
     },
     {
-        "pergunta": "cena cena cena4",
-        "opcoes": ["opcao1","opcao2","opcao3","opcao4"],
-        "correta": "opcao 4"
+        "pergunta": "No codec mp3, a análise em frequência é feita com recurso a que transformada?",
+        "opcoes": ["DFT","DCT","MDWT","MDCT"],
+        "correta": "MDCT"
     }
 ]

@@ -16,12 +16,17 @@ class Cenario1 extends Phaser.Scene {
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
-        this.seta = this.physics.add.staticGroup();
-        this.seta.create(650,400,'setaRight');
+        this.setaD = this.physics.add.staticGroup();
+        this.setaD.create(670,400,'setaRight');
+        this.setaE = this.physics.add.staticGroup();
+        this.setaE.create(20,400,'setaLeft');
 
-        this.physics.add.collider(this.player, this.seta,()=> {
+        this.physics.add.collider(this.player, this.setaD,()=> {
             this.scene.start("caverna",{ listaPerguntas:this.listaPerguntas});
         });
+
+        // posicao da floresta
+        this.floresta = 200;
     }
 
 
@@ -29,10 +34,12 @@ class Cenario1 extends Phaser.Scene {
         if (this.cursors.left.isDown){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
+            console.log("x " + this.player.x);
         }
         else if (this.cursors.right.isDown){
             this.player.setVelocityX(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
+            console.log("x " + this.player.x);
         }
         else if (this.cursors.up.isDown || this.cursors.down.isDown){
             this.player.setVelocityX(0);
@@ -42,10 +49,12 @@ class Cenario1 extends Phaser.Scene {
         if (this.cursors.up.isDown){
             this.player.setVelocityY(-gameSettings.playerSpeed);
             this.player.anims.play("back", true);
+            console.log("y " + this.player.y);
         }
         else if (this.cursors.down.isDown){
             this.player.setVelocityY(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
+            console.log("y " + this.player.y);
         }
         else if (this.cursors.left.isDown || this.cursors.right.isDown){
             this.player.setVelocityY(0);
@@ -54,6 +63,14 @@ class Cenario1 extends Phaser.Scene {
             this.player.setVelocityY(0);
             this.player.setVelocityX(0);
             this.player.anims.play("stop");
+        }
+        
+        this.colCenario();
+    }
+
+    colCenario(){
+        if (this.player.y < this.floresta){
+            this.player.y=200;
         }
     }
 }

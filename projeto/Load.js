@@ -28,12 +28,13 @@ class Load extends Phaser.Scene {
         this.load.image("btnMenosc","./resources/claros/btnmenosc.png");
         this.load.image("btnMaisc","./resources/claros/btnmaisc.png");
         this.load.image("btnMutec","./resources/claros/btnmutec.png");
+        this.load.image("btnUnmute","./resources/btns/btnunmute.png");
+        this.load.image("btnUnmutec","./resources/claros/btnunmutec.png");
         this.load.image("btnProx","./resources/btns/btnprox.png");
         this.load.image("btnProxc","./resources/claros/btnproxc.png");
         this.load.image("btnContinuar","./resources/btns/btncontinuar.png");
         this.load.image("btnContinuarc","./resources/claros/btncontinuarc.png");
         this.load.image("setas","./resources/setas.png");
-        this.load.image("mouse","./resources/Mouse-3-icon.png");
         this.load.json('pontuacao',"./pontuacao.json");
         this.load.json('perguntas',"./perguntas.json");
         this.load.image('cena1','./resources/cenario1.png');
@@ -47,9 +48,7 @@ class Load extends Phaser.Scene {
             frameWidth: 120,
             frameHeight: 120
         });
-
-
-
+        
         console.log("images loaded");
 
     }

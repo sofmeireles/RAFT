@@ -8,8 +8,7 @@ class Ajuda extends Phaser.Scene {
         this.background = this.add.image(0,0,"ajuda");
         this.background.setOrigin(0,0);
 
-        this.add.image(390,450,'setas');
-        this.add.image(500,540,'mouse');
+        this.add.image(480,450,'setas');
 
         //btn voltar
         this.btnVoltar = this.add.image(350,550,'btnVoltar');
@@ -37,7 +36,7 @@ class Ajuda extends Phaser.Scene {
             this.scene.start("menu1")
         });
 
-        var texto='Usar teclas das "setas",\n\nmais propriamente "up","down","left","right",\n\nou os cliques no rato,\n\npara mover o boneco no mapa.';
+        var texto='Usar teclas das "setas",\n\nmais propriamente "up","down","left","right",\n\npara mover o boneco no mapa.\n\nTecla Esc para menu pausa.';
 
         this.add.text(170,220,texto,{font: "18px Helvetica", fill: 'black'});
 
