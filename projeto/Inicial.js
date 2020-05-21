@@ -7,6 +7,7 @@ class Inicial extends Phaser.Scene {
         this.load.image("capaInicio","./resources/capa_finalmaybe.png");
         this.load.image("btnComecar","./resources/btns/btncomecar.png"); //AIAIAIAIA
         this.load.image("btnComecarc","./resources/claros/btncomecarc.png"); //AIAIAIAIA
+        this.load.audio('musica','./resources/musica.mp3');
         console.log('page inicial1');
     }
 
@@ -38,8 +39,12 @@ class Inicial extends Phaser.Scene {
         this.btnComecar.on("pointerup", ()=>{
             console.log("up Comecar");
             this.game.canvas.style.cursor = "default";
+            this.musica = this.sound.add("musica", musicaConfig);
+            this.musica.play(musicaConfig);
             this.scene.start("load")
         });
+
+        
     }
 
 }

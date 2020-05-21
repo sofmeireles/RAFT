@@ -160,4 +160,5 @@ class Menu1 extends Phaser.Scene {
             console.log("up Sair");
         });
     }
+
 }
