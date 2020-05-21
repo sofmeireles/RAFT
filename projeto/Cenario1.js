@@ -42,7 +42,6 @@ class Cenario1 extends Phaser.Scene {
 
 
     update(){
-        console.log(this.tempo);
         this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
         this.text.setText('Tempo: '+ this.tempoAtual);
 

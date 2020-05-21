@@ -1,5 +1,5 @@
 var gameSettings = {
-    playerSpeed: 100,
+    playerSpeed: 500,
 }
 
 var configTimer = {

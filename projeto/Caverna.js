@@ -11,6 +11,7 @@ class Caverna extends Phaser.Scene {
         console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"caverna");
         this.background.setOrigin(0,0);
+        this.flag=0;
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -54,6 +55,8 @@ class Caverna extends Phaser.Scene {
     update(){
         this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
         this.text.setText('Tempo: '+ this.tempoAtual);
+        //console.log(this.listaPerguntas);
+        //console.log(this.tempo);
 
         if (this.cursors.left.isDown){
             this.player.setVelocityX(-gameSettings.playerSpeed);
@@ -101,11 +104,14 @@ class Caverna extends Phaser.Scene {
 
     pergunta(){
         //entrar num novo plano
+        this.flag=1;
         if (this.player.x > this.entradaesquerda && this.player.x < this.entradadireita && this.player.y < this.entradabaixo){
             this.player.x=350;
             this.player.y=355;
             this.player.setVelocity(0);
+            console.log("tempo atuaaal: " + this.tempoAtual);
 
+            this.text.setText('');
             this.scene.pause();
             this.scene.launch("pergunta",{background:this.background, listaPerguntas:this.listaPerguntas, player:this.player, sceneName:"caverna", tempo:this.tempoAtual});
         }

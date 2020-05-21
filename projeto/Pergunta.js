@@ -8,16 +8,11 @@ class Pergunta extends Phaser.Scene {
         this.listaPerguntas=data.listaPerguntas;
         this.player=data.player;
         this.sceneName=data.sceneName;
-        this.tempo=data.tempo+1;
+        this.tempo=data.tempo+0.5;
     }
     create(){
-        this.timer = this.time.addEvent({
-            loop: true,
-            paused: false
-        });
-        this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
-        console.log(this.listaPerguntas);
+        console.log("tempo: "+this.tempo);
         this.background=this.background;
         this.player.setVelocity(0);
         console.log("perguntaaaa");
@@ -25,12 +20,23 @@ class Pergunta extends Phaser.Scene {
         this.veil.fillStyle('0x000000',0.3);
         this.veil.fillRect(0,0,config.width, config.height);
         this.imagem = this.add.image(config.width/2,config.height/2,'perg');
-        this.gerapergunta();
+        
+        this.timer = this.time.addEvent({
+            loop: true,
+            paused: false
+        });
 
+        this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: ', { font: configTimer.font, fill: configTimer.color});
+        this.gerapergunta();
     }
+
+    update(){
+        this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
+        this.text.setText('Tempo: '+ this.tempoAtual);
+    }
+
     gerapergunta(){
         var tam=this.listaPerguntas.length;
-        console.log(tam);
         var random=Phaser.Math.Between(0,tam-1);
         var x=300;
         var y=250;
@@ -43,41 +49,49 @@ class Pergunta extends Phaser.Scene {
             var opCerta=this.listaPerguntas[random].correta;
             this.pergunta=this.add.text(x,y,this.listaPerguntas[random].pergunta,{font: "30px Helvetica", fill: 'black'});
 
+
             var opcs=[0,1,2,3];
-            var n1=Phaser.Math.Between(0,3);
+            var n1=opcs[Math.floor(Math.random() * opcs.length)]
             var index=opcs.indexOf(n1);
             opcs.splice(index,1);
-            var n2=Phaser.Math.Between(0,2);
+            var n2=opcs[Math.floor(Math.random() * opcs.length)]
             var index=opcs.indexOf(n2);
             opcs.splice(index,1);
-            var n3=Phaser.Math.Between(0,1);
+            var n3=opcs[Math.floor(Math.random() * opcs.length)]
             var index=opcs.indexOf(n3);
             opcs.splice(index,1);
             var n4=opcs[0];
             
+            
+
+            this.op1=this.listaPerguntas[random].opcoes[n1];
+            this.op2=this.listaPerguntas[random].opcoes[n2];
+            this.op3=this.listaPerguntas[random].opcoes[n3];
+            this.op4=this.listaPerguntas[random].opcoes[n4];
 
 
-            this.op1=this.add.text(x,y+espacamento,"1."+this.listaPerguntas[random].opcoes[n1],{font: "20px Helvetica", fill: 'black'});
+
+            this.op1Btn=this.add.text(x,y+espacamento,"1."+this.op1,{font: "20px Helvetica", fill: 'black'});
             espacamento+=30;
-            this.op2=this.add.text(x,y+espacamento,"2."+this.listaPerguntas[random].opcoes[n2],{font: "20px Helvetica", fill: 'black'});
+            this.op2Btn=this.add.text(x,y+espacamento,"2."+this.op2,{font: "20px Helvetica", fill: 'black'});
             espacamento+=30;
-            this.op3=this.add.text(x,y+espacamento,"3."+this.listaPerguntas[random].opcoes[n3],{font: "20px Helvetica", fill: 'black'});
+            this.op3Btn=this.add.text(x,y+espacamento,"3."+this.op3,{font: "20px Helvetica", fill: 'black'});
             espacamento+=30;
-            this.op4=this.add.text(x,y+espacamento,"4."+this.listaPerguntas[random].opcoes[n4],{font: "20px Helvetica", fill: 'black'});
+            this.op4Btn=this.add.text(x,y+espacamento,"4."+this.op4,{font: "20px Helvetica", fill: 'black'});
 
 
             //interações das opcoes
-            this.op1.setInteractive();
+            this.op1Btn.setInteractive();
 
-            this.op1.on("pointerover", ()=>{
+            this.op1Btn.on("pointerover", ()=>{
                 this.game.canvas.style.cursor = "pointer";
-                this.op1.setColor("#641717");
+                this.op1Btn.setColor("#641717");
             });
-            this.op1.on("pointerout", ()=>{
+            this.op1Btn.on("pointerout", ()=>{
                 this.game.canvas.style.cursor = "default";
-                this.op1.setColor("#000000");
+                this.op1Btn.setColor("#000000");
             });
-            this.op1.on("pointerup", ()=>{
+            this.op1Btn.on("pointerup", ()=>{
                 this.game.canvas.style.cursor = "default";
                 if(this.op1==opCerta){
                     this.respCorreta(true,0);
@@ -87,17 +101,17 @@ class Pergunta extends Phaser.Scene {
                 }
             });
 
-            this.op2.setInteractive();
+            this.op2Btn.setInteractive();
 
-            this.op2.on("pointerover", ()=>{
+            this.op2Btn.on("pointerover", ()=>{
                 this.game.canvas.style.cursor = "pointer";
-                this.op2.setColor("#641717");
+                this.op2Btn.setColor("#641717");
             });
-            this.op2.on("pointerout", ()=>{
+            this.op2Btn.on("pointerout", ()=>{
                 this.game.canvas.style.cursor = "default";
-                this.op2.setColor("#000000");
+                this.op2Btn.setColor("#000000");
             });
-            this.op2.on("pointerup", ()=>{
+            this.op2Btn.on("pointerup", ()=>{
                 this.game.canvas.style.cursor = "default";
                 if(this.op2==opCerta){
                     this.respCorreta(true,0);
@@ -107,19 +121,19 @@ class Pergunta extends Phaser.Scene {
                 }
             });
 
-            this.op3.setInteractive();
+            this.op3Btn.setInteractive();
 
-            this.op3.on("pointerover", ()=>{
+            this.op3Btn.on("pointerover", ()=>{
                 this.game.canvas.style.cursor = "pointer";
-                this.op3.setColor("#641717");
+                this.op3Btn.setColor("#641717");
             });
-            this.op3.on("pointerout", ()=>{
+            this.op3Btn.on("pointerout", ()=>{
                 this.game.canvas.style.cursor = "default";
-                this.op3.setColor("#000000");
+                this.op3Btn.setColor("#000000");
             });
-            this.op3.on("pointerup", ()=>{
+            this.op3Btn.on("pointerup", ()=>{
                 this.game.canvas.style.cursor = "default";
-                if(this.op3==opCerta){
+                if(this.op3==this.opCerta){
                     this.respCorreta(true,0);
                 }
                 else{
@@ -127,17 +141,17 @@ class Pergunta extends Phaser.Scene {
                 }
             });
 
-            this.op4.setInteractive();
+            this.op4Btn.setInteractive();
 
-            this.op4.on("pointerover", ()=>{
+            this.op4Btn.on("pointerover", ()=>{
                 this.game.canvas.style.cursor = "pointer";
-                this.op4.setColor("#641717");
+                this.op4Btn.setColor("#641717");
             });
-            this.op4.on("pointerout", ()=>{
+            this.op4Btn.on("pointerout", ()=>{
                 this.game.canvas.style.cursor = "default";
-                this.op4.setColor("#000000");
+                this.op4Btn.setColor("#000000");
             });
-            this.op4.on("pointerup", ()=>{
+            this.op4Btn.on("pointerup", ()=>{
                 this.game.canvas.style.cursor = "default";
                 if(this.op4==opCerta){
                     this.respCorreta(true,0);
@@ -161,19 +175,19 @@ class Pergunta extends Phaser.Scene {
 
             if(valor==true){
                 this.pergunta.destroy();
-                this.op1.destroy();
-                this.op2.destroy();
-                this.op3.destroy();
-                this.op4.destroy();
+                this.op1Btn.destroy();
+                this.op2Btn.destroy();
+                this.op3Btn.destroy();
+                this.op4Btn.destroy();
                 this.add.text(x,y,"Resposta certa!",{font: "20px Helvetica", fill: 'black'});
 
             }
             else{
                 this.pergunta.destroy();
-                this.op1.destroy();
-                this.op2.destroy();
-                this.op3.destroy();
-                this.op4.destroy();
+                this.op1Btn.destroy();
+                this.op2Btn.destroy();
+                this.op3Btn.destroy();
+                this.op4Btn.destroy();
                 this.add.text(x,y,"Resposta errada!",{font: "20px Helvetica", fill: 'black'});
             }
         }
@@ -191,15 +205,17 @@ class Pergunta extends Phaser.Scene {
             this.game.canvas.style.cursor = "pointer";
             this.btnContc.visible=true;
         });
+
         this.btnCont.on("pointerout", ()=>{
             this.game.canvas.style.cursor = "default";
             this.btnContc.visible=false;
         });
+
         this.btnCont.on("pointerup", ()=>{
             this.game.canvas.style.cursor = "default";
             this.veil.destroy();
             this.imagem.destroy();
-            this.scene.resume(this.sceneName,{listaPerguntas:this.listaPerguntas});
+            this.scene.resume(this.sceneName,{listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual});
             this.scene.stop();
         });
     }
