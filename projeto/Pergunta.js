@@ -8,7 +8,6 @@ class Pergunta extends Phaser.Scene {
         this.listaPerguntas=data.listaPerguntas;
         this.player=data.player;
         this.sceneName=data.sceneName;
-        this.tempo=data.tempo+0.5;
     }
     create(){
 
@@ -21,18 +20,7 @@ class Pergunta extends Phaser.Scene {
         this.veil.fillRect(0,0,config.width, config.height);
         this.imagem = this.add.image(config.width/2,config.height/2,'perg');
         
-        this.timer = this.time.addEvent({
-            loop: true,
-            paused: false
-        });
-
-        this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: ', { font: configTimer.font, fill: configTimer.color});
         this.gerapergunta();
-    }
-
-    update(){
-        this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
-        this.text.setText('Tempo: '+ this.tempoAtual);
     }
 
     gerapergunta(){

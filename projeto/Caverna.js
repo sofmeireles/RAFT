@@ -109,11 +109,9 @@ class Caverna extends Phaser.Scene {
             this.player.x=350;
             this.player.y=355;
             this.player.setVelocity(0);
-            console.log("tempo atuaaal: " + this.tempoAtual);
 
-            this.text.setText('');
             this.scene.pause();
-            this.scene.launch("pergunta",{background:this.background, listaPerguntas:this.listaPerguntas, player:this.player, sceneName:"caverna", tempo:this.tempoAtual});
+            this.scene.launch("pergunta",{background:this.background, listaPerguntas:this.listaPerguntas, player:this.player, sceneName:"caverna"});
         }
     }
 }
