@@ -2,6 +2,13 @@ var gameSettings = {
     playerSpeed: 100,
 }
 
+var configTimer = {
+    font: '50px Arial',
+    posX: 10,
+    posY: 10,
+    color: 'white',
+}
+
 var config = {
     width: 700,
     height: 700,
@@ -19,7 +26,6 @@ var config = {
         }
     }
 }
-
 
 
 var game = new Phaser.Game(config);

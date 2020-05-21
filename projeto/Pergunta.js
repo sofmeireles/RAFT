@@ -8,8 +8,16 @@ class Pergunta extends Phaser.Scene {
         this.listaPerguntas=data.listaPerguntas;
         this.player=data.player;
         this.sceneName=data.sceneName;
+        this.tempo=data.tempo+1;
     }
     create(){
+        this.timer = this.time.addEvent({
+            loop: true,
+            paused: false
+        });
+        this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
+
+        console.log(this.listaPerguntas);
         this.background=this.background;
         this.player.setVelocity(0);
         console.log("perguntaaaa");
@@ -35,13 +43,27 @@ class Pergunta extends Phaser.Scene {
             var opCerta=this.listaPerguntas[random].correta;
             this.pergunta=this.add.text(x,y,this.listaPerguntas[random].pergunta,{font: "30px Helvetica", fill: 'black'});
 
-            this.op1=this.add.text(x,y+espacamento,"1."+this.listaPerguntas[random].opcoes[0],{font: "20px Helvetica", fill: 'black'});
+            var opcs=[0,1,2,3];
+            var n1=Phaser.Math.Between(0,3);
+            var index=opcs.indexOf(n1);
+            opcs.splice(index,1);
+            var n2=Phaser.Math.Between(0,2);
+            var index=opcs.indexOf(n2);
+            opcs.splice(index,1);
+            var n3=Phaser.Math.Between(0,1);
+            var index=opcs.indexOf(n3);
+            opcs.splice(index,1);
+            var n4=opcs[0];
+            
+
+
+            this.op1=this.add.text(x,y+espacamento,"1."+this.listaPerguntas[random].opcoes[n1],{font: "20px Helvetica", fill: 'black'});
             espacamento+=30;
-            this.op2=this.add.text(x,y+espacamento,"2."+this.listaPerguntas[random].opcoes[1],{font: "20px Helvetica", fill: 'black'});
+            this.op2=this.add.text(x,y+espacamento,"2."+this.listaPerguntas[random].opcoes[n2],{font: "20px Helvetica", fill: 'black'});
             espacamento+=30;
-            this.op3=this.add.text(x,y+espacamento,"3."+this.listaPerguntas[random].opcoes[2],{font: "20px Helvetica", fill: 'black'});
+            this.op3=this.add.text(x,y+espacamento,"3."+this.listaPerguntas[random].opcoes[n3],{font: "20px Helvetica", fill: 'black'});
             espacamento+=30;
-            this.op4=this.add.text(x,y+espacamento,"4."+this.listaPerguntas[random].opcoes[3],{font: "20px Helvetica", fill: 'black'});
+            this.op4=this.add.text(x,y+espacamento,"4."+this.listaPerguntas[random].opcoes[n4],{font: "20px Helvetica", fill: 'black'});
 
 
             //interações das opcoes
