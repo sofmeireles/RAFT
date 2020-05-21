@@ -33,7 +33,7 @@ class Opcoes extends Phaser.Scene {
         this.btnUnmuteM.setScale(0.028);
         this.btnUnmuteM.visible=false;
         this.btnUnmutecM = this.add.image(527,391,'btnUnmutec');
-        this.btnUnmutecM.setScale(0.119);
+        this.btnUnmutecM.setScale(0.014);
         this.btnUnmutecM.visible=false;
 
         
@@ -43,10 +43,7 @@ class Opcoes extends Phaser.Scene {
         this.btnVoltarc = this.add.image(350,550,'btnVoltarc');
         this.btnVoltarc.setScale(0.3);
         this.btnVoltarc.visible=false;
-
-        //Musica
-        this.volume = musicaConfig.volume;
-        this.mute = musicaConfig.mute;
+        
 
         //interações do btnVoltar
         this.btnVoltar.setInteractive();
@@ -83,9 +80,9 @@ class Opcoes extends Phaser.Scene {
         });
         this.btnMaisM.on("pointerup", ()=>{
             console.log("up MaisM");
-            this.volume += 0.2;
-            this.musica.setVolume(volume);
-            console.log(volume);
+            // this.volume += 0.2;
+            // this.musica.setVolume(volume);
+            // console.log(volume);
         });
 
         //interações do btnMenosM
@@ -103,9 +100,9 @@ class Opcoes extends Phaser.Scene {
         });
         this.btnMenosM.on("pointerup", ()=>{
             console.log("up MenosM");
-            this.volume -= 0.2;
-            this.musica.setVolume(volume);
-            console.log(musica.volume);
+            // this.volume -= 0.2;
+            // this.musica.setVolume(volume);
+            // console.log(musica.volume);
             
         });
 
@@ -146,8 +143,8 @@ class Opcoes extends Phaser.Scene {
             console.log("up UnmuteM");
             this.btnUnmutecM.visible = false;
             this.btnUnmuteM.visible = false;
-            this.btnMuteM.visible = false;
-            this.musica.mute = true;
+            this.btnMuteM.visible = true;
+            // this.scene.setMute(true);
         });
 
     }

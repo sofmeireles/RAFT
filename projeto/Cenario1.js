@@ -6,6 +6,8 @@ class Cenario1 extends Phaser.Scene {
     init(data){
         this.listaPerguntas = data.listaPerguntas;
         this.tempo=data.tempo+0.5;
+        this.posX = data.posX;
+        this.posY = data.posY;
     }
     create(){
         console.log("cenario1 page");
@@ -23,6 +25,8 @@ class Cenario1 extends Phaser.Scene {
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
+        this.player.x = this.posX;
+        this.player.y = this.posY;
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -32,7 +36,7 @@ class Cenario1 extends Phaser.Scene {
         this.setaE.create(20,400,'setaLeft');
 
         this.physics.add.collider(this.player, this.setaD,()=> {
-            this.scene.start("caverna",{ listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual});
+            this.scene.start("caverna",{ listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         // posicao da floresta
