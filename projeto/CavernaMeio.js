@@ -1,6 +1,6 @@
-class CavernaLago extends Phaser.Scene {
+class CavernaMeio extends Phaser.Scene {
     constructor(){
-        super("cavernaLago");
+        super("cavernaMeio");
     }
     init(data){
         this.listaPerguntas = data.listaPerguntas;
@@ -9,9 +9,9 @@ class CavernaLago extends Phaser.Scene {
         this.posY = data.posY;
     }
     create(){
-        console.log("cavernaLago page");
+        console.log("cavernaMeio page");
         console.log("tempo: "+this.tempo);
-        this.background = this.add.image(0,0,"cavernaLago");
+        this.background = this.add.image(0,0,"cavernaMeio");
         this.background.setOrigin(0,0);
         this.flag=0;
 
@@ -33,10 +33,16 @@ class CavernaLago extends Phaser.Scene {
 
         this.setaR = this.physics.add.staticGroup();
         this.setaR.create(650,400,'setaRight');
+        this.setaL = this.physics.add.staticGroup();
+        this.setaL.create(50,400,'setaLeft');
 
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaMeio",{tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("cavernaF",{tempo:this.tempoAtual, posX: 130, posY:400});
+        });
+
+        this.physics.add.collider(this.player, this.setaL,()=> {
+            this.scene.start("cavernaLago",{ tempo:this.tempoAtual, posX: 570, posY: 400});
         });
         
         //posição do cenario fora da gruta
@@ -90,28 +96,15 @@ class CavernaLago extends Phaser.Scene {
 
         if(Phaser.Input.Keyboard.JustDown(this.pause)){
             this.scene.pause();
-            this.scene.launch("pausa",{background:this.background, sceneName:"cavernaLago"});
+            this.scene.launch("pausa",{background:this.background, sceneName:"cavernaMeio"});
         }
 
-        this.pergunta();
         this.colCenario();
     }
 
     colCenario(){
         if (this.player.y < this.parede){
             this.player.y=244;
-        }
-    }
-
-    pergunta(){
-        //entrar num novo plano
-        this.flag=1;
-        if (this.player.x > this.entradaesquerda && this.player.x < this.entradadireita && this.player.y < this.parede){
-            this.player.x=350;
-            this.player.y=355;
-
-            this.scene.start("lago",{tempo:this.tempoAtual, posX: 350, posY: 160});
-            //this.scene.start("pergunta",{background:this.background, listaPerguntas:this.listaPerguntas, player:this.player, sceneName:"cavernaLago"});
         }
     }
 }

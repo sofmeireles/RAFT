@@ -48,6 +48,12 @@ class Load extends Phaser.Scene {
         this.load.image('cavernaF','./resources/cavernaF.png');
         this.load.image('cavernaMeio','./resources/cavernaMeio.png');
         this.load.image('praia','./resources/praia.png');
+        this.load.image('entradaCaverna','./resources/entradaCaverna.png');
+        this.load.image('praiaMeio','./resources/praiaMeio.png');
+        this.load.image('topo','./resources/topo.png');
+        this.load.image('floresta','./resources/floresta.png');
+        this.load.image('preTopo','./resources/preTopo.png');
+        this.load.image('lago','./resources/lago.png');
         this.load.image('fim','./resources/fim.png');
         this.load.html('nameform', 'nameform.html');
         
