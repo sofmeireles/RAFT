@@ -32,12 +32,12 @@ class PreTopo extends Phaser.Scene {
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
         this.setaR = this.physics.add.staticGroup();
-        this.setaR.create(670,400,'setaRight');
+        this.setaR.create(460,340,'setaRight');
         this.setaL = this.physics.add.staticGroup();
         this.setaL.create(20,400,'setaLeft');
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("topo",{ listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("topo",{ tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
@@ -45,7 +45,7 @@ class PreTopo extends Phaser.Scene {
         });
 
         // posicao da floresta
-        this.floresta = 200;
+        this.floresta = 210;
         this.conta=0;
     }
 
@@ -57,12 +57,12 @@ class PreTopo extends Phaser.Scene {
         if (this.cursors.left.isDown){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
-            //console.log("x " + this.player.x);
+            console.log("x " + this.player.x);
         }
         else if (this.cursors.right.isDown){
             this.player.setVelocityX(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
-            //console.log("x " + this.player.x);
+            console.log("x " + this.player.x);
         }
         else if (this.cursors.up.isDown || this.cursors.down.isDown){
             this.player.setVelocityX(0);
@@ -72,12 +72,12 @@ class PreTopo extends Phaser.Scene {
         if (this.cursors.up.isDown){
             this.player.setVelocityY(-gameSettings.playerSpeed);
             this.player.anims.play("back", true);
-            //console.log("y " + this.player.y);
+            console.log("y " + this.player.y);
         }
         else if (this.cursors.down.isDown){
             this.player.setVelocityY(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
-            //console.log("y " + this.player.y);
+            console.log("y " + this.player.y);
         }
         else if (this.cursors.left.isDown || this.cursors.right.isDown){
             this.player.setVelocityY(0);
@@ -98,7 +98,7 @@ class PreTopo extends Phaser.Scene {
 
     colCenario(){
         if (this.player.y < this.floresta){
-            this.player.y=200;
+            this.player.y=210;
         }
     }
 

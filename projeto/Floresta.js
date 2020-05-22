@@ -37,10 +37,10 @@ class Floresta extends Phaser.Scene {
         this.setaL.create(30,400,'setaLeft');
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("preTopo",{ listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("preTopo",{ tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
-        this.physics.add.collider(this.player, this.setaE,()=> {
+        this.physics.add.collider(this.player, this.setaL,()=> {
             this.scene.start("inicio",{ tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 

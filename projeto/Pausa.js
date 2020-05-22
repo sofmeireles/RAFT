@@ -182,7 +182,14 @@ class Pausa extends Phaser.Scene {
             this.scene.stop("cavernaLago");
             this.scene.stop("pergunta");
             this.scene.stop("praia");
+            this.scene.stop("cavernaMeio");
+            this.scene.stop("cavernaF");
+            this.scene.stop("entradaCaverna");
+            this.scene.stop("praiaMeio");
             this.scene.stop("fim");
+            this.scene.stop("floresta");
+            this.scene.stop("preTopo");
+            this.scene.stop("topo");
             this.scene.launch("menu1");
             console.log("up Sair");
         });
