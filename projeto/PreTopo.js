@@ -37,7 +37,7 @@ class PreTopo extends Phaser.Scene {
         this.setaL.create(20,400,'setaLeft');
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("topo",{ tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("topo",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
