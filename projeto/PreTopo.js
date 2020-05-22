@@ -25,6 +25,7 @@ class PreTopo extends Phaser.Scene {
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
+        this.player.setScale(config.scalePlayer);
         this.player.x = this.posX;
         this.player.y = this.posY;
 

@@ -27,6 +27,7 @@ class Inicio extends Phaser.Scene {
         this.player.setBounce(0.2);
         this.player.x = this.posX;
         this.player.y = this.posY;
+        this.player.setScale(config.scalePlayer);
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);

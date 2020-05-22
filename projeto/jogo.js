@@ -29,6 +29,7 @@ var config = {
     width: 700,
     height: 700,
     parent: 'phaser-example',
+    scalePlayer: 0.7,
     dom: {
         createContainer: true
     },
