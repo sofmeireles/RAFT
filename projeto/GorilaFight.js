@@ -4,7 +4,7 @@ class GorilaFight extends Phaser.Scene {
     }
     init(data){
         this.tempo=data.tempo;
-        this.listaperguntas=data.listaperguntas;
+        this.listaPerguntas=data.listaPerguntas;
         this.posX = data.posX;
         this.posY = data.posY;
 
