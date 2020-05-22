@@ -64,41 +64,36 @@ class Pergunta extends Phaser.Scene {
     gerapergunta(){
         var tam=this.listaPerguntas.length;
         var random=Phaser.Math.Between(0,tam-1);
-        var x=300;
-        var y=250;
+        var x=400;
+        var y=225;
         var espacamento=70;
 
         var opCerta=this.listaPerguntas[random].correta;
         console.log(opCerta);
-        this.pergunta=this.add.text(x,y,this.listaPerguntas[random].pergunta,{font: "30px Helvetica", fill: 'black'});
+        this.pergunta=this.add.text(x,y+25,this.listaPerguntas[random].pergunta,{font: "12px Helvetica", fill: 'black'});
 
 
         var opcs=[0,1,2,3];
         var n1=opcs[Math.floor(Math.random() * opcs.length)];
-        console.log('n1:'+n1);
         var index=opcs.indexOf(n1);
         opcs.splice(index,1);
         var n2=opcs[Math.floor(Math.random() * opcs.length)];
-        console.log('n2:'+n2);
         var index=opcs.indexOf(n2);
         opcs.splice(index,1);
         var n3=opcs[Math.floor(Math.random() * opcs.length)];
-        console.log('n3:'+n3);
         var index=opcs.indexOf(n3);
         opcs.splice(index,1);
         var n4=opcs[0];
-        console.log('n4:'+n4);
-        
-        var ups='ups';
-        if('ups'==ups){
-            console.log('yep');
-        }
         
 
         this.op1=this.listaPerguntas[random].opcoes[n1];
         this.op2=this.listaPerguntas[random].opcoes[n2];
         this.op3=this.listaPerguntas[random].opcoes[n3];
         this.op4=this.listaPerguntas[random].opcoes[n4];
+        console.log('n1:'+this.op1);
+        console.log('n2:'+this.op2);
+        console.log('n3:'+this.op3);
+        console.log('n4:'+this.op4);
 
 
 
@@ -164,7 +159,7 @@ class Pergunta extends Phaser.Scene {
         });
         this.op3Btn.on("pointerup", ()=>{
             this.game.canvas.style.cursor = "default";
-            if(this.op3==this.opCerta){
+            if(this.op3==opCerta){
                 this.respCorreta(true,0);
             }
             else{
@@ -196,7 +191,7 @@ class Pergunta extends Phaser.Scene {
     }
 
     respCorreta(valor,flag){
-        var x=350;
+        var x=400;
         var y=250;
         if (flag==1){
             this.add.text(x,y,"Já não há\nperguntas!",{font: "30px Helvetica", fill: 'black'});
@@ -223,9 +218,9 @@ class Pergunta extends Phaser.Scene {
             }
         }
         //btn continuar
-        this.btnCont = this.add.image(450,450,'btnContinuar');
+        this.btnCont = this.add.image(550,400,'btnContinuar');
         this.btnCont.setScale(0.2);
-        this.btnContc = this.add.image(450,450,'btnContinuarc');
+        this.btnContc = this.add.image(550,400,'btnContinuarc');
         this.btnContc.setScale(0.2);
         this.btnContc.visible=false;
 

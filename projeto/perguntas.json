@@ -1,6 +1,6 @@
 [
     {
-        "pergunta": "Um logotipo simples tem letras vermelhas sobre fundo branco.\nQue codec não usar na sua representação?",
+        "pergunta": "Um logotipo simples tem letras\nvermelhas sobre fundo branco.\nQue codec não usar na sua representação?",
         "opcoes": ["BMP","GIF","JPEG","PNG"],
         "correta": "JPEG"
     },
@@ -15,7 +15,7 @@
         "correta": "FLAC"
     },
     {
-        "pergunta": "No codec mp3, a análise em frequência é feita com recurso a que transformada?",
+        "pergunta": "No codec mp3, a análise em frequência é feita\ncom recurso a que transformada?",
         "opcoes": ["DFT","DCT","MDWT","MDCT"],
         "correta": "MDCT"
     }
