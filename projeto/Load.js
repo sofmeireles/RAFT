@@ -37,12 +37,18 @@ class Load extends Phaser.Scene {
         this.load.image("setas","./resources/setas.png");
         this.load.json('pontuacao',"./pontuacao.json");
         this.load.json('perguntas',"./perguntas.json");
-        this.load.image('cena1','./resources/cenario1.png');
-        this.load.image('caverna','./resources/caverna.png');
+        this.load.image('inicio','./resources/inicial.png');
+        this.load.image('cavernaLago','./resources/cavernaLago.png');
         this.load.image('pausa', './resources/pausa.png');
         this.load.image('setaLeft', "./resources/seta_left.png");
         this.load.image('setaRight', "./resources/seta_right.png");
+        this.load.image('setaDown', "./resources/seta_down.png");
+        this.load.image('setaUp', "./resources/seta_up.png");
         this.load.image('perg','./resources/falatemp.png');
+        this.load.image('cavernaF','./resources/cavernaF.png');
+        this.load.image('cavernaMeio','./resources/cavernaMeio.png');
+        this.load.image('praia','./resources/praia.png');
+        this.load.image('fim','./resources/fim.png');
         this.load.html('nameform', 'nameform.html');
         
         this.load.spritesheet("boneco", "./resources/BONECO.png", {

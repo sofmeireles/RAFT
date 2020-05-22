@@ -178,9 +178,11 @@ class Pausa extends Phaser.Scene {
         this.btnSair.on("pointerup", ()=>{
             //this.game.canvas.style.cursor = "default";
             this.scene.stop();
-            this.scene.stop("cenario1");
-            this.scene.stop("caverna");
+            this.scene.stop("inicio");
+            this.scene.stop("cavernaLago");
             this.scene.stop("pergunta");
+            this.scene.stop("praia");
+            this.scene.stop("fim");
             this.scene.launch("menu1");
             console.log("up Sair");
         });
