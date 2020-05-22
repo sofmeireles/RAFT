@@ -50,11 +50,23 @@ class Load extends Phaser.Scene {
         this.load.image('praia','./resources/praia.png');
         this.load.image('fim','./resources/fim.png');
         this.load.html('nameform', 'nameform.html');
+        this.load.image('cenarioluta','./resources/cenarioluta.png');
         
         this.load.spritesheet("boneco", "./resources/BONECO.png", {
             frameWidth: 120,
             frameHeight: 120
         });
+
+        this.load.spritesheet("gorila", "./resources/gorilaspsheet.png", {
+            frameWidth: 208,
+            frameHeight: 206
+        });
+
+        this.load.spritesheet("banana", "./resources/bananapequenaspsheet.png", {
+            frameWidth: 30,
+            frameHeight: 30
+        });
+        
         
         console.log("images loaded");
 
@@ -86,6 +98,27 @@ class Load extends Phaser.Scene {
             frames: [{key:"boneco", frame: 7}],
             frameRate: 10,
         });
+
+        this.anims.create({
+            key: "bananas",
+            frames: this.anims.generateFrameNumbers("banana"),
+            frameRate: 20,
+            repeat: -1
+        });
+
+        this.anims.create({
+            key: "lancar",
+            frames: this.anims.generateFrameNumbers("gorila"),
+            frameRate: 5,
+            repeat: 0,
+        });
+
+        this.anims.create({
+            key: "parar",
+            frames: [{key:"gorila", frame:0}],
+            frameRate: 10,
+        });
+
 
         this.scene.start("menu1")
     }

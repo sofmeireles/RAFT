@@ -9,6 +9,12 @@ var configTimer = {
     color: 'white',
 }
 
+var lancamentoBananas ={
+    velocidadeY: 150,
+    velocidadeX: 250,
+    intervalo: 3,
+}
+
 var musicaConfig = {
     mute: false,
     volume: 1,
@@ -28,7 +34,7 @@ var config = {
     },
     backgroundColor: 0xffffff,
     scene: [Inicial,Load,Menu1,Ranking,Ajuda,Creditos,Opcoes,Jogar1,NomeUser,Sair,Inicio,CavernaLago,Pergunta,
-        Praia,Fim,Pausa],
+        Praia,Fim,Pausa,GorilaFight],
     pixelAtr: true,
     physics: {
         default: 'arcade',

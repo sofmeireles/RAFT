@@ -5,8 +5,8 @@ class Inicial extends Phaser.Scene {
 
     preload(){
         this.load.image("capaInicio","./resources/capa_finalmaybe.png");
-        this.load.image("btnComecar","./resources/btns/btncomecar.png"); //AIAIAIAIA
-        this.load.image("btnComecarc","./resources/claros/btncomecarc.png"); //AIAIAIAIA
+        this.load.image("btnComecar","./resources/btns/btncomecar.png"); 
+        this.load.image("btnComecarc","./resources/claros/btncomecarc.png");
         this.load.audio('musica','./resources/musica.mp3');
         console.log('page inicial1');
     }

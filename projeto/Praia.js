@@ -20,6 +20,7 @@ class Praia extends Phaser.Scene {
             loop: true,
             paused: false
         });
+        
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
 

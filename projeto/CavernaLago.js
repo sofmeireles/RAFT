@@ -10,7 +10,7 @@ class CavernaLago extends Phaser.Scene {
     }
     create(){
         console.log("cavernaLago page");
-        console.log("tempo: "+this.tempo);
+        //console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"cavernaLago");
         this.background.setOrigin(0,0);
         this.flag=0;
@@ -38,7 +38,7 @@ class CavernaLago extends Phaser.Scene {
 
 
         this.physics.add.collider(this.player, this.setaD,()=> {
-            this.scene.start("menu1",{tempo:this.tempoAtual});
+            this.scene.start("gorilafight",{tempo:this.tempoAtual});
         });
 
         this.physics.add.collider(this.player, this.setaE,()=> {
