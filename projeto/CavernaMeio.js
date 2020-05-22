@@ -104,7 +104,7 @@ class CavernaMeio extends Phaser.Scene {
 
     colCenario(){
         if (this.player.y < this.parede){
-            this.player.y=244;
+            this.player.y=this.parede;
         }
     }
 }

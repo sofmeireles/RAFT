@@ -104,7 +104,7 @@ class Inicio extends Phaser.Scene {
 
     colCenario(){
         if (this.player.y < this.floresta){
-            this.player.y=200;
+            this.player.y=this.floresta;
         }
     }
 

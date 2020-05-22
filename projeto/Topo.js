@@ -93,7 +93,7 @@ class Topo extends Phaser.Scene {
 
     colCenario(){
         if (this.player.y < this.limiteCima){
-            this.player.y=200;
+            this.player.y=this.limiteCima;
         }
     }
 

@@ -106,7 +106,7 @@ class PraiaMeio extends Phaser.Scene {
 
     colCenario(){
         if (this.player.y > this.mar){
-            this.player.y=450;
+            this.player.y=this.mar;
         }
     }
 

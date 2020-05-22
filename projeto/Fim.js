@@ -40,7 +40,8 @@ class Fim extends Phaser.Scene {
         });
 
         // posicao da floresta
-        this.floresta = 200;
+        this.inferior = 470;
+        this.lateral = 405;
         this.conta=0;
     }
 
@@ -88,14 +89,17 @@ class Fim extends Phaser.Scene {
             this.scene.launch("pausa",{background:this.background, sceneName:"fim"});
         }
         
-        // this.colCenario();
+        this.colCenario();
     }
 
 
-    // colCenario(){
-    //     if (this.player.y < this.floresta){
-    //         this.player.y=200;
-    //     }
-    // }
+    colCenario(){
+        if (this.player.y > this.inferior){
+            this.player.y=this.inferior;
+        }
+        if (this.player.x > this.lateral){
+            this.player.x=this.lateral;
+        }
+    }
 
 }
