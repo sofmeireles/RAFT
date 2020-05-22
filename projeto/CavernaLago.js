@@ -10,6 +10,7 @@ class CavernaLago extends Phaser.Scene {
     }
     create(){
         console.log("cavernaLago page");
+        console.log(this.listaPerguntas);
         //console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"cavernaLago");
         this.background.setOrigin(0,0);
@@ -35,15 +36,11 @@ class CavernaLago extends Phaser.Scene {
         this.setaR.create(650,400,'setaRight');
 
 
-        this.physics.add.collider(this.player, this.setaD,()=> {
-            this.scene.start("gorilafight",{tempo:this.tempoAtual});
-        });
-
         this.physics.add.collider(this.player, this.setaE,()=> {
             this.scene.start("inicio",{ listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
         });
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaMeio",{tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("cavernaMeio",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
         });
         
         //posição do cenario fora da gruta
@@ -80,12 +77,12 @@ class CavernaLago extends Phaser.Scene {
         if (this.cursors.up.isDown){
             this.player.setVelocityY(-gameSettings.playerSpeed);
             this.player.anims.play("back", true);
-            console.log("y " + this.player.y);
+            //console.log("y " + this.player.y);
         }
         else if (this.cursors.down.isDown){
             this.player.setVelocityY(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
-            console.log("y " + this.player.y);
+            //console.log("y " + this.player.y);
         }
         else if (this.cursors.left.isDown || this.cursors.right.isDown){
             this.player.setVelocityY(0);
@@ -118,7 +115,7 @@ class CavernaLago extends Phaser.Scene {
             this.player.x=350;
             this.player.y=355;
 
-            this.scene.start("lago",{tempo:this.tempoAtual, posX: 350, posY: 160});
+            this.scene.start("lago",{listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 350, posY: 160});
             //this.scene.start("pergunta",{background:this.background, listaPerguntas:this.listaPerguntas, player:this.player, sceneName:"cavernaLago"});
         }
     }

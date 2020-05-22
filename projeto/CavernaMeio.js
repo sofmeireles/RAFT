@@ -38,11 +38,11 @@ class CavernaMeio extends Phaser.Scene {
 
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaF",{tempo:this.tempoAtual, posX: 130, posY:400});
+            this.scene.start("cavernaF",{listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY:400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("cavernaLago",{ tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("cavernaLago",{listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
         });
         
         //posição do cenario fora da gruta

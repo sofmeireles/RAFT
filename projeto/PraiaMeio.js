@@ -40,15 +40,15 @@ class PraiaMeio extends Phaser.Scene {
         this.setaU.create(350,130,'setaUp');
 
         this.physics.add.collider(this.player, this.setaU,()=> {
-            this.scene.start("inicio",{ tempo:this.tempoAtual, posX: 350, posY: 570});
+            this.scene.start("inicio",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 570});
         });
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("fim",{ tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("fim",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("praia",{ tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("praia",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta

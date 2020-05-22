@@ -41,7 +41,7 @@ class Floresta extends Phaser.Scene {
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("inicio",{ tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("inicio",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta

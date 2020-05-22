@@ -11,7 +11,6 @@ class CavernaF extends Phaser.Scene {
     }
     create(){
         console.log("cavernaF page");
-        console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"cavernaF");
         this.background.setOrigin(0,0);
         
@@ -38,11 +37,11 @@ class CavernaF extends Phaser.Scene {
         this.setaU.create(490,305,'setaUp');
 
         this.physics.add.collider(this.player, this.setaU,()=> {
-            this.scene.start("entradaCaverna",{ tempo:this.tempoAtual, posX: 30, posY: 370});
+            this.scene.start("entradaCaverna",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 30, posY: 370});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("cavernaMeio",{ tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("cavernaMeio",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta
@@ -60,7 +59,7 @@ class CavernaF extends Phaser.Scene {
         if (this.cursors.left.isDown){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
-            console.log("x " + this.player.x);
+            //console.log("x " + this.player.x);
         }
         else if (this.cursors.right.isDown){
             this.player.setVelocityX(gameSettings.playerSpeed);
@@ -75,7 +74,7 @@ class CavernaF extends Phaser.Scene {
         if (this.cursors.up.isDown){
             this.player.setVelocityY(-gameSettings.playerSpeed);
             this.player.anims.play("back", true);
-            console.log("y " + this.player.y);
+            //console.log("y " + this.player.y);
         }
         else if (this.cursors.down.isDown){
             this.player.setVelocityY(gameSettings.playerSpeed);

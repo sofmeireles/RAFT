@@ -38,11 +38,11 @@ class EntradaCaverna extends Phaser.Scene {
         this.setaU.create(30,270,'setaUp');
 
         this.physics.add.collider(this.player, this.setaU,()=> {
-            this.scene.start("cavernaF",{ tempo:this.tempoAtual, posX: 490, posY: 405});
+            this.scene.start("cavernaF",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 490, posY: 405});
         });
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("praia",{ tempo:this.tempoAtual, posX: 250, posY: 215});
+            this.scene.start("praia",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 250, posY: 215});
         });
 
         // posicao da floresta

@@ -44,7 +44,7 @@ class Load extends Phaser.Scene {
         this.load.image('setaRight', "./resources/seta_right.png");
         this.load.image('setaDown', "./resources/seta_down.png");
         this.load.image('setaUp', "./resources/seta_up.png");
-        this.load.image('perg','./resources/falatemp.png');
+        this.load.image('perg','./resources/golemafalar.png');
         this.load.image('cavernaF','./resources/cavernaF.png');
         this.load.image('cavernaMeio','./resources/cavernaMeio.png');
         this.load.image('praia','./resources/praia.png');
