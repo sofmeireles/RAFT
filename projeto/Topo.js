@@ -36,7 +36,7 @@ class Topo extends Phaser.Scene {
 
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("preTopo",{ tempo:this.tempoAtual, posX: 350, posY: 230});
+            this.scene.start("preTopo",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
         // posicao da floresta

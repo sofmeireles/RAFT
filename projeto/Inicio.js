@@ -43,7 +43,13 @@ class Inicio extends Phaser.Scene {
         });
 
         this.physics.add.collider(this.player, this.setaD,()=> {
-            this.scene.start("praiaMeio",{ tempo:this.tempoAtual, posX: 350, posY: 230});
+            this.scene.start("praiaMeio",{ listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
+        });
+
+
+        //MUDAR DEPOIS
+        this.physics.add.collider(this.player,this.setaL,()=> {
+            this.scene.start("gorilafight",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual});
         });
 
         // posicao da floresta

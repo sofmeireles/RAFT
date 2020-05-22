@@ -10,6 +10,7 @@ class Lago extends Phaser.Scene {
     }
     create(){
         console.log("lago page");
+        console.log(this.listaPerguntas);
         console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"lago");
         this.background.setOrigin(0,0);
@@ -95,11 +96,10 @@ class Lago extends Phaser.Scene {
     }
 
     voltar(){
-        //entrar num novo plano
         if (this.player.x > this.entradaesquerda && this.player.x < this.entradadireita && this.player.y < this.limiteY){
-
-            this.scene.start("cavernaLago",{tempo:this.tempoAtual, posX: 350, posY: 280});
-            //this.scene.start("pergunta",{background:this.background, listaPerguntas:this.listaPerguntas, player:this.player, sceneName:"cavernaLago"});
+            this.player.setVelocity(0);
+            this.scene.pause();
+            this.scene.launch("pergunta",{tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
         }
     }
 }

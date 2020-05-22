@@ -10,9 +10,9 @@ var configTimer = {
 }
 
 var lancamentoBananas ={
-    velocidadeY: 150,
+    velocidadeY: 200,
     velocidadeX: 250,
-    intervalo: 3,
+    intervalo: 2,
 }
 
 var musicaConfig = {
@@ -34,8 +34,8 @@ var config = {
     },
     backgroundColor: 0xffffff,
     scene: [Inicial,Load,Menu1,Ranking,Ajuda,Creditos,Opcoes,Jogar1,
-        NomeUser,Sair,Inicio,PraiaMeio,CavernaLago,CavernaF,Pergunta,
-        Praia,EntradaCaverna,CavernaMeio,Lago,Floresta,
+        NomeUser,Sair,Inicio,PraiaMeio,CavernaLago,CavernaF,Lago,Pergunta,
+        Praia,EntradaCaverna,CavernaMeio,Floresta,
         PreTopo,Topo,Fim,Pausa,GorilaFight],
     pixelAtr: true,
     physics: {

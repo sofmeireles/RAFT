@@ -4,6 +4,9 @@ class GorilaFight extends Phaser.Scene {
     }
     init(data){
         this.tempo=data.tempo;
+        this.listaperguntas=data.listaperguntas;
+        this.posX = data.posX;
+        this.posY = data.posY;
 
     }
     create(){
@@ -28,6 +31,32 @@ class GorilaFight extends Phaser.Scene {
         this.intervalo = this.time.addEvent({
             loop: true,
         });
+
+
+
+        /* APAGAAAAAAAAR */
+        this.btnVoltar = this.add.image(350,600,'btnVoltar');
+        this.btnVoltar.setScale(0.07);
+        this.btnVoltarc = this.add.image(350,600,'btnVoltarc');
+        this.btnVoltarc.setScale(0.3);
+        this.btnVoltarc.visible=false;
+        this.btnVoltar.setInteractive();
+        this.btnVoltar.on("pointerover", ()=>{
+            console.log("over Voltar");
+            this.game.canvas.style.cursor = "pointer";
+            this.btnVoltarc.visible=true;
+        });
+        this.btnVoltar.on("pointerout", ()=>{
+            console.log("out Voltar");
+            this.game.canvas.style.cursor = "default";
+            this.btnVoltarc.visible=false;
+        });
+        this.btnVoltar.on("pointerup", ()=>{
+            console.log("up Voltar");
+            this.game.canvas.style.cursor = "default";
+            this.scene.start("inicio",{listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual,posX: 130, posY: 400});
+        });
+        /* ************************************ */
 
     }
     update(){
