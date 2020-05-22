@@ -29,6 +29,7 @@ class Cenario1 extends Phaser.Scene {
         this.player.y = this.posY;
 
         this.cursors = this.input.keyboard.createCursorKeys();
+        this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
         this.setaD = this.physics.add.staticGroup();
         this.setaD.create(670,400,'setaRight');
@@ -48,7 +49,7 @@ class Cenario1 extends Phaser.Scene {
     update(){
         this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
         this.text.setText('Tempo: '+ this.tempoAtual);
-
+    
         if (this.cursors.left.isDown){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
@@ -83,6 +84,11 @@ class Cenario1 extends Phaser.Scene {
             this.player.anims.play("stop");
         }
         
+        if(Phaser.Input.Keyboard.JustDown(this.pause)){
+            this.scene.pause();
+            this.scene.launch("pausa",{background:this.background, sceneName:"cenario1"});
+        }
+        
         this.colCenario();
     }
 
@@ -91,4 +97,5 @@ class Cenario1 extends Phaser.Scene {
             this.player.y=200;
         }
     }
+
 }

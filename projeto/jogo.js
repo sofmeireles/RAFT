@@ -27,7 +27,7 @@ var config = {
         createContainer: true
     },
     backgroundColor: 0xffffff,
-    scene: [Inicial,Load,Menu1,Ranking,Ajuda,Creditos,Opcoes,Jogar1,NomeUser,Sair,Cenario1,Caverna,Pergunta],
+    scene: [Inicial,Load,Menu1,Ranking,Ajuda,Creditos,Opcoes,Jogar1,NomeUser,Sair,Cenario1,Caverna,Pergunta,Pausa],
     pixelAtr: true,
     physics: {
         default: 'arcade',

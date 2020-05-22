@@ -29,6 +29,7 @@ class Caverna extends Phaser.Scene {
         this.player.y = this.posY;
 
         this.cursors = this.input.keyboard.createCursorKeys();
+        this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
         this.setaD = this.physics.add.staticGroup();
         this.setaD.create(650,400,'setaRight');
@@ -91,6 +92,11 @@ class Caverna extends Phaser.Scene {
             this.player.setVelocityY(0);
             this.player.setVelocityX(0);
             this.player.anims.play("stop");
+        }
+
+        if(Phaser.Input.Keyboard.JustDown(this.pause)){
+            this.scene.pause();
+            this.scene.launch("pausa",{background:this.background, sceneName:"caverna"});
         }
 
         this.pergunta();
