@@ -40,7 +40,8 @@ class Fim extends Phaser.Scene {
         });
 
         // posicao da floresta
-        this.floresta = 200;
+        this.inferior = 470;
+        this.lateral = 405;
         this.conta=0;
     }
 
@@ -52,12 +53,12 @@ class Fim extends Phaser.Scene {
         if (this.cursors.left.isDown){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
-            //console.log("x " + this.player.x);
+            console.log("x " + this.player.x);
         }
         else if (this.cursors.right.isDown){
             this.player.setVelocityX(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
-            //console.log("x " + this.player.x);
+            console.log("x " + this.player.x);
         }
         else if (this.cursors.up.isDown || this.cursors.down.isDown){
             this.player.setVelocityX(0);
@@ -67,12 +68,12 @@ class Fim extends Phaser.Scene {
         if (this.cursors.up.isDown){
             this.player.setVelocityY(-gameSettings.playerSpeed);
             this.player.anims.play("back", true);
-            //console.log("y " + this.player.y);
+            console.log("y " + this.player.y);
         }
         else if (this.cursors.down.isDown){
             this.player.setVelocityY(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
-            //console.log("y " + this.player.y);
+            console.log("y " + this.player.y);
         }
         else if (this.cursors.left.isDown || this.cursors.right.isDown){
             this.player.setVelocityY(0);
@@ -88,14 +89,17 @@ class Fim extends Phaser.Scene {
             this.scene.launch("pausa",{background:this.background, sceneName:"fim"});
         }
         
-        // this.colCenario();
+        this.colCenario();
     }
 
 
-    // colCenario(){
-    //     if (this.player.y < this.floresta){
-    //         this.player.y=200;
-    //     }
-    // }
+    colCenario(){
+        if (this.player.y > this.inferior){
+            this.player.y=this.inferior;
+        }
+        if (this.player.x > this.lateral){
+            this.player.x=this.lateral;
+        }
+    }
 
 }

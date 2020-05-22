@@ -33,8 +33,6 @@ class Inicio extends Phaser.Scene {
 
         this.setaR = this.physics.add.staticGroup();
         this.setaR.create(670,400,'setaRight');
-        this.setaL = this.physics.add.staticGroup();
-        this.setaL.create(20,400,'setaLeft');
         this.setaD = this.physics.add.staticGroup();
         this.setaD.create(350,670,'setaDown');
 
@@ -106,7 +104,7 @@ class Inicio extends Phaser.Scene {
 
     colCenario(){
         if (this.player.y < this.floresta){
-            this.player.y=200;
+            this.player.y=this.floresta;
         }
     }
 

@@ -52,9 +52,7 @@ class PraiaMeio extends Phaser.Scene {
         });
 
         // posicao da floresta
-        this.florestaX = 150;
-        this.florestaY = 345;
-        this.florestaYBaixo = 348;
+        this.mar = 450;
         this.conta=0;
     }
 
@@ -102,19 +100,14 @@ class PraiaMeio extends Phaser.Scene {
             this.scene.launch("pausa",{background:this.background, sceneName:"praiaMeio"});
         }
         
-        // this.colCenario();
+        this.colCenario();
     }
 
 
-    // colCenario(){
-    //     if (this.player.x < this.florestaX && this.player.y < this.florestaY){
-    //         this.player.x=151;
-    //     }
-    //     if(this.player.x < this.florestaX && this.player.y > this.florestaY){
-    //         if(this.player.y < this.florestaYBaixo){
-    //             this.player.y = 350;
-    //         }
-    //     }
-    // }
+    colCenario(){
+        if (this.player.y > this.mar){
+            this.player.y=this.mar;
+        }
+    }
 
 }
