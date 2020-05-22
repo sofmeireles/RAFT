@@ -33,8 +33,10 @@ var config = {
         createContainer: true
     },
     backgroundColor: 0xffffff,
-    scene: [Inicial,Load,Menu1,Ranking,Ajuda,Creditos,Opcoes,Jogar1,NomeUser,Sair,Inicio,CavernaLago,Pergunta,
-        Praia,Fim,Pausa,GorilaFight],
+    scene: [Inicial,Load,Menu1,Ranking,Ajuda,Creditos,Opcoes,Jogar1,
+        NomeUser,Sair,Inicio,PraiaMeio,CavernaLago,CavernaF,Pergunta,
+        Praia,EntradaCaverna,CavernaMeio,Lago,Floresta,
+        PreTopo,Topo,Fim,Pausa,GorilaFight],
     pixelAtr: true,
     physics: {
         default: 'arcade',

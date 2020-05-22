@@ -1,6 +1,6 @@
-class CavernaLago extends Phaser.Scene {
+class Lago extends Phaser.Scene {
     constructor(){
-        super("cavernaLago");
+        super("lago");
     }
     init(data){
         this.listaPerguntas = data.listaPerguntas;
@@ -9,9 +9,9 @@ class CavernaLago extends Phaser.Scene {
         this.posY = data.posY;
     }
     create(){
-        console.log("cavernaLago page");
-        //console.log("tempo: "+this.tempo);
-        this.background = this.add.image(0,0,"cavernaLago");
+        console.log("lago page");
+        console.log("tempo: "+this.tempo);
+        this.background = this.add.image(0,0,"lago");
         this.background.setOrigin(0,0);
         this.flag=0;
 
@@ -30,30 +30,13 @@ class CavernaLago extends Phaser.Scene {
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-
-        this.setaR = this.physics.add.staticGroup();
-        this.setaR.create(650,400,'setaRight');
-
-
-        this.physics.add.collider(this.player, this.setaD,()=> {
-            this.scene.start("gorilafight",{tempo:this.tempoAtual});
-        });
-
-        this.physics.add.collider(this.player, this.setaE,()=> {
-            this.scene.start("inicio",{ listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
-        });
-        this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaMeio",{tempo:this.tempoAtual, posX: 130, posY: 400});
-        });
         
         //posição do cenario fora da gruta
         this.entradaesquerda=313;
         this.entradadireita=383;
+        this.limiteY = 150;
         
-        //posiçao da parede
-        this.parede = 245;
     }
-    
 
     
     update(){
@@ -98,11 +81,11 @@ class CavernaLago extends Phaser.Scene {
 
         if(Phaser.Input.Keyboard.JustDown(this.pause)){
             this.scene.pause();
-            this.scene.launch("pausa",{background:this.background, sceneName:"cavernaLago"});
+            this.scene.launch("pausa",{background:this.background, sceneName:"lago"});
         }
 
-        this.pergunta();
-        this.colCenario();
+        this.voltar();
+        //this.colCenario();
     }
 
     colCenario(){
@@ -111,14 +94,11 @@ class CavernaLago extends Phaser.Scene {
         }
     }
 
-    pergunta(){
+    voltar(){
         //entrar num novo plano
-        this.flag=1;
-        if (this.player.x > this.entradaesquerda && this.player.x < this.entradadireita && this.player.y < this.parede){
-            this.player.x=350;
-            this.player.y=355;
+        if (this.player.x > this.entradaesquerda && this.player.x < this.entradadireita && this.player.y < this.limiteY){
 
-            this.scene.start("lago",{tempo:this.tempoAtual, posX: 350, posY: 160});
+            this.scene.start("cavernaLago",{tempo:this.tempoAtual, posX: 350, posY: 280});
             //this.scene.start("pergunta",{background:this.background, listaPerguntas:this.listaPerguntas, player:this.player, sceneName:"cavernaLago"});
         }
     }

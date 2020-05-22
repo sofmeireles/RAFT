@@ -36,7 +36,7 @@ class Fim extends Phaser.Scene {
         this.setaL.create(20,400,'setaLeft');
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("praia",{ tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("praiaMeio",{ tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta

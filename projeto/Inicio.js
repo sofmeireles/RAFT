@@ -39,11 +39,11 @@ class Inicio extends Phaser.Scene {
         this.setaD.create(350,670,'setaDown');
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaLago",{ listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("floresta",{ listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaD,()=> {
-            this.scene.start("praia",{ tempo:this.tempoAtual, posX: 350, posY: 230});
+            this.scene.start("praiaMeio",{ tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
         // posicao da floresta
