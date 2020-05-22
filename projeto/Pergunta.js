@@ -13,11 +13,11 @@ class Pergunta extends Phaser.Scene {
     create(){
         var x=400;
         var y=250;
-        this.background = this.add.image(0,0,"lago");
+        /* this.background = this.add.image(0,0,"lago");
         this.background.setOrigin(0,0);
         this.veil=this.add.graphics({x:0,y:0});
         this.veil.fillStyle('0x000000',0.3);
-        this.veil.fillRect(0,0,config.width, config.height);
+        this.veil.fillRect(0,0,config.width, config.height); */
         this.imagem = this.add.image(config.width/2,config.height/2,'perg');
         var tam=this.listaPerguntas.length;
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
@@ -239,10 +239,10 @@ class Pergunta extends Phaser.Scene {
 
         this.btnCont.on("pointerup", ()=>{
             this.game.canvas.style.cursor = "default";
-            this.veil.destroy();
+            //this.veil.destroy();
             this.imagem.destroy();
             if(valor==true){
-                this.veil.destroy();
+                //this.veil.destroy();
                 this.imagem.destroy();
                 this.scene.stop(this.sceneName);
                 this.scene.stop();
@@ -250,7 +250,7 @@ class Pergunta extends Phaser.Scene {
             }
             else{
                 this.game.canvas.style.cursor = "default";
-                this.veil.destroy();
+                //this.veil.destroy();
                 this.imagem.destroy();
                 this.scene.stop();
                 this.scene.resume(this.sceneName,{listaPerguntas:this.listaPerguntas,tempo:this.tempo});
