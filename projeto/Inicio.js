@@ -36,6 +36,15 @@ class Inicio extends Phaser.Scene {
         this.setaD = this.physics.add.staticGroup();
         this.setaD.create(350,670,'setaDown');
 
+
+        // *************** MUDAR
+        this.setaL = this.physics.add.staticGroup();
+        this.setaL.create(30,400,'setaLeft');
+        this.physics.add.collider(this.player, this.setaL,()=> {
+            this.scene.start("gorilafight",{listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+        });
+        // ***************** MUDAR
+
         this.physics.add.collider(this.player, this.setaR,()=> {
             this.scene.start("floresta",{ listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
