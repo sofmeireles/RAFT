@@ -32,10 +32,17 @@ class Lago extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
         
-        //posição do cenario fora da gruta
+        //limites
         this.entradaesquerda=313;
         this.entradadireita=383;
         this.limiteY = 150;
+        this.limiteDireita = 500;
+        this.limiteEsquerda = 200;
+        this.ponteBaixo = 310;
+        this.ponteEsquerda = 320;
+        this.ponteDireita = 345;
+        this.agua = 210;
+        this.centroPonte = 330;
         
     }
 
@@ -49,12 +56,12 @@ class Lago extends Phaser.Scene {
         if (this.cursors.left.isDown){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
-            //console.log("x " + this.player.x);
+            console.log("x " + this.player.x);
         }
         else if (this.cursors.right.isDown){
             this.player.setVelocityX(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
-            //console.log("x " + this.player.x);
+            console.log("x " + this.player.x);
         }
         else if (this.cursors.up.isDown || this.cursors.down.isDown){
             this.player.setVelocityX(0);
@@ -86,12 +93,35 @@ class Lago extends Phaser.Scene {
         }
 
         this.voltar();
-        //this.colCenario();
+        this.colCenario();
     }
 
     colCenario(){
-        if (this.player.y < this.parede){
-            this.player.y=244;
+        if (this.player.x < this.limiteEsquerda){
+            this.player.x=this.limiteEsquerda;
+        }
+        if (this.player.x > this.limiteDireita){
+            this.player.x=this.limiteDireita;
+        }
+        if(this.player.y > this.ponteBaixo){
+            this.player.y = this.ponteBaixo;
+        }
+
+        if(this.player.x < this.ponteEsquerda && this.player.y > this.agua){
+            this.player.y = this.agua;
+        }
+
+        if(this.player.x > this.ponteDireita && this.player.y > this.agua){
+            this.player.y = this.agua;
+        }
+
+        if(this.player.y > this.agua){
+            if(this.player.x < this.ponteEsquerda){
+                this.player.x = this.ponteEsquerda + 5;
+            }
+            if(this.player.x > this.ponteDireita){
+                this.player.x = this.ponteDireita - 5;
+            }
         }
     }
 
