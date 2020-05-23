@@ -51,7 +51,7 @@ class CavernaMeio extends Phaser.Scene {
         this.entradadireita=383;
         
         //posiçao da parede
-        this.parede = 245;
+        this.parede = 255;
     }
 
     

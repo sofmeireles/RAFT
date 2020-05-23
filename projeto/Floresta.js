@@ -46,7 +46,7 @@ class Floresta extends Phaser.Scene {
         });
 
         // posicao da floresta
-        this.floresta = 200;
+        this.floresta = 220;
         this.conta=0;
     }
 

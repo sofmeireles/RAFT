@@ -49,6 +49,7 @@ class Praia extends Phaser.Scene {
 
         // posicao da floresta
         this.florestaX = 150;
+        this.florestaY = 100;
         this.mar = 450;
         this.conta=0;
     }
@@ -107,6 +108,9 @@ class Praia extends Phaser.Scene {
         }
         if(this.player.y > this.mar){
             this.player.y = this.mar;
+        }
+        if(this.player.y < this.florestaY){
+            this.player.y = this.florestaY;
         }
     }
 

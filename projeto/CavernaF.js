@@ -46,7 +46,7 @@ class CavernaF extends Phaser.Scene {
         });
 
         // posicao da floresta
-        this.parede = 245;
+        this.parede = 255;
     }
 
 

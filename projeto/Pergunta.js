@@ -29,7 +29,7 @@ class Pergunta extends Phaser.Scene {
             this.respCorreta(true,1);
         }
         else{
-            var text=this.add.text(x,y,"ola sou o troll do lago e\numa vez que entraste so\nte poderei deixar sair\nse responderes corretamente\na uma questão",{font: "20px Helvetica", fill: 'black'});
+            var text=this.add.text(x,y,"Olá sou o troll do lago e\numa vez que entraste só\nte poderei deixar sair\nse responderes corretamente\na uma questão",{font: "20px Helvetica", fill: 'black'});
 
             //btn continuar
             this.btnCont = this.add.image(550,400,'btnContinuar');

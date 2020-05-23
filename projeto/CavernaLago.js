@@ -49,7 +49,7 @@ class CavernaLago extends Phaser.Scene {
         this.entradadireita=383;
         
         //posiçao da parede
-        this.parede = 245;
+        this.parede = 255;
     }
     
 
@@ -105,7 +105,7 @@ class CavernaLago extends Phaser.Scene {
 
     colCenario(){
         if (this.player.y < this.parede){
-            this.player.y=244;
+            this.player.y=this.parede;
         }
     }
 

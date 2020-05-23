@@ -46,7 +46,7 @@ class PreTopo extends Phaser.Scene {
         });
 
         // posicao da floresta
-        this.floresta = 210;
+        this.floresta = 235;
         this.conta=0;
     }
 
@@ -99,7 +99,7 @@ class PreTopo extends Phaser.Scene {
 
     colCenario(){
         if (this.player.y < this.floresta){
-            this.player.y=210;
+            this.player.y=this.floresta;
         }
     }
 

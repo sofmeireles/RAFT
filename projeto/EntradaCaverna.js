@@ -47,7 +47,7 @@ class EntradaCaverna extends Phaser.Scene {
         });
 
         // posicao da floresta
-        this.floresta = 220;
+        this.floresta = 235;
         this.conta=0;
     }
 

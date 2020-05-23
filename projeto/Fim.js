@@ -41,7 +41,7 @@ class Fim extends Phaser.Scene {
         });
 
         // posicao da floresta
-        this.inferior = 470;
+        this.inferior = 490;
         this.lateral = 405;
         this.conta=0;
     }

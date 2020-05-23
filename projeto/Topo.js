@@ -41,7 +41,7 @@ class Topo extends Phaser.Scene {
         });
 
         // posicao da floresta
-        this.limiteCima = 200;
+        this.limiteCima = 230;
         this.conta=0;
     }
 
