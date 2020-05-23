@@ -15,13 +15,45 @@ class GorilaFight extends Phaser.Scene {
         console.log('gorila fight');
         this.background = this.add.image(0,0,"cenarioluta");
         this.background.setOrigin(0,0);
-        this.gorila=this.add.sprite(config.width/2,100,"gorila");
+        this.player = this.physics.add.sprite(100, 630, 'boneco');
+        this.player.setCollideWorldBounds(true);
+        this.player.setBounce(0.2);
+        this.player.body.width = 70;
+        this.player.body.height = 110;
+        this.player.body.setSize(this.player.body.width, this.player.body.height, true);
+        this.player.x = this.posX;
+        this.player.y = this.posY;
+        this.player.setScale(config.scalePlayer);
+        this.player.setGravityY(1000);
+        this.gorila=this.add.sprite(config.width/2,50,"gorila");
         this.gorila.setScale(0.5);
         this.cursors = this.input.keyboard.createCursorKeys();
         this.spacebar=this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         this.projectiles = this.add.group();
         this.physics.add.collider(true);
         this.contaTempo=this.tempo;
+        this.plataforma = this.physics.add.staticGroup();
+        var p = this.add.tileSprite(0, 666, 700, 34, 'plataforma');
+        p.setOrigin(0,0);
+        this.physics.add.existing(p, true);
+
+        this.plataforma.create(480, 580, 'plataforma');
+        this.plataforma.create(240, 530, 'plataforma');
+        this.plataforma.create(50, 430, 'plataforma');
+        this.plataforma.create(650, 470, 'plataforma');
+        this.plataforma.create(0, 570, 'plataforma');
+        this.plataforma.create(430, 430, 'plataforma');
+        this.plataforma.create(240, 330, 'plataforma');
+        this.plataforma.create(350, 330, 'plataforma');
+        this.plataforma.create(575, 270, 'plataforma');
+        this.plataforma.create(50, 230, 'plataforma');
+        this.plataforma.create(360, 110, 'plataforma');
+        this.plataforma.create(670, 150, 'plataforma');
+        this.plataforma.create(250, 180, 'plataforma');
+
+        this.physics.add.collider(this.player, p);
+        this.physics.add.collider(this.player, this.projectiles);
+        this.physics.add.collider(this.player, this.plataforma);
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -38,6 +70,8 @@ class GorilaFight extends Phaser.Scene {
             loop: true,
         });
 
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
 
         /* APAGAAAAAAAAR */
@@ -78,6 +112,47 @@ class GorilaFight extends Phaser.Scene {
             this.contaTempo+=lancamentoBananas.intervalo;
             this.lançaBanana();
         }
+
+        if (this.cursors.left.isDown && this.cursors.up.isUp && this.player.body.touching.down){
+            this.player.setVelocityX(-gameSettings.playerSpeed);
+            this.player.anims.play("left", true);
+            //console.log("x " + this.player.x);
+        }
+        else if(this.cursors.left.isDown && this.cursors.up.isUp && !this.player.body.touching.down){
+            this.player.setVelocityX(-gameSettings.playerSpeed);
+            this.player.anims.play("left", true);
+        }
+        else if (this.cursors.left.isDown && this.cursors.up.isDown && !this.player.body.touching.down){
+            this.player.setVelocityX(-gameSettings.playerSpeed);
+            this.player.anims.play("left", true);
+        }
+        else if (this.cursors.right.isDown && this.cursors.up.isUp && this.player.body.touching.down) {
+            this.player.setVelocityX(gameSettings.playerSpeed);
+            this.player.anims.play("right", true);
+            //console.log("x " + this.player.x);
+        }
+        else if (this.cursors.right.isDown && this.cursors.up.isUp && !this.player.body.touching.down){
+            this.player.setVelocityX(gameSettings.playerSpeed);
+            this.player.anims.play("right", true);
+        }
+        else if (this.cursors.right.isDown && this.cursors.up.isDown && !this.player.body.touching.down){
+            this.player.setVelocityX(gameSettings.playerSpeed);
+            this.player.anims.play("right", true);
+        }
+        else if (this.cursors.up.isDown && this.player.body.touching.down){
+            this.player.setVelocityY(-gameSettings.playerSpeed);
+        }
+
+        else{
+            //this.player.setVelocityY(0);
+            this.player.setVelocityX(0);
+            this.player.anims.play("stop");
+        }
+
+        if(Phaser.Input.Keyboard.JustDown(this.pause)){
+            this.scene.pause();
+            this.scene.launch("pausa",{background:this.background, sceneName:"inicio"});
+        }
     }
 
     lançaBanana(){
@@ -85,5 +160,6 @@ class GorilaFight extends Phaser.Scene {
         var banana= new Banana(this);
         this.projectiles.add(banana);
     }
+
 
 }

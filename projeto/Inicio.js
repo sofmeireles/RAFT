@@ -2,7 +2,7 @@ class Inicio extends Phaser.Scene {
     constructor(){
         super("inicio");
     }
-    
+
     init(data){
         this.listaPerguntas = data.listaPerguntas;
         this.tempo=data.tempo+0.5;
@@ -21,7 +21,7 @@ class Inicio extends Phaser.Scene {
 
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
-        
+
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -34,9 +34,14 @@ class Inicio extends Phaser.Scene {
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
+        this.player.body.width = 70;
+        this.player.body.height = 110;
+        this.player.body.setSize(this.player.body.width, this.player.body.height, true);
+
         this.player.x = this.posX;
         this.player.y = this.posY;
         this.player.setScale(config.scalePlayer);
+
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
@@ -45,15 +50,17 @@ class Inicio extends Phaser.Scene {
         this.setaR.create(670,400,'setaRight');
         this.setaD = this.physics.add.staticGroup();
         this.setaD.create(350,670,'setaDown');
-
-
-        // *************** MUDAR
         this.setaL = this.physics.add.staticGroup();
         this.setaL.create(30,400,'setaLeft');
-        this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("gorilafight",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
-        });
-        // ***************** MUDAR
+
+
+        // // *************** MUDAR
+        // this.setaL = this.physics.add.staticGroup();
+        // this.setaL.create(30,400,'setaLeft');
+        // this.physics.add.collider(this.player, this.setaL,()=> {
+        //     this.scene.start("gorilafight",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+        // });
+        // // ***************** MUDAR
 
         this.physics.add.collider(this.player, this.setaR,()=> {
             this.scene.start("floresta",{listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
@@ -63,14 +70,18 @@ class Inicio extends Phaser.Scene {
             this.scene.start("praiaMeio",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
-
-        //MUDAR DEPOIS
-        this.physics.add.collider(this.player,this.setaL,()=> {
-            this.scene.start("gorilafight",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual});
+        this.physics.add.collider(this.player, this.setaL,()=> {
+            this.scene.start("bau",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
+
+        // //MUDAR DEPOIS
+        // this.physics.add.collider(this.player,this.setaL,()=> {
+        //     this.scene.start("gorilafight",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual});
+        // });
+
         // posicao da floresta
-        this.floresta = 200;
+        this.floresta = 220;
         this.conta=0;
 
     }
@@ -79,7 +90,7 @@ class Inicio extends Phaser.Scene {
     update(){
         this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
         this.text.setText('Tempo: '+ this.tempoAtual);
-    
+
         if (this.cursors.left.isDown){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
@@ -113,12 +124,12 @@ class Inicio extends Phaser.Scene {
             this.player.setVelocityX(0);
             this.player.anims.play("stop");
         }
-        
+
         if(Phaser.Input.Keyboard.JustDown(this.pause)){
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"inicio"});
         }
-        
+
         this.colCenario();
     }
 
