@@ -69,7 +69,6 @@ class Pergunta extends Phaser.Scene {
         var espacamento=70;
 
         var opCerta=this.listaPerguntas[random].correta;
-        console.log(opCerta);
         this.pergunta=this.add.text(x,y+25,this.listaPerguntas[random].pergunta,{font: "12px Helvetica", fill: 'black'});
 
 
@@ -90,11 +89,6 @@ class Pergunta extends Phaser.Scene {
         this.op2=this.listaPerguntas[random].opcoes[n2];
         this.op3=this.listaPerguntas[random].opcoes[n3];
         this.op4=this.listaPerguntas[random].opcoes[n4];
-        console.log('n1:'+this.op1);
-        console.log('n2:'+this.op2);
-        console.log('n3:'+this.op3);
-        console.log('n4:'+this.op4);
-
 
 
         this.op1Btn=this.add.text(x,y+espacamento,"1."+this.op1,{font: "20px Helvetica", fill: 'black'});

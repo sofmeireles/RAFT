@@ -14,6 +14,8 @@ class Lago extends Phaser.Scene {
         console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"lago");
         this.background.setOrigin(0,0);
+        this.golem=this.add.image(350,150,'golem');
+        this.golem.setScale(1.3);
         this.flag=0;
 
         this.timer = this.time.addEvent({
