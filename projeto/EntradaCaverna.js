@@ -8,7 +8,7 @@ class EntradaCaverna extends Phaser.Scene {
         this.tempo=data.tempo+0.5;
         this.posX = data.posX;
         this.posY = data.posY;
-        this.contaPaus = data.contaPaus;
+        this.listaPaus = data.listaPaus;
         this.nameuser=data.nameuser;
     }
     create(){
@@ -16,7 +16,8 @@ class EntradaCaverna extends Phaser.Scene {
         console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"entradaCaverna");
         this.background.setOrigin(0,0);
-        
+
+        this.contaPaus=this.listaPaus.length;        
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
 
@@ -43,16 +44,25 @@ class EntradaCaverna extends Phaser.Scene {
         this.setaU.create(30,270,'setaUp');
 
         this.physics.add.collider(this.player, this.setaU,()=> {
-            this.scene.start("cavernaF",{contaPaus:this.contaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 490, posY: 405});
+            this.scene.start("cavernaF",{listaPaus:this.listaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 490, posY: 405});
         });
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("praia",{contaPaus:this.contaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 250, posY: 215});
+            this.scene.start("praia",{listaPaus:this.listaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 250, posY: 215});
         });
 
         // posicao da floresta
         this.floresta = 235;
         this.conta=0;
+
+        //PAU ENTRADA CAVERNA
+        if(this.listaPaus.includes("pauEntradaCaverna")==false){
+            this.pau1 = this.physics.add.staticGroup();
+            this.pau1.create(config.height-10,245,'pau');
+            
+            this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pauEntradaCaverna"});
+        }
+
     }
 
 
@@ -107,6 +117,13 @@ class EntradaCaverna extends Phaser.Scene {
         if (this.player.y < this.floresta){
             this.player.y=this.floresta;
         }
+    }
+
+    incrementaPaus(player,pau){
+        this.this.contaPaus++;    
+        this.this.listaPaus.push(this.nomepau);
+        this.this.textoContaPaus.setText('x '+this.this.contaPaus);
+        pau.disableBody(true, true);
     }
 
 }

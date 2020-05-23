@@ -11,7 +11,7 @@ var configTimer = {
 
 var configContaPaus = {
     font: '50px Arial',
-    posX: 500,
+    posX: 550,
     posY: 5,
     color: 'white',
 }

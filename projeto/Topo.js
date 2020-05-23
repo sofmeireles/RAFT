@@ -8,12 +8,15 @@ class Topo extends Phaser.Scene {
         this.tempo=data.tempo+0.5;
         this.posX = data.posX;
         this.posY = data.posY;
-        this.contaPaus=data.contaPaus;
+        this.listaPaus=data.listaPaus;
+        this.nameuser=data.nameuser;
     }
     create(){
         console.log("topo page");
         this.background = this.add.image(0,0,"topo");
         this.background.setOrigin(0,0);
+
+        this.contaPaus=this.listaPaus.length;
         
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
@@ -40,12 +43,36 @@ class Topo extends Phaser.Scene {
 
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("preTopo",{contaPaus:this.contaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
+            this.scene.start("preTopo",{nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
         // posicao da floresta
         this.limiteCima = 230;
         this.conta=0;
+
+
+        //PAUS TOPO
+        var y=270;
+        var x=450;
+        var esp=30;
+
+        if(this.listaPaus.includes("pauTopo1")==false){
+            this.pau1 = this.physics.add.staticGroup();
+            this.pau1.create(x+esp,y,'pau');
+            this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pauTopo1"});
+        }
+
+        if(this.listaPaus.includes("pauTopo2")==false){
+            this.pau1 = this.physics.add.staticGroup();
+            this.pau1.create(x+2*esp,y,'pau');
+            this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pauTopo2"});
+        }
+
+        if(this.listaPaus.includes("pauTopo3")==false){
+            this.pau1 = this.physics.add.staticGroup();
+            this.pau1.create(x+3*esp,y,'pau');
+            this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pauTopo3"});
+        }
     }
 
 
@@ -101,4 +128,10 @@ class Topo extends Phaser.Scene {
         }
     }
 
+    incrementaPaus(player,pau){
+        this.this.contaPaus++;    
+        this.this.listaPaus.push(this.nomepau);
+        this.this.textoContaPaus.setText('x '+this.this.contaPaus);
+        pau.disableBody(true, true);
+    }
 }

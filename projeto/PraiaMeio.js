@@ -8,15 +8,15 @@ class PraiaMeio extends Phaser.Scene {
         this.tempo=data.tempo+0.5;
         this.posX = data.posX;
         this.posY = data.posY;
-        this.contaPaus = data.contaPaus;
+        this.listaPaus = data.listaPaus;
         this.nameuser=data.nameuser;
     }
     create(){
         console.log("praiaMeio page");
-        console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"praiaMeio");
         this.background.setOrigin(0,0);
         
+        this.contaPaus=this.listaPaus.length;
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 
@@ -46,15 +46,15 @@ class PraiaMeio extends Phaser.Scene {
         this.setaU.create(350,130,'setaUp');
 
         this.physics.add.collider(this.player, this.setaU,()=> {
-            this.scene.start("inicio",{nameuser: this.nameuser,contaPaus:this.contaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 570});
+            this.scene.start("inicio",{nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 570});
         });
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("fim",{nameuser: this.nameuser,contaPaus:this.contaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("fim",{nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("praia",{nameuser: this.nameuser,contaPaus: this.contaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("praia",{nameuser: this.nameuser,listaPaus: this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta

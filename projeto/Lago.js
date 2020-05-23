@@ -7,7 +7,7 @@ class Lago extends Phaser.Scene {
         this.tempo=data.tempo+0.5;
         this.posX = data.posX;
         this.posY = data.posY;
-        this.contaPaus=data.contaPaus;
+        this.listaPaus=data.listaPaus;
         this.nameuser=data.nameuser;
     }
     create(){
@@ -26,6 +26,7 @@ class Lago extends Phaser.Scene {
         });
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
+        this.contaPaus=this.listaPaus.length;
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 
@@ -141,7 +142,7 @@ class Lago extends Phaser.Scene {
         if (this.player.x > this.entradaesquerda && this.player.x < this.entradadireita && this.player.y < this.limiteY){
             this.player.setVelocity(0);
             this.scene.pause();
-            this.scene.launch("pergunta",{contaPaus: this.contaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
+            this.scene.launch("pergunta",{listaPaus: this.listaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
         }
     }
 }

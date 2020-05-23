@@ -7,7 +7,8 @@ class GorilaFight extends Phaser.Scene {
         this.listaPerguntas=data.listaPerguntas;
         this.posX = data.posX;
         this.posY = data.posY;
-        this.contaPaus = data.contaPaus;
+        this.listaPaus = data.listaPaus;
+        this.nameuser=data.nameuser;
 
     }
     create(){
@@ -28,6 +29,7 @@ class GorilaFight extends Phaser.Scene {
         });
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
+        this.contaPaus=this.listaPaus.length;
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 
@@ -58,7 +60,7 @@ class GorilaFight extends Phaser.Scene {
         this.btnVoltar.on("pointerup", ()=>{
             console.log("up Voltar");
             this.game.canvas.style.cursor = "default";
-            this.scene.start("inicio",{nameuser:this.nameuser,contaPaus: this.contaPaus,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual,posX: 130, posY: 400});
+            this.scene.start("inicio",{nameuser:this.nameuser,listaPaus: this.listaPaus,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual,posX: 130, posY: 400});
         });
         /* ************************************ */
 

@@ -14,6 +14,8 @@ class NomeUser extends Phaser.Scene {
         this.btnProxc.setScale(0.295);
         this.btnProxc.visible=false;
 
+        this.listaPaus=[];
+
         var textoi="Ótimo, qual é o teu nome?";
 
         var fala = this.add.text(300,280,textoi,{font: "19px Helvetica", fill: 'black'});
@@ -47,7 +49,7 @@ class NomeUser extends Phaser.Scene {
                 this.game.canvas.style.cursor = "default";
                 this.crialistaperguntas();
                 this.nameuser=inputText.value;
-                this.scene.start("inicio",{nameuser:this.nameuser, listaPerguntas:this.listaPerguntas,contaPaus:0,tempo:0, posX: 400, posY: 400});
+                this.scene.start("inicio",{listaPaus: this.listaPaus, nameuser:this.nameuser, listaPerguntas:this.listaPerguntas,tempo:0, posX: 400, posY: 400});
             }
             else{
                 fala.setVisible(false);
