@@ -8,7 +8,8 @@ class Jangada extends Phaser.Scene {
         this.tempo=data.tempo+0.5;
         this.posX = data.posX;
         this.posY = data.posY;
-        this.contaPaus=data.contaPaus;
+        this.listaPaus=data.listaPaus;
+        this.nameuser=nameuser;
     }
     create(){
         var x=400;
@@ -25,6 +26,7 @@ class Jangada extends Phaser.Scene {
         this.player.setPosition(405,490);
         this.player.setVelocity(0);
 
+        this.contaPaus=this.listaPaus.length;
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 

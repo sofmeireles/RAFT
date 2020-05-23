@@ -8,14 +8,15 @@ class Bau extends Phaser.Scene {
         this.tempo=data.tempo+0.5;
         this.posX = data.posX;
         this.posY = data.posY;
-        this.contaPaus= data.contaPaus;
+        this.listaPaus= data.listaPaus;
         this.nameuser=data.nameuser;
     }
     create(){
         console.log("bau page");
         this.background = this.add.image(0,0,"floresta");
         this.background.setOrigin(0,0);
-        
+
+        this.contaPaus=this.listaPaus.length;        
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
 
@@ -68,7 +69,7 @@ class Bau extends Phaser.Scene {
         this.setaR.create(670,400,'setaRight');
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("inicio",{contaPaus:this.contaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("inicio",{listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         // posicao da floresta
