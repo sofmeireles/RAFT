@@ -39,11 +39,11 @@ class Lago extends Phaser.Scene {
         this.limiteY = 150;
         this.limiteDireita = 500;
         this.limiteEsquerda = 200;
-        this.ponteBaixo = 310;
+        this.ponteBaixo = 330;
         this.ponteEsquerda = 320;
-        this.ponteDireita = 345;
+        this.ponteDireita = 360;
         this.agua = 210;
-        this.centroPonte = 330;
+        this.agua2 = 220;
         
     }
 
@@ -108,15 +108,19 @@ class Lago extends Phaser.Scene {
             this.player.y = this.ponteBaixo;
         }
 
-        if(this.player.x < this.ponteEsquerda && this.player.y > this.agua){
-            this.player.y = this.agua;
+        if(this.player.x < this.ponteEsquerda && this.player.y < this.agua && this.player.x < this.ponteEsquerda){
+            if(this.player.y > this.agua){
+                this.player.y = this.agua;
+            }
         }
 
-        if(this.player.x > this.ponteDireita && this.player.y > this.agua){
-            this.player.y = this.agua;
+        if(this.player.x > this.ponteDireita && this.player.y < this.agua && this.player.x > this.ponteDireita){
+            if(this.player.y > this.agua){
+                this.player.y = this.agua;
+            }
         }
 
-        if(this.player.y > this.agua){
+        if(this.player.y > this.agua2){
             if(this.player.x < this.ponteEsquerda){
                 this.player.x = this.ponteEsquerda + 5;
             }
