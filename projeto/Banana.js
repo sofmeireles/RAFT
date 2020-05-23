@@ -23,8 +23,7 @@ class Banana extends Phaser.GameObjects.Sprite{
 
     }
     update(){
-        console.log(this.x);
-        if(this.y > config.widht){
+        if(this.y > config.width-20){
             this.destroy();
         }
     }

@@ -61,7 +61,7 @@ class GorilaFight extends Phaser.Scene {
     }
     update(){
 
-        for(var i = 0; i<this.projectiles.getChildren().lenght; i++){
+        for(var i = 0; i<this.projectiles.children.size; i++){
             var banana= this.projectiles.getChildren()[i];
             banana.update();
         }
@@ -78,7 +78,6 @@ class GorilaFight extends Phaser.Scene {
         this.gorila.play("lancar",true);
         var banana= new Banana(this);
         this.projectiles.add(banana);
-        //this.gorila.play("parar",true);
     }
 
 }
