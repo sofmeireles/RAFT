@@ -8,7 +8,6 @@ class GorilaFight extends Phaser.Scene {
         this.posX = data.posX;
         this.posY = data.posY;
         this.contaPaus = data.contaPaus;
-
     }
     create(){
         console.log('gorila fight');
@@ -93,7 +92,7 @@ class GorilaFight extends Phaser.Scene {
         this.btnVoltar.on("pointerup", ()=>{
             console.log("up Voltar");
             this.game.canvas.style.cursor = "default";
-            this.scene.start("inicio",{nameuser:this.nameuser,contaPaus: this.contaPaus,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual,posX: 130, posY: 400});
+            this.scene.start("floresta",{nameuser:this.nameuser,contaPaus: this.contaPaus,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual,posX: 130, posY: 400});
         });
         /* ************************************ */
 

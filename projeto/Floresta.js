@@ -12,13 +12,13 @@ class Floresta extends Phaser.Scene {
         this.nameuser=data.nameuser;
     }
     create(){
-
         console.log("floresta page");
         this.background = this.add.image(0,0,"floresta");
         this.background.setOrigin(0,0);
 
-        this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
+        this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
+
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -27,60 +27,58 @@ class Floresta extends Phaser.Scene {
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
 
+
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
         this.player.body.width = 70;
         this.player.body.height = 110;
         this.player.body.setSize(this.player.body.width, this.player.body.height, true);
-        this.player.setScale(config.scalePlayer);
+
         this.player.x = this.posX;
         this.player.y = this.posY;
+        this.player.setScale(config.scalePlayer);
 
-        this.macaco1 = this.physics.add.sprite(config.width/4, config.height/4, 'macaco');
-        this.macaco2 = this.physics.add.sprite(config.width/2, config.height/4, 'macaco');
-        this.macaco3 = this.physics.add.sprite(config.width*0.75, config.height/4, 'macaco');
-        this.macaco1.setCollideWorldBounds(true);
-        this.macaco2.setCollideWorldBounds(true);
-        this.macaco3.setCollideWorldBounds(true);
-        this.macaco1.setBounce(1);
-        this.macaco2.setBounce(1);
-        this.macaco3.setBounce(1);
-        this.macaco1.body.width = 58;
-        this.macaco1.body.height = 41;
-        this.macaco1.setSize(this.macaco1.body.width, this.macaco1.body.height, true);
-        this.macaco2.body.width = 58;
-        this.macaco2.body.height = 41;
-        this.macaco2.setSize(this.macaco1.body.width, this.macaco1.body.height, true);
-        this.macaco3.body.width = 58;
-        this.macaco3.body.height = 41;
-        this.macaco3.setSize(this.macaco1.body.width, this.macaco1.body.height, true);
-        this.macaco1.play("monkey");
-        this.macaco2.play("monkey");
-        this.macaco3.play("monkey");
-        this.macaco1.setVelocityY(100);
-        this.macaco2.setVelocityY(400);
-        this.macaco3.setVelocityY(200);
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
         this.setaR = this.physics.add.staticGroup();
         this.setaR.create(670,400,'setaRight');
+        this.setaU = this.physics.add.staticGroup();
+        this.setaU.create(350,200,'setaUp');
         this.setaL = this.physics.add.staticGroup();
         this.setaL.create(30,400,'setaLeft');
 
+
+        
+        this.physics.add.collider(this.player, this.setaU,()=> {
+            this.scene.start("gorilafight",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+        });
+
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("preTopo",{contaPaus:this.contaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("preTopo",{contaPaus: this.contaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("inicio",{contaPaus:this.contaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("inicio",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta
         this.floresta = 220;
         this.conta=0;
+
+
+        //paus
+        this.pau1 = this.physics.add.staticGroup();
+        this.pau1.create(200,300,'pau');
+        this.physics.add.collider(this.player, this.pau1, this.incrementaPaus, null, this);
+
+        this.pau2 = this.physics.add.staticGroup();
+        this.pau2.create(600,600,'pau');
+        this.physics.add.collider(this.player, this.pau2, this.incrementaPaus, null, this);
+
+
     }
 
 
@@ -134,6 +132,12 @@ class Floresta extends Phaser.Scene {
         if (this.player.y < this.floresta){
             this.player.y=this.floresta;
         }
+    }
+
+    incrementaPaus(player,pau){
+        this.contaPaus++;
+        this.textoContaPaus.setText('x '+this.contaPaus);
+        pau.disableBody(true, true);
     }
 
 }
