@@ -58,8 +58,12 @@ class Load extends Phaser.Scene {
         this.load.image('fim','./resources/fim.png');
         this.load.image('pau','./resources/pau.png');
         this.load.html('nameform', 'nameform.html');
-        this.load.image('cenarioluta','./resources/cenarioluta.png');
-        
+        this.load.image('cenarioluta','./resources/cenarioluta1.png');
+        this.load.image('plataforma', './resources/plataforma.png');
+        this.load.spritesheet('macaco', './resources/macacospsheet.png',{
+            frameWidth: 100,
+            frameHeight: 94
+        });
         this.load.spritesheet("boneco", "./resources/BONECO.png", {
             frameWidth: 120,
             frameHeight: 120
@@ -83,6 +87,12 @@ class Load extends Phaser.Scene {
     create(){
 
         this.add.text(20,20,"Carregando o jogo...");
+        this.anims.create({
+            key: "monkey",
+            frames: this.anims.generateFrameNumbers("macaco"),
+            frameRate: 10,
+            repeat:-1
+        });
         this.anims.create({
             key: "left",
             frames: this.anims.generateFrameNumbers("boneco", {start:0, end:1}),

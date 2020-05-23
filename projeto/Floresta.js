@@ -2,7 +2,7 @@ class Floresta extends Phaser.Scene {
     constructor(){
         super("floresta");
     }
-    
+
     init(data){
         this.listaPerguntas = data.listaPerguntas;
         this.tempo=data.tempo+0.5;
@@ -12,10 +12,11 @@ class Floresta extends Phaser.Scene {
         this.nameuser=data.nameuser;
     }
     create(){
+
         console.log("floresta page");
         this.background = this.add.image(0,0,"floresta");
         this.background.setOrigin(0,0);
-        
+
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
 
@@ -29,9 +30,37 @@ class Floresta extends Phaser.Scene {
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
+        this.player.body.width = 70;
+        this.player.body.height = 110;
+        this.player.body.setSize(this.player.body.width, this.player.body.height, true);
         this.player.setScale(config.scalePlayer);
         this.player.x = this.posX;
         this.player.y = this.posY;
+
+        this.macaco1 = this.physics.add.sprite(config.width/4, config.height/4, 'macaco');
+        this.macaco2 = this.physics.add.sprite(config.width/2, config.height/4, 'macaco');
+        this.macaco3 = this.physics.add.sprite(config.width*0.75, config.height/4, 'macaco');
+        this.macaco1.setCollideWorldBounds(true);
+        this.macaco2.setCollideWorldBounds(true);
+        this.macaco3.setCollideWorldBounds(true);
+        this.macaco1.setBounce(1);
+        this.macaco2.setBounce(1);
+        this.macaco3.setBounce(1);
+        this.macaco1.body.width = 58;
+        this.macaco1.body.height = 41;
+        this.macaco1.setSize(this.macaco1.body.width, this.macaco1.body.height, true);
+        this.macaco2.body.width = 58;
+        this.macaco2.body.height = 41;
+        this.macaco2.setSize(this.macaco1.body.width, this.macaco1.body.height, true);
+        this.macaco3.body.width = 58;
+        this.macaco3.body.height = 41;
+        this.macaco3.setSize(this.macaco1.body.width, this.macaco1.body.height, true);
+        this.macaco1.play("monkey");
+        this.macaco2.play("monkey");
+        this.macaco3.play("monkey");
+        this.macaco1.setVelocityY(100);
+        this.macaco2.setVelocityY(400);
+        this.macaco3.setVelocityY(200);
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
@@ -58,7 +87,7 @@ class Floresta extends Phaser.Scene {
     update(){
         this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
         this.text.setText('Tempo: '+ this.tempoAtual);
-    
+
         if (this.cursors.left.isDown){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
@@ -92,12 +121,12 @@ class Floresta extends Phaser.Scene {
             this.player.setVelocityX(0);
             this.player.anims.play("stop");
         }
-        
+
         if(Phaser.Input.Keyboard.JustDown(this.pause)){
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"floresta"});
         }
-        
+
         this.colCenario();
     }
 

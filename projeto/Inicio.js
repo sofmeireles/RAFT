@@ -2,7 +2,7 @@ class Inicio extends Phaser.Scene {
     constructor(){
         super("inicio");
     }
-    
+
     init(data){
         this.listaPerguntas = data.listaPerguntas;
         this.tempo=data.tempo+0.5;
@@ -18,7 +18,7 @@ class Inicio extends Phaser.Scene {
 
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
-        
+
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -31,9 +31,14 @@ class Inicio extends Phaser.Scene {
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
+        this.player.body.width = 70;
+        this.player.body.height = 110;
+        this.player.body.setSize(this.player.body.width, this.player.body.height, true);
+
         this.player.x = this.posX;
         this.player.y = this.posY;
         this.player.setScale(config.scalePlayer);
+
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
@@ -93,7 +98,7 @@ class Inicio extends Phaser.Scene {
     update(){
         this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
         this.text.setText('Tempo: '+ this.tempoAtual);
-    
+
         if (this.cursors.left.isDown){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
@@ -127,12 +132,12 @@ class Inicio extends Phaser.Scene {
             this.player.setVelocityX(0);
             this.player.anims.play("stop");
         }
-        
+
         if(Phaser.Input.Keyboard.JustDown(this.pause)){
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"inicio"});
         }
-        
+
         this.colCenario();
     }
 
