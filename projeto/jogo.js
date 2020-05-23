@@ -42,7 +42,7 @@ var config = {
     },
     backgroundColor: 0xffffff,
     scene: [Inicial,Load,Menu1,Ranking,Ajuda,Creditos,Opcoes,Jogar1,
-        NomeUser,Sair,Inicio,PraiaMeio,CavernaLago,CavernaF,Lago,Pergunta,
+        NomeUser,Sair,Inicio,Bau,PraiaMeio,CavernaLago,CavernaF,Lago,Pergunta,
         Praia,EntradaCaverna,CavernaMeio,Floresta,
         PreTopo,Topo,Fim,Pausa,GorilaFight],
     pixelAtr: true,

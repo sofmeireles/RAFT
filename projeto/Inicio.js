@@ -42,15 +42,17 @@ class Inicio extends Phaser.Scene {
         this.setaR.create(670,400,'setaRight');
         this.setaD = this.physics.add.staticGroup();
         this.setaD.create(350,670,'setaDown');
-
-
-        // *************** MUDAR
         this.setaL = this.physics.add.staticGroup();
         this.setaL.create(30,400,'setaLeft');
-        this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("gorilafight",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
-        });
-        // ***************** MUDAR
+
+
+        // // *************** MUDAR
+        // this.setaL = this.physics.add.staticGroup();
+        // this.setaL.create(30,400,'setaLeft');
+        // this.physics.add.collider(this.player, this.setaL,()=> {
+        //     this.scene.start("gorilafight",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+        // });
+        // // ***************** MUDAR
 
         this.physics.add.collider(this.player, this.setaR,()=> {
             this.scene.start("floresta",{contaPaus: this.contaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
@@ -60,14 +62,18 @@ class Inicio extends Phaser.Scene {
             this.scene.start("praiaMeio",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
-
-        //MUDAR DEPOIS
-        this.physics.add.collider(this.player,this.setaL,()=> {
-            this.scene.start("gorilafight",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual});
+        this.physics.add.collider(this.player, this.setaL,()=> {
+            this.scene.start("bau",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
+
+        // //MUDAR DEPOIS
+        // this.physics.add.collider(this.player,this.setaL,()=> {
+        //     this.scene.start("gorilafight",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual});
+        // });
+
         // posicao da floresta
-        this.floresta = 200;
+        this.floresta = 220;
         this.conta=0;
 
 

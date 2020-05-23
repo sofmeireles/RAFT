@@ -1,6 +1,6 @@
-class Fim extends Phaser.Scene {
+class Jangada extends Phaser.Scene {
     constructor(){
-        super("fim");
+        super("jangada");
     }
     
     init(data){
@@ -11,44 +11,57 @@ class Fim extends Phaser.Scene {
         this.contaPaus=data.contaPaus;
     }
     create(){
-        console.log("fim page");
-        console.log("tempo: "+this.tempo);
-        this.background = this.add.image(0,0,"fim");
+        var x=400;
+        var y=250;
+        /* this.background = this.add.image(0,0,"lago");
         this.background.setOrigin(0,0);
-        
+        this.veil=this.add.graphics({x:0,y:0});
+        this.veil.fillStyle('0x000000',0.3);
+        this.veil.fillRect(0,0,config.width, config.height); */
+        this.imagem = this.add.image(config.width/2,config.height/2,'fim');
+        var tam=this.listaPerguntas.length;
+        this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
+
+        this.player.setPosition(405,490);
+        this.player.setVelocity(0);
+
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 
-        this.timer = this.time.addEvent({
-            loop: true,
-            paused: false
-        });
-        this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
+        if(tam==0){
+            this.respCorreta(true,1);
+        }
+        else{
+            var text=this.add.text(x,y,"Olá sou o troll do lago e\numa vez que entraste só\nte poderei deixar sair\nse responderes corretamente\na uma questão",{font: "20px Helvetica", fill: 'black'});
 
+            //btn continuar
+            this.btnCont = this.add.image(550,400,'btnContinuar');
+            this.btnCont.setScale(0.2);
+            this.btnContc = this.add.image(550,400,'btnContinuarc');
+            this.btnContc.setScale(0.2);
+            this.btnContc.visible=false;
 
-        this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
-        this.player.setCollideWorldBounds(true);
-        this.player.setBounce(0.2);
-        this.player.setScale(config.scalePlayer);
-        this.player.x = this.posX;
-        this.player.y = this.posY;
+            //interações do btnCont
+            this.btnCont.setInteractive();
 
-        this.cursors = this.input.keyboard.createCursorKeys();
-        this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+            this.btnCont.on("pointerover", ()=>{
+                this.game.canvas.style.cursor = "pointer";
+                this.btnContc.visible=true;
+            });
 
-        this.setaL = this.physics.add.staticGroup();
-        this.setaL.create(20,400,'setaLeft');
+            this.btnCont.on("pointerout", ()=>{
+                this.game.canvas.style.cursor = "default";
+                this.btnContc.visible=false;
+            });
 
-        this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("praiaMeio",{contaPaus:this.contaPaus,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
-        });
+            this.btnCont.on("pointerup", ()=>{
+                text.setText('');
+                this.btnCont.destroy();
+                this.btnContc.destroy();
+                this.gerapergunta();
+            });
 
-        // posicao da floresta
-        this.inferior = 490;
-        this.lateral = 405;
-        this.jangadaX = 410;
-        this.jangadaY = 495;
-        this.conta=0;
+        }
     }
 
 
