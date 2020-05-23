@@ -7,6 +7,8 @@ class CavernaMeio extends Phaser.Scene {
         this.tempo=data.tempo+0.5;
         this.posX = data.posX;
         this.posY = data.posY;
+        this.contaPaus=data.contaPaus;
+        this.nameuser = data.nameuser;
     }
     create(){
         console.log("cavernaMeio page");
@@ -21,6 +23,8 @@ class CavernaMeio extends Phaser.Scene {
         });
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
+        this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
+        this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
 
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
@@ -39,11 +43,11 @@ class CavernaMeio extends Phaser.Scene {
 
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaF",{listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY:400});
+            this.scene.start("cavernaF",{contaPaus:this.contaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY:400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("cavernaLago",{listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("cavernaLago",{contaPaus:this.contaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
         });
         
         //posição do cenario fora da gruta

@@ -7,6 +7,8 @@ class CavernaLago extends Phaser.Scene {
         this.tempo=data.tempo+0.5;
         this.posX = data.posX;
         this.posY = data.posY;
+        this.nameuser=data.nameuser;
+        this.contaPaus=data.contaPaus;
     }
     create(){
         console.log("cavernaLago page");
@@ -15,6 +17,9 @@ class CavernaLago extends Phaser.Scene {
         this.background = this.add.image(0,0,"cavernaLago");
         this.background.setOrigin(0,0);
         this.flag=0;
+
+        this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
+        this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -37,11 +42,8 @@ class CavernaLago extends Phaser.Scene {
         this.setaR.create(650,400,'setaRight');
 
 
-        this.physics.add.collider(this.player, this.setaE,()=> {
-            this.scene.start("inicio",{ listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
-        });
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaMeio",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("cavernaMeio",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
         });
         
         //posição do cenario fora da gruta
@@ -116,7 +118,7 @@ class CavernaLago extends Phaser.Scene {
             this.player.x=350;
             this.player.y=355;
 
-            this.scene.start("lago",{listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 350, posY: 160});
+            this.scene.start("lago",{contaPaus:this.contaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 350, posY: 160});
             //this.scene.start("pergunta",{background:this.background, listaPerguntas:this.listaPerguntas, player:this.player, sceneName:"cavernaLago"});
         }
     }

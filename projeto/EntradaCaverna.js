@@ -8,6 +8,8 @@ class EntradaCaverna extends Phaser.Scene {
         this.tempo=data.tempo+0.5;
         this.posX = data.posX;
         this.posY = data.posY;
+        this.contaPaus = data.contaPaus;
+        this.nameuser=data.nameuser;
     }
     create(){
         console.log("entradaCaverna page");
@@ -15,6 +17,8 @@ class EntradaCaverna extends Phaser.Scene {
         this.background = this.add.image(0,0,"entradaCaverna");
         this.background.setOrigin(0,0);
         
+        this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
+        this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -39,11 +43,11 @@ class EntradaCaverna extends Phaser.Scene {
         this.setaU.create(30,270,'setaUp');
 
         this.physics.add.collider(this.player, this.setaU,()=> {
-            this.scene.start("cavernaF",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 490, posY: 405});
+            this.scene.start("cavernaF",{contaPaus:this.contaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 490, posY: 405});
         });
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("praia",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 250, posY: 215});
+            this.scene.start("praia",{contaPaus:this.contaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 250, posY: 215});
         });
 
         // posicao da floresta

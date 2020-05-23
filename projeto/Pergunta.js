@@ -9,6 +9,7 @@ class Pergunta extends Phaser.Scene {
         this.sceneName=data.sceneName;
         this.player=data.player;
         this.tempo=data.tempo;
+        this.contaPaus=data.contaPaus;
     }
     create(){
         var x=400;
@@ -24,6 +25,9 @@ class Pergunta extends Phaser.Scene {
 
         this.player.setPosition(350,350);
         this.player.setVelocity(0);
+
+        this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
+        this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 
         if(tam==0){
             this.respCorreta(true,1);
@@ -240,7 +244,7 @@ class Pergunta extends Phaser.Scene {
                 this.imagem.destroy();
                 this.scene.stop(this.sceneName);
                 this.scene.stop();
-                this.scene.start("cavernaLago",{listaPerguntas:this.listaPerguntas, tempo:this.tempo, posX: 350, posY: 280});
+                this.scene.start("cavernaLago",{contaPaus:this.contaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempo, posX: 350, posY: 280});
             }
             else{
                 this.game.canvas.style.cursor = "default";

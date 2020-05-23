@@ -8,12 +8,15 @@ class Topo extends Phaser.Scene {
         this.tempo=data.tempo+0.5;
         this.posX = data.posX;
         this.posY = data.posY;
+        this.contaPaus=data.contaPaus;
     }
     create(){
         console.log("topo page");
         this.background = this.add.image(0,0,"topo");
         this.background.setOrigin(0,0);
         
+        this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
+        this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -37,7 +40,7 @@ class Topo extends Phaser.Scene {
 
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("preTopo",{listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
+            this.scene.start("preTopo",{contaPaus:this.contaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
         // posicao da floresta

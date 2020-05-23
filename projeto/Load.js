@@ -56,6 +56,7 @@ class Load extends Phaser.Scene {
         this.load.image('preTopo','./resources/preTopo.png');
         this.load.image('lago','./resources/lago.png');
         this.load.image('fim','./resources/fim.png');
+        this.load.image('pau','./resources/pau.png');
         this.load.html('nameform', 'nameform.html');
         this.load.image('cenarioluta','./resources/cenarioluta.png');
         

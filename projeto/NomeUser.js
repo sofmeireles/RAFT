@@ -46,7 +46,8 @@ class NomeUser extends Phaser.Scene {
             if (this.flag==1){
                 this.game.canvas.style.cursor = "default";
                 this.crialistaperguntas();
-                this.scene.start("inicio",{ listaPerguntas:this.listaPerguntas,tempo:0, posX: 400, posY: 400});
+                this.nameuser=inputText.value;
+                this.scene.start("inicio",{nameuser:this.nameuser, listaPerguntas:this.listaPerguntas,contaPaus:0,tempo:0, posX: 400, posY: 400});
             }
             else{
                 fala.setVisible(false);

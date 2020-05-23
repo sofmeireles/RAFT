@@ -9,6 +9,13 @@ var configTimer = {
     color: 'white',
 }
 
+var configContaPaus = {
+    font: '50px Arial',
+    posX: 500,
+    posY: 5,
+    color: 'white',
+}
+
 var lancamentoBananas ={
     velocidadeY: 200,
     velocidadeX: 250,
