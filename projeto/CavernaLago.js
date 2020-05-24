@@ -69,6 +69,24 @@ class CavernaLago extends Phaser.Scene {
         this.pedra5.setScale(0.25);
         this.pedra5.setImmovable();
 
+        this.rato1 = this.physics.add.sprite(350, 350, 'rato');
+        //this.rato1.setCollideWorldBounds(true);
+        this.rato1.setBounce(1);
+        this.rato1.body.width = 20;
+        this.rato1.body.height = 10;
+        this.rato1.body.setSize(this.rato1.body.width, this.rato1.body.height, true);
+        this.rato1.setScale(0.9);
+        this.rato1.play("rat");
+
+        this.rato2 = this.physics.add.sprite(350, 350, 'rato');
+        //this.rato1.setCollideWorldBounds(true);
+        this.rato2.setBounce(1);
+        this.rato2.body.width = 20;
+        this.rato2.body.height = 10;
+        this.rato2.body.setSize(this.rato1.body.width, this.rato1.body.height, true);
+        this.rato2.setScale(0.9);
+        this.rato2.play("rat");
+
         this.morcego1 = this.physics.add.sprite(config.width/7, config.height/4, 'morcego');
         this.morcego2 = this.physics.add.sprite(config.width/2, config.height/5, 'morcego');
         this.morcego3 = this.physics.add.sprite(config.width-50, config.height/6, 'morcego');
@@ -179,6 +197,25 @@ class CavernaLago extends Phaser.Scene {
 
         this.pergunta();
         this.colCenario();
+        this.moverRatoDireita(this.rato1, 3);
+        //this.moverRatoEsquerda(this.rato1, 2);
+    }
+    moverRatoDireita(rato, speed){
+        rato.x += speed;
+        if(rato.x > config.width){
+            this.resetRato(rato);
+        }
+    }
+    moverRatoEsquerda(rato, speed){
+        rato.x += -speed;
+        if(rato.x < config.width){
+            this.resetRato(rato);
+        }
+    }
+    resetRato(rato){
+        rato.x = 0;
+        var randomY = Phaser.Math.Between(0, config.height)
+        rato.y = randomY;
     }
 
     colCenario(){
