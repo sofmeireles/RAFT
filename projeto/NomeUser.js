@@ -56,6 +56,8 @@ class NomeUser extends Phaser.Scene {
                 this.add.text(300,280,"QUAL É O TEU NOME???",{font: "19px Helvetica", fontWeight:"bold", fill: 'black'});
             }
         });
+
+
     }
     crialistaperguntas(){
         var perguntas = this.cache.json.get('perguntas');

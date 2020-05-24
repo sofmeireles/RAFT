@@ -119,6 +119,9 @@ class Inicio extends Phaser.Scene {
         this.floresta = 220;
         this.conta=0;
 
+        //fade
+        this.veil=this.add.graphics({x:0,y:0});
+
     }
 
 
