@@ -77,8 +77,16 @@ class Bau extends Phaser.Scene {
         this.bauaberto = this.physics.add.image(35, 400, 'bauaberto');
         this.bauaberto.visible = false;
 
+        this.bauaberto.body.width = 60;
+        this.bauaberto.body.height = 30;
+        this.bauaberto.body.setSize(this.bauaberto.body.width, this.bauaberto.body.height, true);
+
         if(this.listaPaus.includes("this.nomepau")==false){
             this.baufechado = this.physics.add.image(35, 400, 'baufechado');
+            this.baufechado.body.width = 60;
+            this.baufechado.body.height = 30;
+            this.baufechado.body.setSize(this.baufechado.body.width, this.baufechado.body.height, true);
+
             this.physics.add.overlap(this.player, this.baufechado, this.handleBau, null, this);
         } else{
             this.bauaberto.visible = true;
@@ -94,10 +102,14 @@ class Bau extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.macaco3, this.respawn, null, this);
 
     
+        var texto = "Prima 'I'";
+
+        this.textoEscrito = this.add.text(15,450,texto,{font: "18px Helvetica", fill: 'black'});
+        this.textoEscrito.visible = false;
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-        this.teste = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+        this.teste = false;
 
         this.setaR = this.physics.add.staticGroup();
         this.setaR.create(670,400,'setaRight');
@@ -105,6 +117,7 @@ class Bau extends Phaser.Scene {
         this.physics.add.collider(this.player, this.setaR,()=> {
             this.scene.start("inicio",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
+
 
         // posicao da floresta
         this.floresta = 220;
@@ -162,6 +175,7 @@ class Bau extends Phaser.Scene {
             this.scene.launch("mensagemBau",{background:this.background, sceneName:"bau"});
         }
 
+
         if(this.player.x<config.width/4-10){
             this.lado=0;
         }
@@ -192,6 +206,8 @@ class Bau extends Phaser.Scene {
             this.incrementaPaus();
             this.incrementaPaus();
             this.incrementaPaus();
+            this.textoEscrito.visible = true;
+            this.teste = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I);
             this.chave=false;
             this.imChave.destroy();
             // this.scene.pause();

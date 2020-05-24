@@ -27,7 +27,7 @@ class Topo extends Phaser.Scene {
             this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
             this.imChave.setScale(0.3);
         }
-        
+
         this.timer = this.time.addEvent({
             loop: true,
             paused: false
@@ -102,11 +102,12 @@ class Topo extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra2);
         this.physics.add.collider(this.player, this.cliff);
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("preTopo",{chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
+        this.scene.start("preTopo",{chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
-        // posicao da floresta
+        // limites
         this.limiteCima = 230;
+        this.limiteDireita = 620;
         this.conta=0;
 
 
@@ -182,6 +183,10 @@ class Topo extends Phaser.Scene {
     colCenario(){
         if (this.player.y < this.limiteCima){
             this.player.y=this.limiteCima;
+        }
+
+        if (this.player.x > this.limiteDireita){
+            this.player.x=this.limiteDireita;
         }
     }
 

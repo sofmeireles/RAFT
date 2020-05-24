@@ -102,9 +102,9 @@ class CavernaMeio extends Phaser.Scene {
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
         this.setaR = this.physics.add.staticGroup();
-        this.setaR.create(650,400,'setaRight');
+        this.setaR.create(650,450,'setaRight');
         this.setaL = this.physics.add.staticGroup();
-        this.setaL.create(50,400,'setaLeft');
+        this.setaL.create(30,450,'setaLeft');
 
         this.physics.add.collider(this.player, this.pedra1);
         this.physics.add.collider(this.player, this.pedra2);

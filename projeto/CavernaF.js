@@ -26,7 +26,7 @@ class CavernaF extends Phaser.Scene {
             this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
             this.imChave.setScale(0.3);
         }
-        
+
         this.timer = this.time.addEvent({
             loop: true,
             paused: false
@@ -125,7 +125,7 @@ class CavernaF extends Phaser.Scene {
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
         this.setaL = this.physics.add.staticGroup();
-        this.setaL.create(30,400,'setaLeft');
+        this.setaL.create(30,450,'setaLeft');
         this.setaU = this.physics.add.staticGroup();
         this.setaU.create(490,305,'setaUp');
 
