@@ -28,6 +28,11 @@ class Topo extends Phaser.Scene {
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
 
+
+        this.arvore = this.physics.add.sprite(config.width/2, config.height/2, 'arvore');
+        this.arvore.setCollideWorldBounds(true);
+        this.arvore.setBounce(0.2);
+        this.arvore.setImmovable();
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
@@ -37,6 +42,7 @@ class Topo extends Phaser.Scene {
         this.player.setScale(config.scalePlayer);
         this.player.x = this.posX;
         this.player.y = this.posY;
+
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
