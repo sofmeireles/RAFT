@@ -10,6 +10,7 @@ class Inicio extends Phaser.Scene {
         this.posY = data.posY;
         this.listaPaus= data.listaPaus;
         this.nameuser=data.nameuser;
+        this.firstTime=data.firstTime;
     }
     create(){
         console.log("inicio page");
@@ -62,8 +63,14 @@ class Inicio extends Phaser.Scene {
         // });
         // // ***************** MUDAR
 
+        console.log(this.firstTime);
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("floresta",{listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            if(this.firstTime!=null){
+                this.scene.start("floresta",{firstTime: this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            }
+            else{
+                this.scene.start("floresta",{listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            }
         });
 
         this.physics.add.collider(this.player, this.setaD,()=> {

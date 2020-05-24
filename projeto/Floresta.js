@@ -10,6 +10,7 @@ class Floresta extends Phaser.Scene {
         this.posY = data.posY;
         this.listaPaus= data.listaPaus;
         this.nameuser=data.nameuser;
+        this.firstTime=data.firstTime;
     }
     create(){
         console.log("floresta page");
@@ -47,16 +48,16 @@ class Floresta extends Phaser.Scene {
 
         this.setaR = this.physics.add.staticGroup();
         this.setaR.create(670,400,'setaRight');
-        this.setaU = this.physics.add.staticGroup();
-        this.setaU.create(350,200,'setaUp');
+        /* this.setaU = this.physics.add.staticGroup();
+        this.setaU.create(350,200,'setaUp'); */
         this.setaL = this.physics.add.staticGroup();
         this.setaL.create(30,400,'setaLeft');
 
 
-        
+        /* 
         this.physics.add.collider(this.player, this.setaU,()=> {
             this.scene.start("gorilafight",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
-        });
+        }); */
 
         this.physics.add.collider(this.player, this.setaR,()=> {
             this.scene.start("preTopo",{listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
@@ -69,6 +70,14 @@ class Floresta extends Phaser.Scene {
         // posicao da floresta
         this.floresta = 220;
         this.conta=0;
+
+        //gorila
+        this.porGorila=false;
+        if(this.firstTime!=null){
+            this.gorila = this.add.image(config.height/2,200,'gorila1');
+            this.gorila.setScale(0.5);
+            this.porGorila=true;
+        }
 
     }
 
@@ -115,6 +124,11 @@ class Floresta extends Phaser.Scene {
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"floresta"});
         }
+
+        if(this.porGorila==true && this.player.x>config.height/2){
+            console.log('balao');
+        }
+
 
         this.colCenario();
     }
