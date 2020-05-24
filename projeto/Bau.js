@@ -11,16 +11,21 @@ class Bau extends Phaser.Scene {
         this.listaPaus= data.listaPaus;
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         console.log("bau page");
         this.background = this.add.image(0,0,"floresta");
         this.background.setOrigin(0,0);
 
-        console.log(this.firstTime);
         this.contaPaus=this.listaPaus.length;        
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
+
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
+            this.imChave.setScale(0.3);
+        }
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -98,7 +103,7 @@ class Bau extends Phaser.Scene {
         this.setaR.create(670,400,'setaRight');
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("inicio",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("inicio",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         // posicao da floresta
@@ -182,13 +187,21 @@ class Bau extends Phaser.Scene {
     }
 
     handleBau(player, baufechado){
-        baufechado.destroy();
-        this.incrementaPaus();
-        this.incrementaPaus();
-        this.incrementaPaus();
-        // this.scene.pause();
-        // this.scene.launch("mensagemBau",{background:this.background, sceneName:"bau"});
-        this.bauaberto.visible = true;
+        if(this.chave==true){
+            baufechado.destroy();
+            this.incrementaPaus();
+            this.incrementaPaus();
+            this.incrementaPaus();
+            this.chave=false;
+            this.imChave.destroy();
+            // this.scene.pause();
+            // this.scene.launch("mensagemBau",{background:this.background, sceneName:"bau"});
+            this.bauaberto.visible = true;
+
+        }
+        else{
+            console.log("sem chave");
+        }
     }
 
     incrementaPaus(){

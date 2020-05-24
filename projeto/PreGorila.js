@@ -10,6 +10,7 @@ class PreGorila extends Phaser.Scene {
         this.nomeuser=data.nomeuser;
         this.listaPaus=data.listaPaus;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         var x=350;
@@ -28,6 +29,11 @@ class PreGorila extends Phaser.Scene {
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
+            this.imChave.setScale(0.3);
+        }
+        
         var text=this.add.text(x,y,"uh uh uh ah ah\nuh uh uh ah ah\nuh uh uh ah ah\nuh uh uh ah ah\nuh uh uh ah ah",{font: "35px Helvetica", fill: 'black'});
 
         //btn continuar
@@ -51,7 +57,7 @@ class PreGorila extends Phaser.Scene {
         });
 
         this.btnCont.on("pointerup", ()=>{
-            this.scene.start("gorilafight",{firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 600});                
+            this.scene.start("gorilafight",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 600});                
         });
 
     }

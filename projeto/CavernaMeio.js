@@ -10,6 +10,7 @@ class CavernaMeio extends Phaser.Scene {
         this.listaPaus=data.listaPaus;
         this.nameuser = data.nameuser;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         console.log("cavernaMeio page");
@@ -27,6 +28,11 @@ class CavernaMeio extends Phaser.Scene {
         this.contaPaus=this.listaPaus.length;
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
+
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
+            this.imChave.setScale(0.3);
+        }
 
         this.pedra1 = this.physics.add.sprite(440, 460, 'pedra');
         this.pedra2 = this.physics.add.sprite(100, 400, 'pedra');
@@ -106,11 +112,11 @@ class CavernaMeio extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra5);
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaF",{firstTime:this.firstTime,listaPaus:this.listaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY:400});
+            this.scene.start("cavernaF",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY:400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("cavernaLago",{firstTime:this.firstTime,listaPaus:this.listaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("cavernaLago",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
         });
         
         //posição do cenario fora da gruta

@@ -11,6 +11,7 @@ class PreTopo extends Phaser.Scene {
         this.nameuser=data.nameuser;
         this.listaPaus=data.listaPaus;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         console.log("preTopo page");
@@ -21,6 +22,11 @@ class PreTopo extends Phaser.Scene {
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
+            this.imChave.setScale(0.3);
+        }
+        
         this.timer = this.time.addEvent({
             loop: true,
             paused: false
@@ -47,11 +53,11 @@ class PreTopo extends Phaser.Scene {
         this.setaL.create(20,400,'setaLeft');
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("topo",{firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("topo",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("floresta",{firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("floresta",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta

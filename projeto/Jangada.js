@@ -11,6 +11,7 @@ class Jangada extends Phaser.Scene {
         this.listaPaus=data.listaPaus;
         this.nameuser=nameuser;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         var x=400;
@@ -30,6 +31,16 @@ class Jangada extends Phaser.Scene {
         this.contaPaus=this.listaPaus.length;
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
+
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
+            this.imChave.setScale(0.3);
+        }
+        
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
+            this.imChave.setScale(0.3);
+        }
 
         if(tam==0){
             this.respCorreta(true,1);

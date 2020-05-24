@@ -11,6 +11,7 @@ class Inicio extends Phaser.Scene {
         this.listaPaus= data.listaPaus;
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         console.log("inicio page");
@@ -22,6 +23,11 @@ class Inicio extends Phaser.Scene {
 
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
+
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
+            this.imChave.setScale(0.3);
+        }
 
 
         this.timer = this.time.addEvent({
@@ -94,15 +100,15 @@ class Inicio extends Phaser.Scene {
 
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("floresta",{firstTime: this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("floresta",{chave:this.chave,firstTime: this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaD,()=> {
-            this.scene.start("praiaMeio",{firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
+            this.scene.start("praiaMeio",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("bau",{firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("bau",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.mesa);
