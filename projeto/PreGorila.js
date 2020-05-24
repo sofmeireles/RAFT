@@ -35,7 +35,7 @@ class PreGorila extends Phaser.Scene {
         }
 
         if (this.flag==0){
-            var text=this.add.text(x,y,"Uh uh uh ah ah! Sou o\ngorila protetor desta parte da ilha.\nPara provares que mereces andar\npor aqui\ntens de passar este\ndesafio.",{font: "20px Helvetica", fill: 'black'});
+            var text=this.add.text(x,y,"Uh uh uh ah ah! Sou o\ngorila protetor desta parte da ilha.\nPara provares que mereces andar\npor aqui tens de passar este\ndesafio.",{font: "20px Helvetica", fill: 'black'});
         }
         else{
             var text=this.add.text(x,y,"Uh uh uh ah ah!\nParabéns! Venceste o desafio!\nAgora podes andar livremente pela\nilha!",{font: "20px Helvetica", fill: 'black'});
@@ -55,6 +55,7 @@ class PreGorila extends Phaser.Scene {
             this.game.canvas.style.cursor = "pointer";
             this.btnContc.visible=true;
         });
+
 
         this.btnCont.on("pointerout", ()=>{
             this.game.canvas.style.cursor = "default";
