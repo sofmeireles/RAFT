@@ -81,7 +81,7 @@ class Load extends Phaser.Scene {
         this.load.image('pedrapraia', './resources/pedrapraia.png');
         this.load.image('palmeirabound', './resources/palmeirabound.png');
 
-        this.load.spritesheet('rato', './resources/rato.png', {
+        this.load.spritesheet('rato', './resources/ratospsheet.png', {
             frameWidth: 40,
             frameHeight: 39
         });
@@ -117,10 +117,17 @@ class Load extends Phaser.Scene {
     create(){
 
         this.add.text(20,20,"Carregando o jogo...",{font: '40px Arial', fill:'balck'});
+
         this.anims.create({
-           key: "rat",
-           frames: this.anims.generateFrameNumbers("rato"),
-           frameRate: 10,
+            key: "ratodireita",
+            frames: this.anims.generateFrameNumbers("rato", {start: 3, end: 5}),
+            frameRate: 10,
+            repeat:-1
+        });
+        this.anims.create({
+            key: "ratoesquerda",
+            frames: this.anims.generateFrameNumbers("rato", {start: 0, end: 2}),
+            frameRate: 10,
             repeat:-1
         });
         this.anims.create({
