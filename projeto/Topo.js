@@ -28,12 +28,50 @@ class Topo extends Phaser.Scene {
         });
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
+        this.cliff = this.physics.add.staticGroup();
+        this.cliff.create(420,600, 'cliff');
+        this.cliff.create(535, 540, 'cliff');
+        this.cliff.create(560, 520, 'cliff');
+        this.cliff.create(610, 505, 'cliff');
+        this.cliff.create(350, 660, 'cliff');
+        this.cliff.create(300, 680, 'cliff');
+        this.cliff.create(385, 630, 'cliff');
 
+        this.pedra1 = this.physics.add.sprite(400, 500, 'pedra');
+        this.pedra2 = this.physics.add.sprite(390, 485, 'pedra');
+        this.pedra1.setCollideWorldBounds(true);
+        this.pedra2.setCollideWorldBounds(true);
 
-        this.arvore = this.physics.add.sprite(config.width/2, config.height/2, 'arvore');
-        this.arvore.setCollideWorldBounds(true);
-        this.arvore.setBounce(0.2);
-        this.arvore.setImmovable();
+        this.pedra1.body.width = 180;
+        this.pedra1.body.height = 180;
+        this.pedra1.setSize(this.pedra1.body.width, this.pedra1.body.height, true);
+        this.pedra1.setScale(0.25);
+        this.pedra1.setImmovable();
+
+        this.pedra2.body.width = 180;
+        this.pedra2.body.height = 180;
+        this.pedra2.setSize(this.pedra2.body.width, this.pedra2.body.height, true);
+        this.pedra2.setScale(0.25);
+        this.pedra2.setImmovable();
+
+        this.arvore1 = this.physics.add.sprite(100, 235, 'arvore');
+        this.arvore1.setCollideWorldBounds(true);
+        this.arvore1.setBounce(0.2);
+        this.arvore1.body.width = 50;
+        this.arvore1.body.height = 70;
+        this.arvore1.body.setSize(this.arvore1.body.width, this.arvore1.body.height, true);
+        this.arvore1.setScale(1.5);
+        this.arvore1.setImmovable();
+
+        this.arvore2 = this.physics.add.sprite(625, 200, 'arvore');
+        this.arvore2.setCollideWorldBounds(true);
+        this.arvore2.setBounce(0.2);
+        this.arvore2.body.width = 25;
+        this.arvore2.body.height = 70;
+        this.arvore2.body.setSize(this.arvore2.body.width, this.arvore2.body.height, true);
+        this.arvore2.setScale(1.5);
+        this.arvore2.setImmovable();
+
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
@@ -52,6 +90,11 @@ class Topo extends Phaser.Scene {
         this.setaL.create(20,400,'setaLeft');
 
 
+        this.physics.add.collider(this.player, this.arvore1);
+        this.physics.add.collider(this.player, this.arvore2);
+        this.physics.add.collider(this.player, this.pedra1);
+        this.physics.add.collider(this.player, this.pedra2);
+        this.physics.add.collider(this.player, this.cliff);
         this.physics.add.collider(this.player, this.setaL,()=> {
             this.scene.start("preTopo",{firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
