@@ -32,16 +32,29 @@ class Lago extends Phaser.Scene {
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 
 
+        this.folhas = this.physics.add.staticGroup();
+        this.folhas.create(280, 270, 'folhasbounds');
+        this.folhas.create(240, 270, 'folhasbounds');
+        this.folhas.create(210, 270, 'folhasbounds');
+        this.folhas.create(480, 270, 'folhasbounds');
+        this.folhas.create(440, 270, 'folhasbounds');
+        this.folhas.create(410, 270, 'folhasbounds');
+
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
+        this.player.body.width = 70;
+        this.player.body.height = 110;
+        this.player.body.setSize(this.player.body.width, this.player.body.height, true);
         this.player.setScale(config.scalePlayer);
         this.player.x = this.posX;
         this.player.y = this.posY;
 
+
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-        
+
+        this.physics.add.collider(this.player, this.folhas);
         //limites
         this.entradaesquerda=313;
         this.entradadireita=383;
