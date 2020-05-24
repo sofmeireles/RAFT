@@ -23,7 +23,7 @@ class MensagemBau extends Phaser.Scene {
             var texto="Dentro deste baú encontraste mais 3\n\npedaços de madeira para conseguires acabar\n\nde construir a tua jangada.\n\nBoa sorte a tentar escapar aos macacos outra vez!";
         }
         if(this.chave==false && this.flag==0){
-            var texto="Necessitas de uma chave\n\npara conseguires abrir este baú!\n\n";
+            var texto="                   Necessitas de uma chave\n\n                 para conseguires abrir este baú!\n\n";
         }
         if(this.flag==1){
             var texto="Já recolheste os paus deste baú!";
