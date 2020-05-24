@@ -116,7 +116,7 @@ class CavernaLago extends Phaser.Scene {
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
         this.setaR = this.physics.add.staticGroup();
-        this.setaR.create(650,400,'setaRight');
+        this.setaR.create(650,450,'setaRight');
 
         this.physics.add.collider(this.player, this.pedra1);
         this.physics.add.collider(this.player, this.pedra2);
@@ -124,7 +124,7 @@ class CavernaLago extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra4);
         this.physics.add.collider(this.player, this.pedra5);
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaMeio",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("cavernaMeio",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 450});
         });
         
         //posição do cenario fora da gruta
