@@ -65,6 +65,10 @@ class Load extends Phaser.Scene {
         this.load.html('nameform', 'nameform.html');
         this.load.image('cenarioluta','./resources/cenarioluta1.png');
         this.load.image('plataforma', './resources/plataforma.png');
+        this.load.image('mesa', './resources/table real.png');
+        this.load.image('tenda', './resources/tenda.png');
+        this.load.image('fogueira', './resources/fogueira.png');
+        this.load.image('lenha', './resources/lenha.png');
         this.load.spritesheet('macaco', './resources/macacospsheet.png',{
             frameWidth: 100,
             frameHeight: 94
