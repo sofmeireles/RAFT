@@ -151,7 +151,7 @@ class GorilaFight extends Phaser.Scene {
 
         if(Phaser.Input.Keyboard.JustDown(this.pause)){
             this.scene.pause();
-            this.scene.launch("pausa",{background:this.background, sceneName:"inicio"});
+            this.scene.launch("pausa",{background:this.background, sceneName:"gorilafight"});
         }
     }
 

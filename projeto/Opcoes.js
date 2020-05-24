@@ -24,14 +24,14 @@ class Opcoes extends Phaser.Scene {
         
         this.btnMuteM = this.add.image(527,391,'btnMute');
         this.btnMuteM.setScale(0.028);
-        // this.btnMuteM.visible=false;
+        this.btnMuteM.visible=false;
         this.btnMutecM = this.add.image(527,391,'btnMutec');
         this.btnMutecM.setScale(0.119);
         this.btnMutecM.visible=false;
 
         this.btnUnmuteM = this.add.image(527,391,'btnUnmute');
         this.btnUnmuteM.setScale(0.028);
-        this.btnUnmuteM.visible=false;
+        this.btnUnmuteM.visible=true;
         this.btnUnmutecM = this.add.image(527,391,'btnUnmutec');
         this.btnUnmutecM.setScale(0.014);
         this.btnUnmutecM.visible=false;
@@ -80,9 +80,10 @@ class Opcoes extends Phaser.Scene {
         });
         this.btnMaisM.on("pointerup", ()=>{
             console.log("up MaisM");
-            // this.volume += 0.2;
-            // this.musica.setVolume(volume);
-            // console.log(volume);
+            if(music.volume < 1){
+                music.volume += 0.2;
+                console.log(music.volume)
+            }
         });
 
         //interações do btnMenosM
@@ -100,9 +101,15 @@ class Opcoes extends Phaser.Scene {
         });
         this.btnMenosM.on("pointerup", ()=>{
             console.log("up MenosM");
-            // this.volume -= 0.2;
-            // this.musica.setVolume(volume);
-            // console.log(musica.volume);
+            if(music.volume > 0){
+                var cond = 0.2;
+                if((music.volume - cond) < 0){
+                    music.volume = 0;
+                } else{
+                    music.volume -= cond;
+                }
+                console.log(music.volume)
+            }
             
         });
 
@@ -124,9 +131,10 @@ class Opcoes extends Phaser.Scene {
             this.btnMuteM.visible = false;
             this.btnMutecM.visible = false;
             this.btnUnmuteM.visible = true;
+            music.mute = false;
         });
 
-        //interações do btnMuteM
+        //interações do btnUnMuteM
         this.btnUnmuteM.setInteractive();
 
         this.btnUnmuteM.on("pointerover", ()=>{
@@ -144,7 +152,7 @@ class Opcoes extends Phaser.Scene {
             this.btnUnmutecM.visible = false;
             this.btnUnmuteM.visible = false;
             this.btnMuteM.visible = true;
-            // this.scene.setMute(true);
+            music.mute = true;
         });
 
     }
