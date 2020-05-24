@@ -19,9 +19,9 @@ class MensagemJangada extends Phaser.Scene {
 
         this.pausEmFalta = 12 - this.listaPaus.length;
 
-        var texto1 = "Oops, esta jangada não está com bom ar.\n\nPrecisas de mais " + this.pausEmFalta + "troncos\n\npara conseguires escapar!";
+        var texto1 = "Oops, esta jangada não está com bom ar.\n\nPrecisas de mais " + this.pausEmFalta + " troncos\n\npara conseguires escapar!";
 
-        this.add.text(155,250,texto1,{font: "18px Helvetica", fill: 'black'});
+        this.add.text(160,250,texto1,{font: "18px Helvetica", fill: 'black'});
 
 
         //btn voltar

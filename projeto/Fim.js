@@ -33,7 +33,7 @@ class Fim extends Phaser.Scene {
 
         var texto = "Prima 'I'";
 
-        this.textoEscrito = this.add.text(300,510,texto,{font: "18px Helvetica", fill: 'black'});
+        this.textoEscrito = this.add.text(250,510,texto,{font: "18px Helvetica", fill: 'black'});
 
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
