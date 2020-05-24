@@ -7,7 +7,7 @@ class PreGorila extends Phaser.Scene {
         this.listaPerguntas=data.listaPerguntas;
         this.sceneName=data.sceneName;
         this.tempo=data.tempo;
-        this.nomeuser=data.nomeuser;
+        this.nameuser=data.nameuser;
         this.listaPaus=data.listaPaus;
         this.firstTime=data.firstTime;
         this.chave=data.chave;

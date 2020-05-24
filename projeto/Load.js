@@ -116,7 +116,7 @@ class Load extends Phaser.Scene {
 
     create(){
 
-        this.add.text(20,20,"Carregando o jogo...");
+        this.add.text(20,20,"Carregando o jogo...",{font: '40px Arial', fill:'balck'});
         this.anims.create({
            key: "rat",
            frames: this.anims.generateFrameNumbers("rato"),

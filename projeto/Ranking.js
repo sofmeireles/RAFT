@@ -35,7 +35,10 @@ class Ranking extends Phaser.Scene {
             this.scene.start("menu1")
         });
         
-        var pontos = this.cache.json.get('pontuacao');
+        //var pontos = this.cache.json.get('pontuacao');
+        var pontos=JSON.parse(localStorage.getItem('pontuacao'));
+        console.log(pontos);
+
         var tamanho = Object.keys(pontos).length;
         var y = 210;
         var xNome = 250;
@@ -69,9 +72,9 @@ class Ranking extends Phaser.Scene {
         const ontB = b.pontuacao;
   
         let comp = 0;
-        if (pontA > ontB) {
+        if (pontA < ontB) {
             comp = -1;
-        } else if (pontA < ontB) {
+        } else if (pontA > ontB) {
             comp = 1;
         }
         return comp;

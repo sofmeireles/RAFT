@@ -14,6 +14,7 @@ class Inicio extends Phaser.Scene {
         this.chave=data.chave;
     }
     create(){
+        console.log(this.nameuser);
         console.log("inicio page");
         this.background = this.add.image(0,0,"floresta");
         this.background.setOrigin(0,0);

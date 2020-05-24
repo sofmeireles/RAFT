@@ -132,10 +132,19 @@ class Fim extends Phaser.Scene {
             if(this.listaPaus.length < 12){
                 this.scene.pause();
                 this.scene.launch("mensagemJangada",{background:this.background, sceneName:"fim",listaPaus:this.listaPaus});
-            } else{
+            }
+            else{
                 console.log("FINALL");
                 this.jangadaFinal.visible = true;
                 this.jangadaEstragada.visible = false;
+                console.log(this.nameuser);
+                console.log(this.tempoAtual);
+                //this.restartRank();
+                var pontos = JSON.parse(localStorage.getItem('pontuacao'));
+                var novo={nome:this.nameuser,pontuacao:this.tempoAtual}
+                pontos.push(novo);
+                console.log(pontos);
+                localStorage.setItem('pontuacao',JSON.stringify(pontos));
             }
         }
         
@@ -150,6 +159,14 @@ class Fim extends Phaser.Scene {
         if (this.player.x > this.lateral){
             this.player.x=this.lateral;
         }
+    }
+
+    restartRank(){
+        var pontos = JSON.parse(localStorage.getItem('pontuacao'));
+        for(var i = 0;i<pontos.length;i++){
+            pontos.pop();
+        }
+        localStorage.setItem('pontuacao',JSON.stringify(pontos));
     }
 
 }
