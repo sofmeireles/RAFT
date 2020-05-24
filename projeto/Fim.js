@@ -18,6 +18,7 @@ class Fim extends Phaser.Scene {
         console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"fim");
         this.background.setOrigin(0,0);
+
         
         this.contaPaus=this.listaPaus.length;
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
@@ -36,6 +37,14 @@ class Fim extends Phaser.Scene {
 
         this.pausEmFalta = 12 - this.listaPaus.length;
 
+
+        if(this.pausEmFalta==0){
+            this.tempoFim = this.time.addEvent({
+                loop: true,
+                paused: true,
+            });
+        }
+
         var texto = "Prima 'I'";
 
         this.textoEscrito = this.add.text(250,510,texto,{font: "18px Helvetica", fill: 'black'});
@@ -44,15 +53,15 @@ class Fim extends Phaser.Scene {
         this.jangadaEstragada.body.width = 50;
         this.jangadaEstragada.body.height = 50;
         this.jangadaEstragada.body.setSize(this.jangadaEstragada.body.width, this.jangadaEstragada.body.height, true);
-        this.jangadaEstragada.setScale(0.5);
+        this.jangadaEstragada.setScale(0.6);
         this.jangadaEstragada.setImmovable();
         // this.physics.add.overlap(this.player, this.jangada, this.handleJangada, null, this);
 
         this.jangadaFinal = this.physics.add.sprite(420, 520, 'jangadaFinal');
-        this.jangadaFinal.body.width = 50;
-        this.jangadaFinal.body.height = 50;
+        //this.jangadaFinal.body.width = 50;
+        //this.jangadaFinal.body.height = 50;
         this.jangadaFinal.body.setSize(this.jangadaFinal.body.width, this.jangadaFinal.body.height, true);
-        this.jangadaEstragada.setScale(0.5);
+        this.jangadaFinal.setScale(0.5);
         this.jangadaFinal.visible = false;
 
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
@@ -83,7 +92,13 @@ class Fim extends Phaser.Scene {
         this.lateral = 405;
         this.conta=0;
 
+        //variaveis para o fim
         this.carregou=0;
+        this.jangX=420;
+        this.jangY=520;
+        this.transp=0;
+        this.veil=this.add.graphics({x:0,y:0});
+
     }
 
 
@@ -131,27 +146,25 @@ class Fim extends Phaser.Scene {
         }
 
         if(Phaser.Input.Keyboard.JustDown(this.teste)){
-            this.carregou=0;
             if(this.listaPaus.length < 12){
                 this.scene.pause();
                 this.scene.launch("mensagemJangada",{background:this.background, sceneName:"fim",listaPaus:this.listaPaus});
-                this.carregou=1;
             }
             else{
                 console.log("FINALL");
+                this.carregou=1;
+                this.starTime=this.tempoAtual;
                 this.jangadaFinal.visible = true;
                 this.jangadaEstragada.visible = false;
-                console.log(this.nameuser);
-                console.log(this.tempoAtual);
-                console.log(this.carregou);
-                this.carregou=1;
-                //this.restartRank();
-                    var pontos = JSON.parse(localStorage.getItem('pontuacao'));
-                    var novo={nome:this.nameuser,pontuacao:this.tempoAtual};
-                    pontos.push(novo);
-                    localStorage.setItem('pontuacao',JSON.stringify(pontos));
-                
+                this.posX=363;
+                this.posY=525;
+                this.player.setCollideWorldBounds(false);          
             }
+
+
+        }
+        if(this.carregou==1){
+            this.animFinal();
         }
         
         this.colCenario();
@@ -159,20 +172,46 @@ class Fim extends Phaser.Scene {
 
 
     colCenario(){
-        if (this.player.y > this.inferior){
+        if (this.player.y > this.inferior && this.carregou!=1){
             this.player.y=this.inferior;
         }
-        if (this.player.x > this.lateral){
+        if (this.player.x > this.lateral && this.carregou!=1){
             this.player.x=this.lateral;
         }
     }
 
-    restartRank(){
-        var pontos = JSON.parse(localStorage.getItem('pontuacao'));
-        for(var i = 0;i<pontos.length;i++){
-            pontos.pop();
+    animFinal(){
+        this.pause.destroy();
+        this.teste.destroy();
+        if(this.tempoAtual-this.starTime>0.5 && this.tempoAtual-this.starTime<=2){
+            this.jangX+=1.2;
+            this.posX+=1.2;
+            this.player.setPosition(this.posX,this.posY);
+            this.jangadaFinal.setPosition(this.jangX,this.jangY);
         }
-        localStorage.setItem('pontuacao',JSON.stringify(pontos));
+        else if(this.tempoAtual-this.starTime>2 && this.tempoAtual-this.starTime<9){
+            this.jangY-=1.5;
+            this.posY-=1.5;
+            this.player.setPosition(this.posX,this.posY);
+            this.jangadaFinal.setPosition(this.jangX,this.jangY);
+            if(this.tempoAtual-this.starTime>5){
+                this.transp+=0.0002;
+                if(this.transp>1){
+                    this.transp=1;
+                }
+                console.log(this.transp);
+                this.veil.fillStyle('0x000000',this.transp);
+                this.veil.fillRect(0,0,config.width, config.height);
+            }
+
+        }
+        else if(this.tempoAtual-this.starTime>9){
+            this.jangadaFinal.destroy();
+            this.player.destroy();
+            this.scene.stop();
+            this.scene.start("cenaFinal",{nameuser:this.nameuser,pontuacao:Math.floor(this.starTime)});
+        }
+
     }
 
 }
