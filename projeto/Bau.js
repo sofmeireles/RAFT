@@ -108,7 +108,7 @@ class Bau extends Phaser.Scene {
     
         var texto = "Prima 'I'";
 
-        this.textoEscrito = this.add.text(15,450,texto,{font: "18px Helvetica", fill: 'black'});
+        this.textoEscrito = this.add.text(15,450,texto,{font: "20px Helvetica", fill: 'white'});
         this.textoEscrito.visible = false;
 
         this.cursors = this.input.keyboard.createCursorKeys();

@@ -77,6 +77,15 @@ class Load extends Phaser.Scene {
         this.load.image('folhasbounds', './resources/folhasbounds.png');
         this.load.image('arvore', './resources/arvore top.png');
         this.load.image('cliff', './resources/cliff.png');
+        this.load.image('palmeira', './resources/palmeira.png');
+        this.load.image('pedrapraia', './resources/pedrapraia.png');
+        this.load.image('palmeirabound', './resources/palmeirabound.png');
+
+        this.load.spritesheet('rato', './resources/rato.png', {
+            frameWidth: 40,
+            frameHeight: 39
+        });
+
         this.load.spritesheet('morcego', './resources/bat.png', {
             frameWidth: 192,
             frameHeight: 192
@@ -109,6 +118,12 @@ class Load extends Phaser.Scene {
 
         this.add.text(20,20,"Carregando o jogo...");
         this.anims.create({
+           key: "rat",
+           frames: this.anims.generateFrameNumbers("rato"),
+           frameRate: 10,
+            repeat:-1
+        });
+        this.anims.create({
             key: "bat",
             frames: this.anims.generateFrameNumbers("morcego"),
             frameRate: 10,
@@ -123,19 +138,19 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: "left",
             frames: this.anims.generateFrameNumbers("boneco", {start:0, end:1}),
-            frameRate: 5,
+            frameRate: 10,
             repeat:-1
         });
         this.anims.create({
             key: "right",
             frames: this.anims.generateFrameNumbers("boneco", {start:2, end:3}),
-            frameRate: 5,
+            frameRate: 10,
             repeat:-1
         });
         this.anims.create({
             key: "back",
             frames: this.anims.generateFrameNumbers("boneco", {start:4, end:6}),
-            frameRate: 5,
+            frameRate: 10,
             repeat:-1
         });
         this.anims.create({

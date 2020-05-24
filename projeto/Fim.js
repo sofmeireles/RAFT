@@ -40,6 +40,20 @@ class Fim extends Phaser.Scene {
 
         this.textoEscrito = this.add.text(250,510,texto,{font: "18px Helvetica", fill: 'black'});
 
+        this.jangadaEstragada = this.physics.add.sprite(420, 520, 'jangada');
+        this.jangadaEstragada.body.width = 50;
+        this.jangadaEstragada.body.height = 50;
+        this.jangadaEstragada.body.setSize(this.jangadaEstragada.body.width, this.jangadaEstragada.body.height, true);
+        this.jangadaEstragada.setScale(0.5);
+        this.jangadaEstragada.setImmovable();
+        // this.physics.add.overlap(this.player, this.jangada, this.handleJangada, null, this);
+
+        this.jangadaFinal = this.physics.add.sprite(35, 400, 'jangadaFinal');
+        this.jangadaFinal.body.width = 50;
+        this.jangadaFinal.body.height = 50;
+        this.jangadaFinal.body.setSize(this.jangadaFinal.body.width, this.jangadaFinal.body.height, true);
+        this.jangadaFinal.visible = false;
+
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
@@ -50,12 +64,6 @@ class Fim extends Phaser.Scene {
         this.player.x = this.posX;
         this.player.y = this.posY;
 
-        this.jangadaEstragada = this.physics.add.image(420, 460, 'jangada');
-        this.jangadaEstragada.setScale(0.5)
-        // this.physics.add.overlap(this.player, this.jangada, this.handleJangada, null, this);
-
-        this.jangadaFinal = this.physics.add.image(35, 400, 'jangadaFinal');
-        this.jangadaFinal.visible = false;
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
