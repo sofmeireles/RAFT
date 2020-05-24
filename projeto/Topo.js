@@ -132,6 +132,6 @@ class Topo extends Phaser.Scene {
         this.this.contaPaus++;    
         this.this.listaPaus.push(this.nomepau);
         this.this.textoContaPaus.setText('x '+this.this.contaPaus);
-        pau.disableBody(true, true);
+        pau.destroy();
     }
 }

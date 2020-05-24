@@ -52,7 +52,7 @@ class GorilaFight extends Phaser.Scene {
         this.plataforma.create(250, 180, 'plataforma');
 
         this.physics.add.collider(this.player, p);
-        this.physics.add.collider(this.player, this.projectiles);
+        //this.physics.add.collider(this.player, this.projectiles);
         this.physics.add.collider(this.player, this.plataforma);
 
         this.timer = this.time.addEvent({
@@ -74,30 +74,23 @@ class GorilaFight extends Phaser.Scene {
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
 
-        /* APAGAAAAAAAAR */
-        this.btnVoltar = this.add.image(350,600,'btnVoltar');
-        this.btnVoltar.setScale(0.07);
-        this.btnVoltarc = this.add.image(350,600,'btnVoltarc');
-        this.btnVoltarc.setScale(0.3);
-        this.btnVoltarc.visible=false;
-        this.btnVoltar.setInteractive();
-        this.btnVoltar.on("pointerover", ()=>{
-            console.log("over Voltar");
-            this.game.canvas.style.cursor = "pointer";
-            this.btnVoltarc.visible=true;
-        });
-        this.btnVoltar.on("pointerout", ()=>{
-            console.log("out Voltar");
-            this.game.canvas.style.cursor = "default";
-            this.btnVoltarc.visible=false;
-        });
-        this.btnVoltar.on("pointerup", ()=>{
-            console.log("up Voltar");
-            this.game.canvas.style.cursor = "default";
-            this.scene.start("inicio",{nameuser:this.nameuser,listaPaus: this.listaPaus,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual,posX: 130, posY: 400});
-        });
-        /* ************************************ */
 
+        //PAUS
+        this.pausApanhados=0;
+        this.numTotalPaus=4;
+        this.pau1 = this.physics.add.staticGroup();
+        this.pau1.create(10,545,'pau');
+        this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pau"});
+        this.pau1.create(445,405,'pau');
+        this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pau"});
+        this.pau1.create(675,125,'pau');
+        this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pau"});
+        this.pau1.create(250,160,'pau');
+        this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pau"});
+
+    
+        this.physics.add.overlap(this.player, this.projectiles, this.respawn, null, {this: this, banana:this.banana});
+        
     }
     update(){
 
@@ -153,6 +146,10 @@ class GorilaFight extends Phaser.Scene {
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"gorilafight"});
         }
+
+        if(this.pausApanhados==this.numTotalPaus){
+            this.addSeta();
+        }
     }
 
     lançaBanana(){
@@ -160,6 +157,26 @@ class GorilaFight extends Phaser.Scene {
         var banana= new Banana(this);
         this.projectiles.add(banana);
     }
+    incrementaPaus(player,pau){
+        this.this.contaPaus++;
+        this.this.pausApanhados++;   
+        this.this.listaPaus.push(this.nomepau);
+        this.this.textoContaPaus.setText('x '+this.this.contaPaus);
+        pau.destroy();
+    }
 
+    respawn(player, bananas) {
+        player.x = 130;
+        player.y = 400;
+        bananas.destroy();
+    }
+
+    addSeta(){
+        this.setaR = this.physics.add.staticGroup();
+        this.setaR.create(670,config.height-50,'setaRight');
+        this.physics.add.collider(this.player, this.setaR,()=> {
+            this.scene.start("floresta",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+        }); 
+    }
 
 }

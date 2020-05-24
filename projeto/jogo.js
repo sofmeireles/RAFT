@@ -46,7 +46,7 @@ var config = {
     scene: [Inicial,Load,Menu1,Ranking,Ajuda,Creditos,Opcoes,Jogar1,
         NomeUser,Sair,Inicio,Bau,PraiaMeio,CavernaLago,CavernaF,Lago,Pergunta,
         Praia,EntradaCaverna,CavernaMeio,Floresta,
-        PreTopo,Topo,Fim,Pausa,GorilaFight],
+        PreTopo,Topo,Fim,Pausa,GorilaFight,PreGorila],
     pixelAtr: true,
     physics: {
         default: 'arcade',
