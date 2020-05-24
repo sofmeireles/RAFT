@@ -64,6 +64,10 @@ class Load extends Phaser.Scene {
         this.load.image('tenda', './resources/tenda.png');
         this.load.image('fogueira', './resources/fogueira.png');
         this.load.image('lenha', './resources/lenha.png');
+        this.load.spritesheet('morcego', './resources/bat.png', {
+            frameWidth: 192,
+            frameHeight: 192
+        });
         this.load.spritesheet('macaco', './resources/macacospsheet.png',{
             frameWidth: 100,
             frameHeight: 94
