@@ -125,7 +125,7 @@ class Floresta extends Phaser.Scene {
 
         if(this.porGorila==true && this.player.x>config.height/2){
             this.firstTime=1;
-            this.scene.start("pregorila",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("pregorila",{flag:0,chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         }
 
 

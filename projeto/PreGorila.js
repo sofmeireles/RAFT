@@ -11,10 +11,11 @@ class PreGorila extends Phaser.Scene {
         this.listaPaus=data.listaPaus;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.flag=data.flag;
     }
     create(){
         var x=350;
-        var y=200;
+        var y=250;
         this.pausApanhados=0;
         this.player = this.physics.add.sprite(350, 350, 'boneco');
         this.player.setVisible(false);
@@ -33,7 +34,12 @@ class PreGorila extends Phaser.Scene {
             this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         }
 
-        var text=this.add.text(x,y,"uh uh uh ah ah\nuh uh uh ah ah\nuh uh uh ah ah\nuh uh uh ah ah\nuh uh uh ah ah",{font: "35px Helvetica", fill: 'black'});
+        if (this.flag==0){
+            var text=this.add.text(x,y,"Uh uh uh ah ah! Sou o\ngorila protetor desta parte da ilha.\nPara provares que mereces andar\npor aqui\ntens de passar este\ndesafio.",{font: "20px Helvetica", fill: 'black'});
+        }
+        else{
+            var text=this.add.text(x,y,"Uh uh uh ah ah!\nParabéns! Venceste o desafio!\nAgora podes andar livremente pela\nilha!",{font: "20px Helvetica", fill: 'black'});
+        }
 
         //btn continuar
         this.btnCont = this.add.image(500,470,'btnContinuar');
@@ -56,7 +62,12 @@ class PreGorila extends Phaser.Scene {
         });
 
         this.btnCont.on("pointerup", ()=>{
-            this.scene.start("gorilafight",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 600});                
+            if(this.flag==0){
+                this.scene.start("gorilafight",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 600});
+            }
+            else{
+                this.scene.start("floresta",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 350, posY: 350});
+            }
         });
 
     }
