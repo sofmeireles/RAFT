@@ -72,6 +72,7 @@ class Load extends Phaser.Scene {
         this.load.image('fogueira', './resources/fogueira.png');
         this.load.image('lenha', './resources/lenha.png');
         this.load.image('pedra', './resources/rock.png');
+        this.load.image('ajudaSemFundo', './resources/ajudaSemFundo.png');
         this.load.image('folhasbounds', './resources/folhasbounds.png');
         this.load.image('arvore', './resources/arvore top.png');
         this.load.spritesheet('morcego', './resources/bat.png', {

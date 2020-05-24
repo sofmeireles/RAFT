@@ -137,8 +137,9 @@ class Menu1 extends Phaser.Scene {
         });
         this.btnAjuda.on("pointerup", ()=>{
             console.log("up Ajuda");
+            console.log("heyoh");
             this.game.canvas.style.cursor = "default";
-            this.scene.start("ajuda")
+            this.scene.start("ajuda",{flag:null});
         });
 
         //interações do btnSair
