@@ -11,6 +11,7 @@ class Floresta extends Phaser.Scene {
         this.listaPaus= data.listaPaus;
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         console.log("floresta page");
@@ -22,6 +23,9 @@ class Floresta extends Phaser.Scene {
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
+        }
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -54,11 +58,11 @@ class Floresta extends Phaser.Scene {
         this.setaL.create(30,400,'setaLeft');
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("preTopo",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("preTopo",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("inicio",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("inicio",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta
@@ -121,7 +125,7 @@ class Floresta extends Phaser.Scene {
 
         if(this.porGorila==true && this.player.x>config.height/2){
             this.firstTime=1;
-            this.scene.start("pregorila",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("pregorila",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         }
 
 

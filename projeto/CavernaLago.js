@@ -10,6 +10,7 @@ class CavernaLago extends Phaser.Scene {
         this.nameuser=data.nameuser;
         this.listaPaus=data.listaPaus;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         console.log("cavernaLago page");
@@ -21,6 +22,10 @@ class CavernaLago extends Phaser.Scene {
         this.contaPaus=this.listaPaus.length;
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
+
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
+        }
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -129,7 +134,7 @@ class CavernaLago extends Phaser.Scene {
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
         this.setaR = this.physics.add.staticGroup();
-        this.setaR.create(650,400,'setaRight');
+        this.setaR.create(650,450,'setaRight');
 
         this.physics.add.collider(this.player, this.pedra1);
         this.physics.add.collider(this.player, this.pedra2);
@@ -137,7 +142,7 @@ class CavernaLago extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra4);
         this.physics.add.collider(this.player, this.pedra5);
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaMeio",{firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("cavernaMeio",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 450});
         });
         
         //posição do cenario fora da gruta
@@ -231,7 +236,7 @@ class CavernaLago extends Phaser.Scene {
             this.player.x=350;
             this.player.y=355;
 
-            this.scene.start("lago",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 350, posY: 160});
+            this.scene.start("lago",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 350, posY: 160});
             //this.scene.start("pergunta",{background:this.background, listaPerguntas:this.listaPerguntas, player:this.player, sceneName:"cavernaLago"});
         }
     }

@@ -11,16 +11,20 @@ class Bau extends Phaser.Scene {
         this.listaPaus= data.listaPaus;
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         console.log("bau page");
         this.background = this.add.image(0,0,"floresta");
         this.background.setOrigin(0,0);
 
-        console.log(this.firstTime);
         this.contaPaus=this.listaPaus.length;        
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
+
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
+        }
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -76,15 +80,20 @@ class Bau extends Phaser.Scene {
         this.bauaberto.body.height = 30;
         this.bauaberto.body.setSize(this.bauaberto.body.width, this.bauaberto.body.height, true);
 
+        this.baufechado = this.physics.add.image(35, 400, 'baufechado');
+        this.baufechado.visible = false;
+
         if(this.listaPaus.includes("this.nomepau")==false){
-            this.baufechado = this.physics.add.image(35, 400, 'baufechado');
+            this.baufechado.visible = true;
             this.baufechado.body.width = 60;
             this.baufechado.body.height = 30;
             this.baufechado.body.setSize(this.baufechado.body.width, this.baufechado.body.height, true);
+            this.aberto=0;
 
             this.physics.add.overlap(this.player, this.baufechado, this.handleBau, null, this);
         } else{
             this.bauaberto.visible = true;
+            this.physics.add.overlap(this.player, this.bauaberto, this.handleBauAberto, null, this);
         }
 
 
@@ -99,7 +108,7 @@ class Bau extends Phaser.Scene {
     
         var texto = "Prima 'I'";
 
-        this.textoEscrito = this.add.text(15,450,texto,{font: "18px Helvetica", fill: 'black'});
+        this.textoEscrito = this.add.text(15,450,texto,{font: "20px Helvetica", fill: 'white'});
         this.textoEscrito.visible = false;
 
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -110,7 +119,7 @@ class Bau extends Phaser.Scene {
         this.setaR.create(670,400,'setaRight');
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("inicio",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("inicio",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
 
@@ -119,6 +128,8 @@ class Bau extends Phaser.Scene {
         this.conta=0;
 
         this.lado=1;
+
+        this.flag=0;
     }
 
 
@@ -167,7 +178,29 @@ class Bau extends Phaser.Scene {
 
         if(Phaser.Input.Keyboard.JustDown(this.teste)){
             this.scene.pause();
-            this.scene.launch("mensagemBau",{background:this.background, sceneName:"bau"});
+            if(this.chave==true){
+                this.flag=1;
+                console.log("chave");
+                this.scene.launch("mensagemBau",{flag:this.aberto,chave:true,background:this.background, sceneName:"bau"});
+                this.incrementaPaus();
+                this.incrementaPaus();
+                this.incrementaPaus();
+                this.aberto=1;
+            }
+            else{
+                this.scene.launch("mensagemBau",{flag:this.aberto,chave:false,background:this.background, sceneName:"bau"});
+            }
+            if(this.flag==1){
+                console.log('ola');
+                console.log(this.baufechado);
+                this.baufechado.visible=false;
+                this.baufechado.destroy();
+                this.chave=false;
+                this.imChave.destroy();
+                // this.scene.pause();
+                // this.scene.launch("mensagemBau",{background:this.background, sceneName:"bau"});
+                this.bauaberto.visible = true;
+            }
         }
 
 
@@ -196,15 +229,14 @@ class Bau extends Phaser.Scene {
     }
 
     handleBau(player, baufechado){
-        baufechado.destroy();
-        this.incrementaPaus();
-        this.incrementaPaus();
-        this.incrementaPaus();
-        this.textoEscrito.visible = true;
+        this.textoEscrito.visible=true;
         this.teste = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I);
-        // this.scene.pause();
-        // this.scene.launch("mensagemBau",{background:this.background, sceneName:"bau"});
-        this.bauaberto.visible = true;
+
+    }
+    handleBauAberto(player,bauaberto){
+        this.textoEscrito.visible=true;
+        this.teste = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I);
+        //this.scene.launch("mensagemBau",{flag:1,chave:false,background:this.background, sceneName:"bau"});
     }
 
     incrementaPaus(){

@@ -6,6 +6,8 @@ class MensagemBau extends Phaser.Scene {
     init(data){
         this.background=data.background;
         this.sceneName=data.sceneName;
+        this.chave=data.chave;
+        this.flag=data.flag;
     }
     create(){
         console.log('MensagemBau');
@@ -16,8 +18,16 @@ class MensagemBau extends Phaser.Scene {
         this.veil.fillRect(0,0,config.width, config.height);
         this.imagem = this.add.image(config.width/2,config.height/2,'pergaminho');
 
-        var texto="Dentro deste baú encontraste mais 3\n\npedaços de madeira para conseguires acabar\n\nde construir a tua jangada.\n\nBoa sorte a tentar escapar aos macacos outra vez!";
-
+        console.log(this.chave);
+        if(this.chave==true){
+            var texto="Dentro deste baú encontraste mais 3\n\npedaços de madeira para conseguires acabar\n\nde construir a tua jangada.\n\nBoa sorte a tentar escapar aos macacos outra vez!";
+        }
+        if(this.chave==false && this.flag==0){
+            var texto="                   Necessitas de uma chave\n\n                 para conseguires abrir este baú!\n\n";
+        }
+        if(this.flag==1){
+            var texto="Já recolheste os paus deste baú!";
+        }
         this.add.text(155,250,texto,{font: "18px Helvetica", fill: 'black'});
 
 
