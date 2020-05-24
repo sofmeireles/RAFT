@@ -45,13 +45,13 @@ var config = {
     backgroundColor: 0xffffff,
     scene: [Inicial,Load,Menu1,Ranking,Ajuda,Creditos,Opcoes,Jogar1,
         NomeUser,Sair,Inicio,Bau,PraiaMeio,CavernaLago,CavernaF,Lago,Pergunta,
-        Praia,EntradaCaverna,CavernaMeio,Floresta,
+        Praia,EntradaCaverna,CavernaMeio,Floresta,MensagemBau,
         PreTopo,Topo,Fim,Pausa,GorilaFight,PreGorila],
     pixelAtr: true,
     physics: {
         default: 'arcade',
         arcade: {
-            debug: false
+            debug: true
         }
     }
 }

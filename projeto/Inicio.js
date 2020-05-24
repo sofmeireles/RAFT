@@ -14,7 +14,7 @@ class Inicio extends Phaser.Scene {
     }
     create(){
         console.log("inicio page");
-        this.background = this.add.image(0,0,"inicio");
+        this.background = this.add.image(0,0,"floresta");
         this.background.setOrigin(0,0);
         console.log(this.listaPaus);
 
@@ -30,6 +30,44 @@ class Inicio extends Phaser.Scene {
         });
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
+
+        console.log(this.firstTime);
+
+        this.fogueira = this.physics.add.sprite(490, 370, 'fogueira');
+        this.fogueira.setCollideWorldBounds(true);
+        this.fogueira.setBounce(0.2);
+        this.fogueira.body.width = 50;
+        this.fogueira.body.height = 50;
+        this.fogueira.body.setSize(this.fogueira.body.width, this.fogueira.body.height, true);
+        this.fogueira.setScale(0.3);
+        this.fogueira.setImmovable();
+
+        this.mesa = this.physics.add.sprite(400, 240, 'mesa');
+        this.mesa.setCollideWorldBounds(true);
+        this.mesa.setBounce(0.2);
+        this.mesa.body.width = 50;
+        this.mesa.body.height = 15;
+        this.mesa.body.setSize(this.mesa.body.width, this.mesa.body.height, true);
+        this.mesa.setScale(1.2);
+        this.mesa.setImmovable();
+
+        this.tenda = this.physics.add.sprite(660, 240, 'tenda');
+        this.tenda.setCollideWorldBounds(true);
+        this.tenda.setBounce(0.2);
+        this.tenda.body.width = 150;
+        this.tenda.body.height = 50;
+        this.tenda.body.setSize(this.tenda.body.width, this.tenda.body.height, true);
+        this.tenda.setScale(1.2);
+        this.tenda.setImmovable();
+
+        this.lenha = this.physics.add.sprite(670, 270, 'lenha');
+        this.lenha.setCollideWorldBounds(true);
+        this.lenha.setBounce(0.2);
+        this.lenha.body.width = 50;
+        this.lenha.body.height = 50;
+        this.lenha.body.setSize(this.lenha.body.width, this.lenha.body.height, true);
+        this.lenha.setScale(0.2);
+        this.lenha.setImmovable();
 
 
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
@@ -55,39 +93,23 @@ class Inicio extends Phaser.Scene {
         this.setaL.create(30,400,'setaLeft');
 
 
-        // // *************** MUDAR
-        // this.setaL = this.physics.add.staticGroup();
-        // this.setaL.create(30,400,'setaLeft');
-        // this.physics.add.collider(this.player, this.setaL,()=> {
-        //     this.scene.start("gorilafight",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
-        // });
-        // // ***************** MUDAR
-
-        console.log(this.firstTime);
         this.physics.add.collider(this.player, this.setaR,()=> {
-            if(this.firstTime!=null){
-                this.scene.start("floresta",{firstTime: this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
-            }
-            else{
-                this.scene.start("floresta",{listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
-            }
+            this.scene.start("floresta",{firstTime: this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaD,()=> {
-            this.scene.start("praiaMeio",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
+            this.scene.start("praiaMeio",{firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("bau",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("bau",{firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
+        this.physics.add.collider(this.player, this.mesa);
+        this.physics.add.collider(this.player, this.tenda);
+        this.physics.add.collider(this.player, this.fogueira);
 
-        // //MUDAR DEPOIS
-        // this.physics.add.collider(this.player,this.setaL,()=> {
-        //     this.scene.start("gorilafight",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual});
-        // });
-
-        // posicao da floresta
+    
         this.floresta = 220;
         this.conta=0;
 

@@ -30,7 +30,7 @@ class Bau extends Phaser.Scene {
         this.plataforma.create(config.width/4, 260, 'plataforma');
         this.plataforma.create(config.width/2, 260, 'plataforma');
         this.plataforma.create(config.width*0.65, 260, 'plataforma');
-        
+
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
@@ -66,19 +66,21 @@ class Bau extends Phaser.Scene {
         this.macaco2.setVelocityY(400);
         this.macaco3.setVelocityY(200);
 
-        // this.macacos = this.physics.add.group();
-        // this.macacos.add(this.macaco1);
-        // this.macacos.add(this.macaco2);
-        // this.macacos.add(this.macaco3);
+
+        this.bauaberto = this.physics.add.image(35, 400, 'bauaberto');
+        this.bauaberto.visible = false;
+
+        if(this.listaPaus.includes("this.nomepau")==false){
+            this.baufechado = this.physics.add.image(35, 400, 'baufechado');
+            this.physics.add.overlap(this.player, this.baufechado, this.handleBau, null, this);
+        } else{
+            this.bauaberto.visible = true;
+        }
 
 
         this.physics.add.collider(this.macaco1, this.plataforma);
         this.physics.add.collider(this.macaco2, this.plataforma);
         this.physics.add.collider(this.macaco3, this.plataforma);
-
-        // this.physics.add.collider(this.player, this.macaco1,);
-        // this.physics.add.collider(this.player,this.macaco2);
-        // this.physics.add.collider(this.player, this.macaco3);
 
         this.physics.add.overlap(this.player, this.macaco1, this.respawn, null, this);
         this.physics.add.overlap(this.player, this.macaco2, this.respawn, null, this);
@@ -88,6 +90,7 @@ class Bau extends Phaser.Scene {
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+        this.teste = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
 
         this.setaR = this.physics.add.staticGroup();
         this.setaR.create(670,400,'setaRight');
@@ -145,24 +148,11 @@ class Bau extends Phaser.Scene {
             this.scene.launch("pausa",{background:this.background, sceneName:"bau"});
         }
 
-        // this.physics.add.collider(this.player, this.macaco1, respawn, null, this);
-        // this.physics.add.collider(this.player, this.macaco2, respawn, null, this);
-        // this.physics.add.collider(this.player, this.macaco3, respawn, null, this);
+        if(Phaser.Input.Keyboard.JustDown(this.teste)){
+            this.scene.pause();
+            this.scene.launch("mensagemBau",{background:this.background, sceneName:"bau"});
+        }
 
-        // this.physics.add.overlap(this.player, this.macaco1, respawn, null, this);
-        // this.physics.add.overlap(this.player, this.macaco2, respawn, null, this);
-        // this.physics.add.overlap(this.player, this.macaco3, respawn, null, this);
-        // if(this.physics.collide(this.player, this.macaco1)){
-        //     this.player.x = 570;
-        //     this.player.y = 400;
-        // }
-
-        // function respawn(){
-        //     this.player.x = 570;
-        //     this.player.y = 400;
-        // }
-
-        
         this.colCenario();
     }
 
@@ -179,9 +169,24 @@ class Bau extends Phaser.Scene {
     }
 
     respawn(player, macaco3) {
-        console.log("HEIIIIIIIIIIIII");
         player.x = 570;
         player.y = 400;
+    }
+
+    handleBau(player, baufechado){
+        baufechado.destroy();
+        this.incrementaPaus();
+        this.incrementaPaus();
+        this.incrementaPaus();
+        // this.scene.pause();
+        // this.scene.launch("mensagemBau",{background:this.background, sceneName:"bau"});
+        this.bauaberto.visible = true;
+    }
+
+    incrementaPaus(){
+        this.contaPaus++;    
+        this.listaPaus.push("this.nomepau");
+        this.textoContaPaus.setText('x '+this.contaPaus);
     }
 
 }

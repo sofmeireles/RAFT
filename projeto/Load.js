@@ -46,6 +46,9 @@ class Load extends Phaser.Scene {
         this.load.image('gorila1', "./resources/gorila.png");
         this.load.image('gorilaFalar','./resources/florestaescuragorila.png');
         this.load.image('setaUp', "./resources/seta_up.png");
+        this.load.image('pergaminho', "./resources/pergaminho.png");
+        this.load.image('baufechado', "./resources/baufechado.png");
+        this.load.image('bauaberto', "./resources/bauaberto.png");
         this.load.image('perg','./resources/golemafalarcenario.png');
         this.load.image('golem','./resources/golem.png');
         this.load.image('cavernaF','./resources/cavernaF.png');
@@ -57,11 +60,21 @@ class Load extends Phaser.Scene {
         this.load.image('floresta','./resources/floresta.png');
         this.load.image('preTopo','./resources/preTopo.png');
         this.load.image('lago','./resources/lago.png');
+        this.load.image('jangada','./resources/jangada.png');
+        this.load.image('jangadaFinal','./resources/jangadaFinal.png');
         this.load.image('fim','./resources/fim.png');
         this.load.image('pau','./resources/pau.png');
         this.load.html('nameform', 'nameform.html');
         this.load.image('cenarioluta','./resources/cenarioluta1.png');
         this.load.image('plataforma', './resources/plataforma.png');
+        this.load.image('mesa', './resources/table real.png');
+        this.load.image('tenda', './resources/tenda.png');
+        this.load.image('fogueira', './resources/fogueira.png');
+        this.load.image('lenha', './resources/lenha.png');
+        this.load.spritesheet('morcego', './resources/bat.png', {
+            frameWidth: 192,
+            frameHeight: 192
+        });
         this.load.spritesheet('macaco', './resources/macacospsheet.png',{
             frameWidth: 100,
             frameHeight: 94
