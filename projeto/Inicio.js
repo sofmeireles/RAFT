@@ -91,14 +91,6 @@ class Inicio extends Phaser.Scene {
         this.setaL.create(30,400,'setaLeft');
 
 
-        // // *************** MUDAR
-        // this.setaL = this.physics.add.staticGroup();
-        // this.setaL.create(30,400,'setaLeft');
-        // this.physics.add.collider(this.player, this.setaL,()=> {
-        //     this.scene.start("gorilafight",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
-        // });
-        // // ***************** MUDAR
-
         this.physics.add.collider(this.player, this.setaR,()=> {
             this.scene.start("floresta",{listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
@@ -110,6 +102,9 @@ class Inicio extends Phaser.Scene {
         this.physics.add.collider(this.player, this.setaL,()=> {
             this.scene.start("bau",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
+<<<<<<< HEAD
+
+=======
         this.physics.add.collider(this.player, this.mesa);
         this.physics.add.collider(this.player, this.tenda);
         this.physics.add.collider(this.player, this.fogueira);
@@ -120,6 +115,7 @@ class Inicio extends Phaser.Scene {
         // });
 
         // posicao da floresta
+>>>>>>> ab8424cc0f63713cf99df257c4a13829f4b69162
         this.floresta = 220;
         this.conta=0;
 
