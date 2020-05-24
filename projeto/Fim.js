@@ -35,6 +35,13 @@ class Fim extends Phaser.Scene {
         this.player.x = this.posX;
         this.player.y = this.posY;
 
+        this.jangada = this.physics.add.image(420, 460, 'jangada');
+        this.jangada.setScale(0.5)
+        // this.physics.add.overlap(this.player, this.jangada, this.handleJangada, null, this);
+
+        this.jangadaFinal = this.physics.add.image(35, 400, 'jangadaFinal');
+        this.jangadaFinal.visible = false;
+
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
@@ -48,8 +55,6 @@ class Fim extends Phaser.Scene {
         // posicao da floresta
         this.inferior = 490;
         this.lateral = 405;
-        this.jangadaX = 410;
-        this.jangadaY = 495;
         this.conta=0;
     }
 
@@ -98,7 +103,6 @@ class Fim extends Phaser.Scene {
         }
         
         this.colCenario();
-        this.mensagem();
     }
 
 
@@ -112,10 +116,7 @@ class Fim extends Phaser.Scene {
     }
 
     mensagem(){
-        if(this.player.x > this.jangadaX && this.player.y > this.jangadaY){
-            this.scene.pause();
-            this.scene.launch("jangada",{background:this.background, sceneName:"fim"})
-        }
+    
     }
 
 }

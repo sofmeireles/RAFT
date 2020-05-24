@@ -44,6 +44,9 @@ class Load extends Phaser.Scene {
         this.load.image('setaRight', "./resources/seta_right.png");
         this.load.image('setaDown', "./resources/seta_down.png");
         this.load.image('setaUp', "./resources/seta_up.png");
+        this.load.image('pergaminho', "./resources/pergaminho.png");
+        this.load.image('baufechado', "./resources/baufechado.png");
+        this.load.image('bauaberto', "./resources/bauaberto.png");
         this.load.image('perg','./resources/golemafalarcenario.png');
         this.load.image('golem','./resources/golem.png');
         this.load.image('cavernaF','./resources/cavernaF.png');
@@ -55,6 +58,8 @@ class Load extends Phaser.Scene {
         this.load.image('floresta','./resources/floresta.png');
         this.load.image('preTopo','./resources/preTopo.png');
         this.load.image('lago','./resources/lago.png');
+        this.load.image('jangada','./resources/jangada.png');
+        this.load.image('jangadaFinal','./resources/jangadaFinal.png');
         this.load.image('fim','./resources/fim.png');
         this.load.image('pau','./resources/pau.png');
         this.load.html('nameform', 'nameform.html');
