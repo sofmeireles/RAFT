@@ -2,11 +2,21 @@ class Ajuda extends Phaser.Scene {
     constructor(){
         super("ajuda");
     }
+    init(data){
+        this.flag=data.flag;
+    }
 
     create(){
         console.log("ajuda page");
-        this.background = this.add.image(0,0,"ajuda");
-        this.background.setOrigin(0,0);
+        console.log(this.flag);
+        if(this.flag==null){
+            this.background = this.add.image(0,0,"ajuda");
+            this.background.setOrigin(0,0);
+        }
+        else{
+            this.background=this.add.image(0,0,"ajudaSemFundo");
+            this.background.setOrigin(0,0);
+        }
 
         this.add.image(480,450,'setas');
 
@@ -21,19 +31,25 @@ class Ajuda extends Phaser.Scene {
         this.btnVoltar.setInteractive();
 
         this.btnVoltar.on("pointerover", ()=>{
-            console.log("over Voltar");
+            //console.log("over Voltar");
             this.game.canvas.style.cursor = "pointer";
             this.btnVoltarc.visible=true;
         });
         this.btnVoltar.on("pointerout", ()=>{
-            console.log("out Voltar");
+            //console.log("out Voltar");
             this.game.canvas.style.cursor = "default";
             this.btnVoltarc.visible=false;
         });
         this.btnVoltar.on("pointerup", ()=>{
-            console.log("up Voltar");
+            //onsole.log("up Voltar");
             this.game.canvas.style.cursor = "default";
-            this.scene.start("menu1")
+            if(this.flag==null){
+                this.scene.start("menu1");
+            }
+            else{
+                this.scene.stop();
+                this.scene.resume('pausa');
+            }
         });
 
         var texto='Usar teclas das "setas",\n\nmais propriamente "up","down","left","right",\n\npara mover o boneco no mapa.\n\nTecla Esc para menu pausa.';

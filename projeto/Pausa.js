@@ -45,16 +45,22 @@ class Pausa extends Phaser.Scene {
 
         
         //btn voltar
-        this.btnVoltar = this.add.image(350,380,'btnVoltar');
+        this.btnVoltar = this.add.image(350,360,'btnVoltar');
         this.btnVoltar.setScale(0.07);
-        this.btnVoltarc = this.add.image(350,380,'btnVoltarc');
+        this.btnVoltarc = this.add.image(350,360,'btnVoltarc');
         this.btnVoltarc.setScale(0.3);
         this.btnVoltarc.visible=false;
 
+        this.btnAjuda = this.add.image(350,425,'btnAjuda');
+        this.btnAjuda.setScale(0.07);
+        this.btnAjudac = this.add.image(350,425,'btnAjudac');
+        this.btnAjudac.setScale(0.3);
+        this.btnAjudac.visible=false;
+
         //btn sair
-        this.btnSair = this.add.image(350,460,'btnSair');
+        this.btnSair = this.add.image(350,490,'btnSair');
         this.btnSair.setScale(0.07);
-        this.btnSairc = this.add.image(350,460,'btnSairc');
+        this.btnSairc = this.add.image(350,490,'btnSairc');
         this.btnSairc.setScale(0.3);
         this.btnSairc.visible=false;
         
@@ -63,17 +69,17 @@ class Pausa extends Phaser.Scene {
         this.btnVoltar.setInteractive();
 
         this.btnVoltar.on("pointerover", ()=>{
-            console.log("over Voltar");
+            //console.log("over Voltar");
             this.game.canvas.style.cursor = "pointer";
             this.btnVoltarc.visible=true;
         });
         this.btnVoltar.on("pointerout", ()=>{
-            console.log("out Voltar");
+            //console.log("out Voltar");
             this.game.canvas.style.cursor = "default";
             this.btnVoltarc.visible=false;
         });
         this.btnVoltar.on("pointerup", ()=>{
-            console.log("up Voltar");
+            //console.log("up Voltar");
             this.game.canvas.style.cursor = "default";
             this.scene.stop();
             this.scene.resume(this.sceneName);
@@ -84,17 +90,17 @@ class Pausa extends Phaser.Scene {
         this.btnMaisM.setInteractive();
 
         this.btnMaisM.on("pointerover", ()=>{
-            console.log("over MaisM");
+            //console.log("over MaisM");
             this.game.canvas.style.cursor = "pointer";
             this.btnMaiscM.visible=true;
         });
         this.btnMaisM.on("pointerout", ()=>{
-            console.log("out MaisM");
+            //console.log("out MaisM");
             this.game.canvas.style.cursor = "default";
             this.btnMaiscM.visible=false;
         });
         this.btnMaisM.on("pointerup", ()=>{
-            console.log("up MaisM");
+            //console.log("up MaisM");
             if(music.volume < 1){
                 music.volume += 0.2;
                 console.log(music.volume)
@@ -105,17 +111,17 @@ class Pausa extends Phaser.Scene {
         this.btnMenosM.setInteractive();
 
         this.btnMenosM.on("pointerover", ()=>{
-            console.log("over MenosM");
+            //console.log("over MenosM");
             this.game.canvas.style.cursor = "pointer";
             this.btnMenoscM.visible=true;
         });
         this.btnMenosM.on("pointerout", ()=>{
-            console.log("out MenosM");
+            //console.log("out MenosM");
             this.game.canvas.style.cursor = "default";
             this.btnMenoscM.visible=false;
         });
         this.btnMenosM.on("pointerup", ()=>{
-            console.log("up MenosM");
+            //console.log("up MenosM");
             if(music.volume > 0){
                 var cond = 0.2;
                 if((music.volume - cond) < 0){
@@ -132,17 +138,17 @@ class Pausa extends Phaser.Scene {
         this.btnMuteM.setInteractive();
 
         this.btnMuteM.on("pointerover", ()=>{
-            console.log("over MuteM");
+            //console.log("over MuteM");
             this.game.canvas.style.cursor = "pointer";
             this.btnMutecM.visible=true;
         });
         this.btnMuteM.on("pointerout", ()=>{
-            console.log("out MuteM");
+            //console.log("out MuteM");
             this.game.canvas.style.cursor = "default";
             this.btnMutecM.visible=false;
         });
         this.btnMuteM.on("pointerup", ()=>{
-            console.log("up MuteM");
+            //console.log("up MuteM");
             this.btnMuteM.visible = false;
             this.btnMutecM.visible = false;
             this.btnUnmuteM.visible = true;
@@ -153,33 +159,53 @@ class Pausa extends Phaser.Scene {
         this.btnUnmuteM.setInteractive();
 
         this.btnUnmuteM.on("pointerover", ()=>{
-            console.log("over UnmuteM");
+            //console.log("over UnmuteM");
             this.game.canvas.style.cursor = "pointer";
             this.btnUnmutecM.visible=true;
         });
         this.btnUnmuteM.on("pointerout", ()=>{
-            console.log("out UnmuteM");
+            //console.log("out UnmuteM");
             this.game.canvas.style.cursor = "default";
             this.btnUnmutecM.visible=false;
         });
         this.btnUnmuteM.on("pointerup", ()=>{
-            console.log("up UnmuteM");
+            //console.log("up UnmuteM");
             this.btnUnmutecM.visible = false;
             this.btnUnmuteM.visible = false;
             this.btnMuteM.visible = true;
             music.mute = true;
         });
 
+        //interações do btnAjuda
+        this.btnAjuda.setInteractive();
+
+        this.btnAjuda.on("pointerover", ()=>{
+            console.log("over Ajuda");
+            this.game.canvas.style.cursor = "pointer";
+            this.btnAjudac.visible=true;
+        });
+        this.btnAjuda.on("pointerout", ()=>{
+            console.log("out Ajuda");
+            this.game.canvas.style.cursor = "default";
+            this.btnAjudac.visible=false;
+        });
+        this.btnAjuda.on("pointerup", ()=>{
+            console.log("up Ajuda");
+            this.game.canvas.style.cursor = "default";
+            this.scene.pause();
+            this.scene.launch("ajuda",{flag:1});
+        });
+
         //interações do btnSair
         this.btnSair.setInteractive();
 
         this.btnSair.on("pointerover", ()=>{
-            console.log("over Sair");
+            //console.log("over Sair");
             this.game.canvas.style.cursor = "pointer";
             this.btnSairc.visible=true;
         });
         this.btnSair.on("pointerout", ()=>{
-            console.log("out Sair");
+            //console.log("out Sair");
             this.game.canvas.style.cursor = "default";
             this.btnSairc.visible=false;
         });
@@ -201,7 +227,7 @@ class Pausa extends Phaser.Scene {
             this.scene.stop("jangada");
             this.scene.stop("topo");
             this.scene.start("menu1");
-            console.log("up Sair");
+            //console.log("up Sair");
         });
         
     }
