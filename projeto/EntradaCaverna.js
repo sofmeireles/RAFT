@@ -31,6 +31,9 @@ class EntradaCaverna extends Phaser.Scene {
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
+        this.player.body.width = 70;
+        this.player.body.height = 110;
+        this.player.body.setSize(this.player.body.width, this.player.body.height, true);
         this.player.setScale(config.scalePlayer);
         this.player.x = this.posX;
         this.player.y = this.posY;

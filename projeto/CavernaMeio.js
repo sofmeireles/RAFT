@@ -27,12 +27,69 @@ class CavernaMeio extends Phaser.Scene {
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
 
+        this.pedra1 = this.physics.add.sprite(440, 460, 'pedra');
+        this.pedra2 = this.physics.add.sprite(100, 400, 'pedra');
+        this.pedra4 = this.physics.add.sprite(170, 550, 'pedra');
+        this.pedra5 = this.physics.add.sprite(600, 600, 'pedra');
+        this.pedra1.setCollideWorldBounds(true);
+        this.pedra2.setCollideWorldBounds(true);
+        this.pedra4.setCollideWorldBounds(true);
+        this.pedra5.setCollideWorldBounds(true);
+
+        this.pedra1.body.width = 180;
+        this.pedra1.body.height = 180;
+        this.pedra1.setSize(this.pedra1.body.width, this.pedra1.body.height, true);
+        this.pedra1.setScale(0.25);
+        this.pedra1.setImmovable();
+
+        this.pedra2.body.width = 180;
+        this.pedra2.body.height = 180;
+        this.pedra2.setSize(this.pedra2.body.width, this.pedra2.body.height, true);
+        this.pedra2.setScale(0.25);
+        this.pedra2.setImmovable();
+
+        this.pedra4.body.width = 180;
+        this.pedra4.body.height = 180;
+        this.pedra4.setSize(this.pedra4.body.width, this.pedra4.body.height, true);
+        this.pedra4.setScale(0.25);
+        this.pedra4.setImmovable();
+
+        this.pedra5.body.width = 180;
+        this.pedra5.body.height = 180;
+        this.pedra5.setSize(this.pedra5.body.width, this.pedra5.body.height, true);
+        this.pedra5.setScale(0.25);
+        this.pedra5.setImmovable();
+
+        this.morcego1 = this.physics.add.sprite(config.width/7, config.height/4, 'morcego');
+        this.morcego2 = this.physics.add.sprite(config.width/2, config.height/5, 'morcego');
+        this.morcego1.setCollideWorldBounds(true);
+        this.morcego2.setCollideWorldBounds(true);
+        this.morcego1.setBounce(1);
+        this.morcego2.setBounce(1);
+        this.morcego1.body.width = 58;
+        this.morcego1.body.height = 41;
+        this.morcego1.setSize(this.morcego1.body.width, this.morcego1.body.height, true);
+        this.morcego1.setScale(0.5);
+        this.morcego2.body.width = 58;
+        this.morcego2.body.height = 41;
+        this.morcego2.setSize(this.morcego2.body.width, this.morcego2.body.height, true);
+        this.morcego2.setScale(0.8);
+        this.morcego1.play("bat");
+        this.morcego2.play("bat");
+        this.morcego1.setVelocityX(100);
+        this.morcego2.setVelocityX(-100);
+
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
+        this.player.body.width = 70;
+        this.player.body.height = 110;
+        this.player.body.setSize(this.player.body.width, this.player.body.height, true);
         this.player.setScale(config.scalePlayer);
         this.player.x = this.posX;
         this.player.y = this.posY;
+
+
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
@@ -42,6 +99,10 @@ class CavernaMeio extends Phaser.Scene {
         this.setaL = this.physics.add.staticGroup();
         this.setaL.create(50,400,'setaLeft');
 
+        this.physics.add.collider(this.player, this.pedra1);
+        this.physics.add.collider(this.player, this.pedra2);
+        this.physics.add.collider(this.player, this.pedra4);
+        this.physics.add.collider(this.player, this.pedra5);
 
         this.physics.add.collider(this.player, this.setaR,()=> {
             this.scene.start("cavernaF",{listaPaus:this.listaPaus,nomeuser:this.nomeuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY:400});

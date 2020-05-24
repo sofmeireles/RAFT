@@ -69,6 +69,8 @@ class Load extends Phaser.Scene {
         this.load.image('tenda', './resources/tenda.png');
         this.load.image('fogueira', './resources/fogueira.png');
         this.load.image('lenha', './resources/lenha.png');
+        this.load.image('pedra', './resources/rock.png');
+        this.load.image('folhasbounds', './resources/folhasbounds.png');
         this.load.spritesheet('morcego', './resources/bat.png', {
             frameWidth: 192,
             frameHeight: 192
@@ -100,6 +102,12 @@ class Load extends Phaser.Scene {
     create(){
 
         this.add.text(20,20,"Carregando o jogo...");
+        this.anims.create({
+            key: "bat",
+            frames: this.anims.generateFrameNumbers("morcego"),
+            frameRate: 10,
+            repeat:-1
+        });
         this.anims.create({
             key: "monkey",
             frames: this.anims.generateFrameNumbers("macaco"),
