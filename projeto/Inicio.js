@@ -102,20 +102,12 @@ class Inicio extends Phaser.Scene {
         this.physics.add.collider(this.player, this.setaL,()=> {
             this.scene.start("bau",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
-<<<<<<< HEAD
 
-=======
         this.physics.add.collider(this.player, this.mesa);
         this.physics.add.collider(this.player, this.tenda);
         this.physics.add.collider(this.player, this.fogueira);
 
-        // //MUDAR DEPOIS
-        // this.physics.add.collider(this.player,this.setaL,()=> {
-        //     this.scene.start("gorilafight",{contaPaus: this.contaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual});
-        // });
-
-        // posicao da floresta
->>>>>>> ab8424cc0f63713cf99df257c4a13829f4b69162
+    
         this.floresta = 220;
         this.conta=0;
 
