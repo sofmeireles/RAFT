@@ -11,6 +11,7 @@ class Praia extends Phaser.Scene {
         this.listaPaus=data.listaPaus;
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         console.log("praia page");
@@ -30,6 +31,9 @@ class Praia extends Phaser.Scene {
         
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
+        }
 
         this.palmeira1 = this.physics.add.sprite(185, 230, 'palmeirabound');
         this.palmeira1.setCollideWorldBounds(true);
@@ -83,11 +87,11 @@ class Praia extends Phaser.Scene {
         this.physics.add.collider(this.player, this.palmeira3);
         this.physics.add.collider(this.player, this.palmeira4);
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("entradaCaverna",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("entradaCaverna",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("praiaMeio",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("praiaMeio",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         // posicao da floresta

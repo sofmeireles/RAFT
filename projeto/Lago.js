@@ -10,6 +10,7 @@ class Lago extends Phaser.Scene {
         this.listaPaus=data.listaPaus;
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         console.log("lago page");
@@ -17,8 +18,8 @@ class Lago extends Phaser.Scene {
         console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"lago");
         this.background.setOrigin(0,0);
-        this.golem=this.add.image(350,150,'golem');
-        this.golem.setScale(1.3);
+        /* this.golem=this.add.image(350,150,'golem');
+        this.golem.setScale(1.3); */
         this.flag=0;
 
         this.timer = this.time.addEvent({
@@ -30,7 +31,6 @@ class Lago extends Phaser.Scene {
         this.contaPaus=this.listaPaus.length;
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
-
 
         this.folhas = this.physics.add.staticGroup();
         this.folhas.create(280, 270, 'folhasbounds');
@@ -48,7 +48,7 @@ class Lago extends Phaser.Scene {
         this.player.body.setSize(this.player.body.width, this.player.body.height, true);
         this.player.setScale(config.scalePlayer);
         this.player.x = this.posX;
-        this.player.y = this.posY;
+        this.player.y = this.posY+100;
 
 
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -66,6 +66,20 @@ class Lago extends Phaser.Scene {
         this.ponteDireita = 360;
         this.agua = 210;
         this.agua2 = 220;
+
+        //chave
+        if(this.chave==false){
+            this.colChave = this.physics.add.staticGroup();
+            this.colChave.create(config.height/2,config.width/2,'chave');
+            this.physics.add.collider(this.player, this.colChave,this.guardaChave, null, this);
+        }
+        else{
+            this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
+        }
+
+        this.golem = this.physics.add.staticGroup();
+        this.golem.create(350,150,'golem');
+        this.physics.add.collider(this.player, this.golem,this.handlerGolem, null,this);
         
     }
 
@@ -114,8 +128,6 @@ class Lago extends Phaser.Scene {
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"lago"});
         }
-
-        this.voltar();
         this.colCenario();
     }
 
@@ -156,7 +168,19 @@ class Lago extends Phaser.Scene {
         if (this.player.x > this.entradaesquerda && this.player.x < this.entradadireita && this.player.y < this.limiteY){
             this.player.setVelocity(0);
             this.scene.pause();
-            this.scene.launch("pergunta",{firstTime:this.firstTime,listaPaus: this.listaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
+            this.scene.launch("pergunta",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
         }
+    }
+
+    guardaChave(player,colChave){
+        this.chave=true;
+        this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
+        colChave.destroy();
+    }
+
+    handlerGolem(){
+        this.player.setVelocity(0);
+        this.scene.pause();
+        this.scene.launch("pergunta",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
     }
 }

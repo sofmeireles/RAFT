@@ -11,6 +11,7 @@ class CavernaF extends Phaser.Scene {
         this.nameuser=data.nameuser;
         this.listaPaus=data.listaPaus;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         console.log("cavernaF page");
@@ -20,6 +21,10 @@ class CavernaF extends Phaser.Scene {
         this.contaPaus=this.listaPaus.length;
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
+
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
+        }
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -129,11 +134,11 @@ class CavernaF extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra4);
         this.physics.add.collider(this.player, this.pedra5);
         this.physics.add.collider(this.player, this.setaU,()=> {
-            this.scene.start("entradaCaverna",{firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 30, posY: 370});
+            this.scene.start("entradaCaverna",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 30, posY: 370});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("cavernaMeio",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 450});
+            this.scene.start("cavernaMeio",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta

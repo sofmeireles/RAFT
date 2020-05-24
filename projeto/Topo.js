@@ -11,6 +11,7 @@ class Topo extends Phaser.Scene {
         this.listaPaus=data.listaPaus;
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
+        this.chave=data.chave;
     }
     create(){
         console.log("topo page");
@@ -21,6 +22,10 @@ class Topo extends Phaser.Scene {
         
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
+
+        if(this.chave==true){
+            this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
+        }
 
         this.timer = this.time.addEvent({
             loop: true,
@@ -96,7 +101,7 @@ class Topo extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra2);
         this.physics.add.collider(this.player, this.cliff);
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("preTopo",{firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 360, posY: 340});
+        this.scene.start("preTopo",{chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
         // limites
@@ -117,13 +122,11 @@ class Topo extends Phaser.Scene {
         }
 
         if(this.listaPaus.includes("pauTopo2")==false){
-            this.pau1 = this.physics.add.staticGroup();
             this.pau1.create(x+2*esp,y,'pau');
             this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pauTopo2"});
         }
 
         if(this.listaPaus.includes("pauTopo3")==false){
-            this.pau1 = this.physics.add.staticGroup();
             this.pau1.create(x+3*esp,y,'pau');
             this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pauTopo3"});
         }
