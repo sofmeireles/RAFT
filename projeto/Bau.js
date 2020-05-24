@@ -104,6 +104,8 @@ class Bau extends Phaser.Scene {
         // posicao da floresta
         this.floresta = 220;
         this.conta=0;
+
+        this.lado=1;
     }
 
 
@@ -155,6 +157,9 @@ class Bau extends Phaser.Scene {
             this.scene.launch("mensagemBau",{background:this.background, sceneName:"bau"});
         }
 
+        if(this.player.x<config.width/4-10){
+            this.lado=0;
+        }
         this.colCenario();
     }
 
@@ -164,15 +169,16 @@ class Bau extends Phaser.Scene {
         }
     }
 
-    incrementaPaus(player,pau){
-        this.contaPaus++;
-        this.textoContaPaus.setText('x '+this.contaPaus);
-        pau.disableBody(true, true);
-    }
 
     respawn(player, macaco3) {
-        player.x = 570;
-        player.y = 400;
+        if(this.lado==1){
+            player.x = 570;
+            player.y = 400;
+        }
+        else{
+            player.x = 50;
+            player.y = 400;
+        }
     }
 
     handleBau(player, baufechado){

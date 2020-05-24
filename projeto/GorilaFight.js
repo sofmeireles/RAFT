@@ -168,7 +168,7 @@ class GorilaFight extends Phaser.Scene {
 
     respawn(player, bananas) {
         player.x = 130;
-        player.y = 400;
+        player.y = 500;
         bananas.destroy();
     }
 
