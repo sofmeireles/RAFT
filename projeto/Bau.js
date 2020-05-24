@@ -72,8 +72,16 @@ class Bau extends Phaser.Scene {
         this.bauaberto = this.physics.add.image(35, 400, 'bauaberto');
         this.bauaberto.visible = false;
 
+        this.bauaberto.body.width = 60;
+        this.bauaberto.body.height = 30;
+        this.bauaberto.body.setSize(this.bauaberto.body.width, this.bauaberto.body.height, true);
+
         if(this.listaPaus.includes("this.nomepau")==false){
             this.baufechado = this.physics.add.image(35, 400, 'baufechado');
+            this.baufechado.body.width = 60;
+            this.baufechado.body.height = 30;
+            this.baufechado.body.setSize(this.baufechado.body.width, this.baufechado.body.height, true);
+
             this.physics.add.overlap(this.player, this.baufechado, this.handleBau, null, this);
         } else{
             this.bauaberto.visible = true;
