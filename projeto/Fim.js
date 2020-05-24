@@ -82,6 +82,8 @@ class Fim extends Phaser.Scene {
         this.inferior = 490;
         this.lateral = 405;
         this.conta=0;
+
+        this.carregou=0;
     }
 
 
@@ -132,6 +134,7 @@ class Fim extends Phaser.Scene {
             if(this.listaPaus.length < 12){
                 this.scene.pause();
                 this.scene.launch("mensagemJangada",{background:this.background, sceneName:"fim",listaPaus:this.listaPaus});
+                this.carregou=1;
             }
             else{
                 console.log("FINALL");
@@ -140,11 +143,13 @@ class Fim extends Phaser.Scene {
                 console.log(this.nameuser);
                 console.log(this.tempoAtual);
                 //this.restartRank();
-                var pontos = JSON.parse(localStorage.getItem('pontuacao'));
-                var novo={nome:this.nameuser,pontuacao:this.tempoAtual}
-                pontos.push(novo);
-                console.log(pontos);
-                localStorage.setItem('pontuacao',JSON.stringify(pontos));
+                if(this.carregou==1){
+                    var pontos = JSON.parse(localStorage.getItem('pontuacao'));
+                    var novo={nome:this.nameuser,pontuacao:this.tempoAtual};
+                    pontos.push(novo);
+                    localStorage.setItem('pontuacao',JSON.stringify(pontos));
+                }
+                
             }
         }
         

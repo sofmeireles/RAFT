@@ -115,20 +115,26 @@ class Topo extends Phaser.Scene {
         var x=450;
         var esp=30;
 
+        console.log(this.listaPaus);
         if(this.listaPaus.includes("pauTopo1")==false){
             this.pau1 = this.physics.add.staticGroup();
+            console.log('oi1');
             this.pau1.create(x+esp,y,'pau');
             this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pauTopo1"});
         }
 
         if(this.listaPaus.includes("pauTopo2")==false){
-            this.pau1.create(x+2*esp,y,'pau');
-            this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pauTopo2"});
+            console.log('oi2');
+            this.pau2 = this.physics.add.staticGroup();
+            this.pau2.create(x+2*esp,y,'pau');
+            this.physics.add.collider(this.player, this.pau2,this.incrementaPaus, null, { this: this, nomepau: "pauTopo2"});
         }
 
         if(this.listaPaus.includes("pauTopo3")==false){
-            this.pau1.create(x+3*esp,y,'pau');
-            this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pauTopo3"});
+            console.log('oi3');
+            this.pau3 = this.physics.add.staticGroup();
+            this.pau3.create(x+3*esp,y,'pau');
+            this.physics.add.collider(this.player, this.pau3,this.incrementaPaus, null, { this: this, nomepau: "pauTopo3"});
         }
     }
 
@@ -190,7 +196,8 @@ class Topo extends Phaser.Scene {
     }
 
     incrementaPaus(player,pau){
-        this.this.contaPaus++;    
+        this.this.contaPaus++;
+        console.log(this.nomepau);   
         this.this.listaPaus.push(this.nomepau);
         this.this.textoContaPaus.setText('x '+this.this.contaPaus);
         pau.destroy();
