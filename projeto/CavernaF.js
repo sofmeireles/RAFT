@@ -119,7 +119,7 @@ class CavernaF extends Phaser.Scene {
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
         this.setaL = this.physics.add.staticGroup();
-        this.setaL.create(30,400,'setaLeft');
+        this.setaL.create(30,450,'setaLeft');
         this.setaU = this.physics.add.staticGroup();
         this.setaU.create(490,305,'setaUp');
 
@@ -133,7 +133,7 @@ class CavernaF extends Phaser.Scene {
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("cavernaMeio",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("cavernaMeio",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 450});
         });
 
         // posicao da floresta

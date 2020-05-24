@@ -29,6 +29,12 @@ class Fim extends Phaser.Scene {
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
 
+        this.pausEmFalta = 12 - this.listaPaus.length;
+
+        var texto = "Prima 'I'";
+
+        this.textoEscrito = this.add.text(300,510,texto,{font: "18px Helvetica", fill: 'black'});
+
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
@@ -39,8 +45,8 @@ class Fim extends Phaser.Scene {
         this.player.x = this.posX;
         this.player.y = this.posY;
 
-        this.jangada = this.physics.add.image(420, 460, 'jangada');
-        this.jangada.setScale(0.5)
+        this.jangadaEstragada = this.physics.add.image(420, 460, 'jangada');
+        this.jangadaEstragada.setScale(0.5)
         // this.physics.add.overlap(this.player, this.jangada, this.handleJangada, null, this);
 
         this.jangadaFinal = this.physics.add.image(35, 400, 'jangadaFinal');
@@ -48,6 +54,7 @@ class Fim extends Phaser.Scene {
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+        this.teste = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I);
 
         this.setaL = this.physics.add.staticGroup();
         this.setaL.create(20,400,'setaLeft');
@@ -105,6 +112,11 @@ class Fim extends Phaser.Scene {
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"fim"});
         }
+
+        if(Phaser.Input.Keyboard.JustDown(this.teste)){
+            this.scene.pause();
+            this.scene.launch("mensagemJangada",{background:this.background, sceneName:"fim",listaPaus:this.listaPaus});
+        }
         
         this.colCenario();
     }
@@ -117,10 +129,6 @@ class Fim extends Phaser.Scene {
         if (this.player.x > this.lateral){
             this.player.x=this.lateral;
         }
-    }
-
-    mensagem(){
-    
     }
 
 }

@@ -89,10 +89,14 @@ class Bau extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.macaco3, this.respawn, null, this);
 
     
+        var texto = "Prima 'I'";
+
+        this.textoEscrito = this.add.text(15,450,texto,{font: "18px Helvetica", fill: 'black'});
+        this.textoEscrito.visible = false;
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
-        this.teste = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+        this.teste = false;
 
         this.setaR = this.physics.add.staticGroup();
         this.setaR.create(670,400,'setaRight');
@@ -100,6 +104,7 @@ class Bau extends Phaser.Scene {
         this.physics.add.collider(this.player, this.setaR,()=> {
             this.scene.start("inicio",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
+
 
         // posicao da floresta
         this.floresta = 220;
@@ -157,6 +162,7 @@ class Bau extends Phaser.Scene {
             this.scene.launch("mensagemBau",{background:this.background, sceneName:"bau"});
         }
 
+
         if(this.player.x<config.width/4-10){
             this.lado=0;
         }
@@ -186,6 +192,8 @@ class Bau extends Phaser.Scene {
         this.incrementaPaus();
         this.incrementaPaus();
         this.incrementaPaus();
+        this.textoEscrito.visible = true;
+        this.teste = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.I);
         // this.scene.pause();
         // this.scene.launch("mensagemBau",{background:this.background, sceneName:"bau"});
         this.bauaberto.visible = true;
