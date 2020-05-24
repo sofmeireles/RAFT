@@ -24,8 +24,7 @@ class Topo extends Phaser.Scene {
         this.textoContaPaus=this.add.text(configContaPaus.posX+55,configContaPaus.posY-5,'x '+this.contaPaus, { font: configContaPaus.font, fill: configContaPaus.color});
 
         if(this.chave==true){
-            this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
-            this.imChave.setScale(0.3);
+            this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         }
 
         this.timer = this.time.addEvent({

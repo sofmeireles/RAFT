@@ -18,8 +18,8 @@ class Lago extends Phaser.Scene {
         console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"lago");
         this.background.setOrigin(0,0);
-        this.golem=this.add.image(350,150,'golem');
-        this.golem.setScale(1.3);
+        /* this.golem=this.add.image(350,150,'golem');
+        this.golem.setScale(1.3); */
         this.flag=0;
 
         this.timer = this.time.addEvent({
@@ -48,7 +48,7 @@ class Lago extends Phaser.Scene {
         this.player.body.setSize(this.player.body.width, this.player.body.height, true);
         this.player.setScale(config.scalePlayer);
         this.player.x = this.posX;
-        this.player.y = this.posY;
+        this.player.y = this.posY+100;
 
 
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -74,9 +74,12 @@ class Lago extends Phaser.Scene {
             this.physics.add.collider(this.player, this.colChave,this.guardaChave, null, this);
         }
         else{
-            this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
-            this.imChave.setScale(0.3);
+            this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         }
+
+        this.golem = this.physics.add.staticGroup();
+        this.golem.create(350,150,'golem');
+        this.physics.add.collider(this.player, this.golem,this.handlerGolem, null,this);
         
     }
 
@@ -125,8 +128,6 @@ class Lago extends Phaser.Scene {
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"lago"});
         }
-
-        this.voltar();
         this.colCenario();
     }
 
@@ -173,8 +174,13 @@ class Lago extends Phaser.Scene {
 
     guardaChave(player,colChave){
         this.chave=true;
-        this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
-        this.imChave.setScale(0.3);
+        this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         colChave.destroy();
+    }
+
+    handlerGolem(){
+        this.player.setVelocity(0);
+        this.scene.pause();
+        this.scene.launch("pergunta",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
     }
 }

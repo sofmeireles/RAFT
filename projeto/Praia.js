@@ -32,8 +32,7 @@ class Praia extends Phaser.Scene {
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
         if(this.chave==true){
-            this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
-            this.imChave.setScale(0.3);
+            this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         }
 
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');

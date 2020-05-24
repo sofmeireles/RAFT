@@ -23,8 +23,7 @@ class CavernaF extends Phaser.Scene {
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
 
         if(this.chave==true){
-            this.imChave=this.add.image(configContaPaus.posX-60,configContaPaus.posY+20,'chave');
-            this.imChave.setScale(0.3);
+            this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         }
 
         this.timer = this.time.addEvent({
