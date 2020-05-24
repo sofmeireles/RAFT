@@ -73,6 +73,24 @@ class CavernaF extends Phaser.Scene {
         this.pedra5.setScale(0.25);
         this.pedra5.setImmovable();
 
+        this.rato1 = this.physics.add.sprite(350, 350, 'rato');
+        //this.rato1.setCollideWorldBounds(true);
+        this.rato1.setBounce(1);
+        this.rato1.body.width = 20;
+        this.rato1.body.height = 10;
+        this.rato1.body.setSize(this.rato1.body.width, this.rato1.body.height, true);
+        this.rato1.setScale(0.9);
+        this.rato1.play("ratodireita");
+
+        this.rato2 = this.physics.add.sprite(350, 350, 'rato');
+        //this.rato1.setCollideWorldBounds(true);
+        this.rato2.setBounce(1);
+        this.rato2.body.width = 20;
+        this.rato2.body.height = 10;
+        this.rato2.body.setSize(this.rato1.body.width, this.rato1.body.height, true);
+        this.rato2.setScale(0.9);
+        this.rato2.play("ratoesquerda");
+
         this.morcego1 = this.physics.add.sprite(config.width/7, config.height/4, 'morcego');
         this.morcego2 = this.physics.add.sprite(config.width/2, config.height/5, 'morcego');
         this.morcego3 = this.physics.add.sprite(config.width-50, config.height/6, 'morcego');
@@ -133,6 +151,39 @@ class CavernaF extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra3);
         this.physics.add.collider(this.player, this.pedra4);
         this.physics.add.collider(this.player, this.pedra5);
+
+        this.physics.add.collider(this.rato1, this.pedra1, ()=>{
+            this.rato1.y += 10;
+        });
+        this.physics.add.collider(this.rato1, this.pedra2, ()=>{
+            this.rato1.y += 10;
+        });
+        this.physics.add.collider(this.rato1, this.pedra3, ()=>{
+            this.rato1.y += 10;
+        });
+        this.physics.add.collider(this.rato1, this.pedra4, ()=>{
+            this.rato1.y += 10;
+        });
+        this.physics.add.collider(this.rato1, this.pedra5, ()=>{
+            this.rato1.y += 10;
+        });
+
+        this.physics.add.collider(this.rato2, this.pedra1, ()=>{
+            this.rato2.y += 10;
+        });
+        this.physics.add.collider(this.rato2, this.pedra2, ()=>{
+            this.rato2.y += 10;
+        });
+        this.physics.add.collider(this.rato2, this.pedra3, ()=>{
+            this.rato2.y += 10;
+        });
+        this.physics.add.collider(this.rato2, this.pedra4, ()=>{
+            this.rat2.y += 10;
+        });
+        this.physics.add.collider(this.rato2, this.pedra5, ()=>{
+            this.rato2.y += 10;
+        });
+
         this.physics.add.collider(this.player, this.setaU,()=> {
             this.scene.start("entradaCaverna",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 30, posY: 370});
         });
@@ -190,6 +241,30 @@ class CavernaF extends Phaser.Scene {
         }
         
         this.colCenario();
+        this.moverRatoDireita(this.rato1, 3);
+        this.moverRatoEsquerda(this.rato2, 2);
+    }
+    moverRatoDireita(rato, speed){
+        rato.x += speed;
+        if(rato.x > config.width){
+            this.resetRatoDireita(rato);
+        }
+    }
+    moverRatoEsquerda(rato, speed){
+        rato.x -= speed;
+        if(rato.x < -config.width){
+            this.resetRatoEsquerda(rato);
+        }
+    }
+    resetRatoEsquerda(rato){
+        rato.x = config.width;
+        var randomY = Phaser.Math.Between(config.height/2, config.height-10)
+        rato.y = randomY;
+    }
+    resetRatoDireita(rato){
+        rato.x = 0;
+        var randomY = Phaser.Math.Between(config.height/2, config.height-10)
+        rato.y = randomY;
     }
 
 
