@@ -47,7 +47,7 @@ var config = {
         NomeUser,Sair,Inicio,Bau,PraiaMeio,CavernaLago,CavernaF,Lago,Pergunta,
         Praia,EntradaCaverna,CavernaMeio,Floresta,MensagemBau,MensagemJangada,
         PreTopo,Topo,Fim,GorilaFight,PreGorila,Pausa,Ajuda],
--
+
     pixelAtr: true,
     physics: {
         default: 'arcade',
