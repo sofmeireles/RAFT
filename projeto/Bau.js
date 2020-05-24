@@ -26,7 +26,11 @@ class Bau extends Phaser.Scene {
         });
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
-
+        this.plataforma = this.physics.add.staticGroup();
+        this.plataforma.create(config.width/4, 260, 'plataforma');
+        this.plataforma.create(config.width/2, 260, 'plataforma');
+        this.plataforma.create(config.width*0.65, 260, 'plataforma');
+        
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
@@ -37,9 +41,9 @@ class Bau extends Phaser.Scene {
         this.player.x = this.posX;
         this.player.y = this.posY;
 
-        this.macaco1 = this.physics.add.sprite(config.width/4, config.height/4, 'macaco');
-        this.macaco2 = this.physics.add.sprite(config.width/2, config.height/4, 'macaco');
-        this.macaco3 = this.physics.add.sprite(config.width*0.75, config.height/4, 'macaco');
+        this.macaco1 = this.physics.add.sprite(config.width/4, config.height/2, 'macaco');
+        this.macaco2 = this.physics.add.sprite(config.width/2, config.height/2, 'macaco');
+        this.macaco3 = this.physics.add.sprite(config.width*0.65, config.height/2, 'macaco');
         this.macaco1.setCollideWorldBounds(true);
         this.macaco2.setCollideWorldBounds(true);
         this.macaco3.setCollideWorldBounds(true);
@@ -58,9 +62,29 @@ class Bau extends Phaser.Scene {
         this.macaco1.play("monkey");
         this.macaco2.play("monkey");
         this.macaco3.play("monkey");
-        this.macaco1.setVelocityY(100);
+        this.macaco1.setVelocityY(300);
         this.macaco2.setVelocityY(400);
         this.macaco3.setVelocityY(200);
+
+        // this.macacos = this.physics.add.group();
+        // this.macacos.add(this.macaco1);
+        // this.macacos.add(this.macaco2);
+        // this.macacos.add(this.macaco3);
+
+
+        this.physics.add.collider(this.macaco1, this.plataforma);
+        this.physics.add.collider(this.macaco2, this.plataforma);
+        this.physics.add.collider(this.macaco3, this.plataforma);
+
+        // this.physics.add.collider(this.player, this.macaco1,);
+        // this.physics.add.collider(this.player,this.macaco2);
+        // this.physics.add.collider(this.player, this.macaco3);
+
+        this.physics.add.overlap(this.player, this.macaco1, this.respawn, null, this);
+        this.physics.add.overlap(this.player, this.macaco2, this.respawn, null, this);
+        this.physics.add.overlap(this.player, this.macaco3, this.respawn, null, this);
+
+    
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
@@ -120,6 +144,24 @@ class Bau extends Phaser.Scene {
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"bau"});
         }
+
+        // this.physics.add.collider(this.player, this.macaco1, respawn, null, this);
+        // this.physics.add.collider(this.player, this.macaco2, respawn, null, this);
+        // this.physics.add.collider(this.player, this.macaco3, respawn, null, this);
+
+        // this.physics.add.overlap(this.player, this.macaco1, respawn, null, this);
+        // this.physics.add.overlap(this.player, this.macaco2, respawn, null, this);
+        // this.physics.add.overlap(this.player, this.macaco3, respawn, null, this);
+        // if(this.physics.collide(this.player, this.macaco1)){
+        //     this.player.x = 570;
+        //     this.player.y = 400;
+        // }
+
+        // function respawn(){
+        //     this.player.x = 570;
+        //     this.player.y = 400;
+        // }
+
         
         this.colCenario();
     }
@@ -134,6 +176,12 @@ class Bau extends Phaser.Scene {
         this.contaPaus++;
         this.textoContaPaus.setText('x '+this.contaPaus);
         pau.disableBody(true, true);
+    }
+
+    respawn(player, macaco3) {
+        console.log("HEIIIIIIIIIIIII");
+        player.x = 570;
+        player.y = 400;
     }
 
 }

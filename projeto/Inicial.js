@@ -40,7 +40,8 @@ class Inicial extends Phaser.Scene {
             console.log("up Comecar");
             this.game.canvas.style.cursor = "default";
             this.musica = this.sound.add("musica", musicaConfig);
-            // this.musica.play(musicaConfig);
+            music = this.musica;
+            this.musica.play(musicaConfig);
             this.scene.start("load")
         });
 

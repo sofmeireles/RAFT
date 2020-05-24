@@ -24,13 +24,15 @@ var lancamentoBananas ={
 
 var musicaConfig = {
     mute: false,
-    volume: 1,
+    volume: 0.6,
     rate: 1,
     detune: 0,
     seek: 0,
     loop: true,
     delay: 0
 }
+
+var music;
 
 var config = {
     width: 700,
