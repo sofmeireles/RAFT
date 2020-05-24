@@ -10,6 +10,7 @@ class Jangada extends Phaser.Scene {
         this.posY = data.posY;
         this.listaPaus=data.listaPaus;
         this.nameuser=nameuser;
+        this.firstTime=data.firstTime;
     }
     create(){
         var x=400;

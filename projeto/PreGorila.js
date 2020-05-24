@@ -9,6 +9,7 @@ class PreGorila extends Phaser.Scene {
         this.tempo=data.tempo;
         this.nomeuser=data.nomeuser;
         this.listaPaus=data.listaPaus;
+        this.firstTime=data.firstTime;
     }
     create(){
         var x=350;
@@ -50,7 +51,7 @@ class PreGorila extends Phaser.Scene {
         });
 
         this.btnCont.on("pointerup", ()=>{
-            this.scene.start("gorilafight",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 400});                
+            this.scene.start("gorilafight",{firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 400});                
         });
 
     }

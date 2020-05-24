@@ -9,6 +9,7 @@ class Lago extends Phaser.Scene {
         this.posY = data.posY;
         this.listaPaus=data.listaPaus;
         this.nameuser=data.nameuser;
+        this.firstTime=data.firstTime;
     }
     create(){
         console.log("lago page");
@@ -142,7 +143,7 @@ class Lago extends Phaser.Scene {
         if (this.player.x > this.entradaesquerda && this.player.x < this.entradadireita && this.player.y < this.limiteY){
             this.player.setVelocity(0);
             this.scene.pause();
-            this.scene.launch("pergunta",{listaPaus: this.listaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
+            this.scene.launch("pergunta",{firstTime:this.firstTime,listaPaus: this.listaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
         }
     }
 }

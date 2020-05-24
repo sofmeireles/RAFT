@@ -10,6 +10,7 @@ class PraiaMeio extends Phaser.Scene {
         this.posY = data.posY;
         this.listaPaus = data.listaPaus;
         this.nameuser=data.nameuser;
+        this.firstTime=data.firstTime;
     }
     create(){
         console.log("praiaMeio page");
@@ -46,15 +47,15 @@ class PraiaMeio extends Phaser.Scene {
         this.setaU.create(350,130,'setaUp');
 
         this.physics.add.collider(this.player, this.setaU,()=> {
-            this.scene.start("inicio",{nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 570});
+            this.scene.start("inicio",{firstTime:this.firstTime,nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 570});
         });
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("fim",{nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("fim",{firstTime:this.firstTime,nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("praia",{nameuser: this.nameuser,listaPaus: this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("praia",{firstTime:this.firstTime,nameuser: this.nameuser,listaPaus: this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta

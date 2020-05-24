@@ -10,6 +10,7 @@ class Topo extends Phaser.Scene {
         this.posY = data.posY;
         this.listaPaus=data.listaPaus;
         this.nameuser=data.nameuser;
+        this.firstTime=data.firstTime;
     }
     create(){
         console.log("topo page");
@@ -43,7 +44,7 @@ class Topo extends Phaser.Scene {
 
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("preTopo",{nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
+            this.scene.start("preTopo",{firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
         // posicao da floresta

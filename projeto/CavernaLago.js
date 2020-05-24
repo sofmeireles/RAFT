@@ -9,10 +9,10 @@ class CavernaLago extends Phaser.Scene {
         this.posY = data.posY;
         this.nameuser=data.nameuser;
         this.listaPaus=data.listaPaus;
+        this.firstTime=data.firstTime;
     }
     create(){
         console.log("cavernaLago page");
-        console.log(this.listaPerguntas);
         //console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"cavernaLago");
         this.background.setOrigin(0,0);
@@ -44,7 +44,7 @@ class CavernaLago extends Phaser.Scene {
 
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaMeio",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("cavernaMeio",{firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
         });
         
         //posição do cenario fora da gruta
@@ -119,7 +119,7 @@ class CavernaLago extends Phaser.Scene {
             this.player.x=350;
             this.player.y=355;
 
-            this.scene.start("lago",{listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 350, posY: 160});
+            this.scene.start("lago",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 350, posY: 160});
             //this.scene.start("pergunta",{background:this.background, listaPerguntas:this.listaPerguntas, player:this.player, sceneName:"cavernaLago"});
         }
     }

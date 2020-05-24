@@ -53,18 +53,12 @@ class Floresta extends Phaser.Scene {
         this.setaL = this.physics.add.staticGroup();
         this.setaL.create(30,400,'setaLeft');
 
-
-        /* 
-        this.physics.add.collider(this.player, this.setaU,()=> {
-            this.scene.start("gorilafight",{listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
-        }); */
-
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("preTopo",{listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("preTopo",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("inicio",{listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("inicio",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta
@@ -73,7 +67,7 @@ class Floresta extends Phaser.Scene {
 
         //gorila
         this.porGorila=false;
-        if(this.firstTime!=null){
+        if(this.firstTime==0){
             this.gorila = this.add.image(config.height/2,200,'gorila1');
             this.gorila.setScale(0.5);
             this.porGorila=true;
@@ -126,7 +120,8 @@ class Floresta extends Phaser.Scene {
         }
 
         if(this.porGorila==true && this.player.x>config.height/2){
-            this.scene.start("pregorila",{listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.firstTime=1;
+            this.scene.start("pregorila",{firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         }
 
 

@@ -8,7 +8,7 @@ class MensagemBau extends Phaser.Scene {
         this.sceneName=data.sceneName;
     }
     create(){
-
+        console.log('MensagemBau');
         console.log("tempo: "+this.tempo);
         this.background=this.background;
         this.veil=this.add.graphics({x:0,y:0});
