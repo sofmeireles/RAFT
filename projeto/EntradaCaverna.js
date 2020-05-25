@@ -15,8 +15,6 @@ class EntradaCaverna extends Phaser.Scene {
         this.easterEggs=data.easterEggs;
     }
     create(){
-        console.log("entradaCaverna page");
-        console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"entradaCaverna");
         this.background.setOrigin(0,0);
 

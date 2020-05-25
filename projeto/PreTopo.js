@@ -15,7 +15,6 @@ class PreTopo extends Phaser.Scene {
         this.easterEggs=data.easterEggs;
     }
     create(){
-        console.log("preTopo page");
         this.background = this.add.image(0,0,"preTopo");
         this.background.setOrigin(0,0);
 

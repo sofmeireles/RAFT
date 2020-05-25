@@ -15,7 +15,6 @@ class Topo extends Phaser.Scene {
         this.easterEggs=data.easterEggs;
     }
     create(){
-        console.log("topo page");
         this.background = this.add.image(0,0,"topo");
         this.background.setOrigin(0,0);
 
@@ -138,7 +137,6 @@ class Topo extends Phaser.Scene {
         var x=450;
         var esp=30;
 
-        console.log(this.listaPaus);
         if(this.listaPaus.includes("pauTopo1")==false){
             this.pau1 = this.physics.add.staticGroup();
             this.pau1.create(x+esp,y,'pau');
@@ -253,7 +251,6 @@ class Topo extends Phaser.Scene {
 
     incrementaPaus(player,pau){
         this.this.contaPaus++;
-        console.log(this.nomepau);   
         this.this.listaPaus.push(this.nomepau);
         this.this.textoContaPaus.setText('x '+this.this.contaPaus);
         pau.destroy();

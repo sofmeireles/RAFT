@@ -15,7 +15,6 @@ class Floresta extends Phaser.Scene {
         this.easterEggs=data.easterEggs;
     }
     create(){
-        console.log("floresta page");
         this.background = this.add.image(0,0,"floresta");
         this.background.setOrigin(0,0);
         this.contaPaus=this.listaPaus.length;

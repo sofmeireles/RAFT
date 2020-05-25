@@ -15,7 +15,6 @@ class Bau extends Phaser.Scene {
         this.easterEggs=data.easterEggs;
     }
     create(){
-        console.log("bau page");
         this.background = this.add.image(0,0,"floresta");
         this.background.setOrigin(0,0);
 
@@ -205,7 +204,6 @@ class Bau extends Phaser.Scene {
             this.scene.pause();
             if(this.chave==true){
                 this.flag=1;
-                console.log("chave");
                 this.scene.launch("mensagemBau",{easterEggs:this.easterEggs,flag:this.aberto,chave:true,background:this.background, sceneName:"bau"});
                 this.incrementaPaus();
                 this.incrementaPaus();
@@ -216,8 +214,6 @@ class Bau extends Phaser.Scene {
                 this.scene.launch("mensagemBau",{easterEggs:this.easterEggs,flag:this.aberto,chave:false,background:this.background, sceneName:"bau"});
             }
             if(this.flag==1){
-                console.log('ola');
-                console.log(this.baufechado);
                 this.baufechado.visible=false;
                 this.baufechado.destroy();
                 this.chave=false;

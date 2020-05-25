@@ -15,10 +15,8 @@ class Inicio extends Phaser.Scene {
         this.easterEggs=data.easterEggs;
     }
     create(){
-        console.log("inicio page");
         this.background = this.add.image(0,0,"floresta");
         this.background.setOrigin(0,0);
-        console.log(this.listaPaus);
 
         this.contaPaus=this.listaPaus.length;
 
@@ -35,9 +33,6 @@ class Inicio extends Phaser.Scene {
             paused: false
         });
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
-
-
-        console.log(this.firstTime);
 
         this.fogueira = this.physics.add.sprite(490, 370, 'fogueira');
         this.fogueira.setCollideWorldBounds(true);
@@ -193,19 +188,7 @@ class Inicio extends Phaser.Scene {
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"inicio"});
         }
-        /* if(this.tempoAtual-this.tempo<5){
-            this.transp-=0.01;
-            if(this.transp<0){
-                this.transp=0;
-                this.veil.destroy();
-            }
-            else{
-                console.log(this.transp);
-                this.veil.fillStyle('0x000000',this.transp);
-                this.veil.fillRect(0,0,config.width, config.height);
-            }
-        } */
-
+        
         this.colCenario();
     }
 

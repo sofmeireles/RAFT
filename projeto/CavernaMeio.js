@@ -14,8 +14,6 @@ class CavernaMeio extends Phaser.Scene {
         this.easterEggs=data.easterEggs;
     }
     create(){
-        console.log("cavernaMeio page");
-        //console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"cavernaMeio");
         this.background.setOrigin(0,0);
         this.flag=0;
@@ -194,8 +192,6 @@ class CavernaMeio extends Phaser.Scene {
     update(){
         this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
         this.text.setText('Tempo: '+ this.tempoAtual);
-        //console.log(this.listaPerguntas);
-        //console.log(this.tempo);
 
         if(this.cursors.left.isDown && this.cursors.up.isUp && this.cursors.down.isUp){
             this.player.setVelocityX(-gameSettings.playerSpeed);

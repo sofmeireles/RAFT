@@ -15,8 +15,6 @@ class Fim extends Phaser.Scene {
         this.easterEggs=data.easterEggs;
     }
     create(){
-        console.log("fim page");
-        console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"fim");
         this.background.setOrigin(0,0);
 
@@ -216,7 +214,6 @@ class Fim extends Phaser.Scene {
                 this.scene.launch("mensagemJangada",{background:this.background, sceneName:"fim",listaPaus:this.listaPaus});
             }
             else{
-                console.log("FINALL");
                 this.carregou=1;
                 this.starTime=this.tempoAtual;
                 this.jangadaFinal.visible = true;
