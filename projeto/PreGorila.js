@@ -45,7 +45,7 @@ class PreGorila extends Phaser.Scene {
 
         if (this.flag==0){
             this.textoi = ["Uh uh uh ah ah! Sou o","gorila protetor desta parte da ilha.",
-        "Agora podes andar livremente pela","por aqui tens de passar este","desafio"];
+        "Se quiseres andar por aqui","tens de passar este desafio"];
             this.text=this.add.text(x,y,'',{font: "20px Helvetica", fill: 'black'});
             this.avancaLinha();
         }
