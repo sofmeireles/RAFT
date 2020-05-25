@@ -48,37 +48,31 @@ class Menu1 extends Phaser.Scene {
         this.btnJogar.setInteractive();
 
         this.btnJogar.on("pointerover", ()=>{
-            console.log("over jogar");
             this.game.canvas.style.cursor = "pointer";
             this.btnJogarc.visible=true;
         });
         this.btnJogar.on("pointerout", ()=>{
-            console.log("out jogar");
             this.game.canvas.style.cursor = "default";
             this.btnJogarc.visible=false;
         });
         this.btnJogar.on("pointerup", ()=>{
             this.game.canvas.style.cursor = "default";
             this.scene.start("jogar1")
-            console.log("up jogar");
         });
 
         //interações do btnOpcoes
         this.btnOpcoes.setInteractive();
 
         this.btnOpcoes.on("pointerover", ()=>{
-            console.log("over Opcoes");
             this.game.canvas.style.cursor = "pointer";
             this.btnOpcoesc.visible=true;
         });
         this.btnOpcoes.on("pointerout", ()=>{
-            console.log("out Opcoes");
             this.game.canvas.style.cursor = "default";
             this.btnOpcoesc.visible=false;
         });
         this.btnOpcoes.on("pointerup", ()=>{
             this.game.canvas.style.cursor = "default";
-            console.log("up Opcoes");
             this.scene.start("opcoes")
         });
 
@@ -86,18 +80,15 @@ class Menu1 extends Phaser.Scene {
         this.btnRanking.setInteractive();
 
         this.btnRanking.on("pointerover", ()=>{
-            console.log("over Ranking");
             this.game.canvas.style.cursor = "pointer";
             this.btnRankingc.visible=true;
             
         });
         this.btnRanking.on("pointerout", ()=>{
-            console.log("out Ranking");
             this.game.canvas.style.cursor = "default";
             this.btnRankingc.visible=false;
         });
         this.btnRanking.on("pointerup", ()=>{
-            console.log("up Ranking");
             this.game.canvas.style.cursor = "default";
             this.scene.start("ranking")
         });
@@ -106,18 +97,15 @@ class Menu1 extends Phaser.Scene {
         this.btnCreditos.setInteractive();
 
         this.btnCreditos.on("pointerover", ()=>{
-            console.log("over Creditos");
             this.game.canvas.style.cursor = "pointer";
             this.btnCreditosc.visible=true;
             
         });
         this.btnCreditos.on("pointerout", ()=>{
-            console.log("out Creditos");
             this.game.canvas.style.cursor = "default";
             this.btnCreditosc.visible=false;
         });
         this.btnCreditos.on("pointerup", ()=>{
-            console.log("up Creditos");
             this.game.canvas.style.cursor = "default";
             this.scene.start("creditos")
         });
@@ -126,18 +114,14 @@ class Menu1 extends Phaser.Scene {
         this.btnAjuda.setInteractive();
 
         this.btnAjuda.on("pointerover", ()=>{
-            console.log("over Ajuda");
             this.game.canvas.style.cursor = "pointer";
             this.btnAjudac.visible=true;
         });
         this.btnAjuda.on("pointerout", ()=>{
-            console.log("out Ajuda");
             this.game.canvas.style.cursor = "default";
             this.btnAjudac.visible=false;
         });
         this.btnAjuda.on("pointerup", ()=>{
-            console.log("up Ajuda");
-            console.log("heyoh");
             this.game.canvas.style.cursor = "default";
             this.scene.start("ajuda",{flag:null});
         });
@@ -146,19 +130,16 @@ class Menu1 extends Phaser.Scene {
         this.btnSair.setInteractive();
 
         this.btnSair.on("pointerover", ()=>{
-            console.log("over Sair");
             this.game.canvas.style.cursor = "pointer";
             this.btnSairc.visible=true;
         });
         this.btnSair.on("pointerout", ()=>{
-            console.log("out Sair");
             this.game.canvas.style.cursor = "default";
             this.btnSairc.visible=false;
         });
         this.btnSair.on("pointerup", ()=>{
             //this.game.canvas.style.cursor = "default";
             this.scene.start("sair");
-            console.log("up Sair");
         });
     }
 
