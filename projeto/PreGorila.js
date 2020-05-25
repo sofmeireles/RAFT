@@ -12,6 +12,7 @@ class PreGorila extends Phaser.Scene {
         this.firstTime=data.firstTime;
         this.chave=data.chave;
         this.flag=data.flag;
+        this.easterEggs=data.easterEggs;
     }
     create(){
         var x=350;
@@ -80,10 +81,10 @@ class PreGorila extends Phaser.Scene {
         this.btnCont.on("pointerup", ()=>{
             this.game.canvas.style.cursor = "default";
             if(this.flag==0){
-                this.scene.start("gorilafight",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 600});
+                this.scene.start("gorilafight",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 600});
             }
             else{
-                this.scene.start("floresta",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 350, posY: 350});
+                this.scene.start("floresta",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 350, posY: 350});
             }
         });
 

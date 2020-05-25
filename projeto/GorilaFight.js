@@ -11,6 +11,7 @@ class GorilaFight extends Phaser.Scene {
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.easterEggs=data.easterEggs;
 
     }
     create(){
@@ -181,7 +182,7 @@ class GorilaFight extends Phaser.Scene {
         this.setaR = this.physics.add.staticGroup();
         this.setaR.create(670,config.height-50,'setaRight');
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("pregorila",{flag:1,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 600});
+            this.scene.start("pregorila",{easterEggs:this.easterEggs,flag:1,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 600});
         }); 
     }
 

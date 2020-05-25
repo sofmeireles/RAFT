@@ -12,9 +12,11 @@ class PraiaMeio extends Phaser.Scene {
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.easterEggs=data.easterEggs;
     }
     create(){
         console.log("praiaMeio page");
+        console.log(this.easterEggs);
         this.background = this.add.image(0,0,"praiaMeio");
         this.background.setOrigin(0,0);
         
@@ -31,12 +33,6 @@ class PraiaMeio extends Phaser.Scene {
             paused: false
         });
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
-
-        this.patrik = this.physics.add.sprite(250, 450, 'patrik');
-        this.patrik.body.width = 50;
-        this.patrik.body.height = 20;
-        this.patrik.setSize(this.patrik.body.width, this.patrik.body.height, true);
-        this.patrik.setImmovable();
 
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
@@ -60,17 +56,16 @@ class PraiaMeio extends Phaser.Scene {
         this.setaU.create(350,130,'setaUp');
 
         this.physics.add.collider(this.player, this.setaU,()=> {
-            this.scene.start("inicio",{chave:this.chave,firstTime:this.firstTime,nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 570});
+            this.scene.start("inicio",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 570});
         });
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("fim",{chave:this.chave,firstTime:this.firstTime,nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("fim",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("praia",{chave:this.chave,firstTime:this.firstTime,nameuser: this.nameuser,listaPaus: this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("praia",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,nameuser: this.nameuser,listaPaus: this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
-        this.physics.add.collider(this.player, this.patrik);
 
         // posicao da floresta
         this.mar = 450;
@@ -150,6 +145,16 @@ class PraiaMeio extends Phaser.Scene {
         }
         if(this.player.y < this.florestaY){
             this.player.y = this.florestaY;
+        }
+    }
+    colEasterEgg(player,easterEgg){   
+        this.this.easterEggs.push(this.nome);
+        easterEgg.destroy();
+        if(this.this.tempo>=gameSettings.descEasterEggs){
+            this.this.tempo-=gameSettings.descEasterEggs;
+        }
+        else{
+            this.this.tempo=0;
         }
     }
 

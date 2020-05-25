@@ -12,6 +12,7 @@ class Praia extends Phaser.Scene {
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.easterEggs=data.easterEggs;
     }
     create(){
         console.log("praia page");
@@ -74,6 +75,12 @@ class Praia extends Phaser.Scene {
         this.player.y = this.posY;
         this.lookingRight = true;
 
+        if(this.easterEggs.includes("patrick")==false){
+            this.easterEgg = this.physics.add.staticGroup();
+            this.easterEgg.create(455,410,'patrick');
+            this.physics.add.collider(this.player, this.easterEgg,this.colEasterEgg, null, { this: this, nome: "patrick"});
+        }
+
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
 
@@ -88,11 +95,11 @@ class Praia extends Phaser.Scene {
         this.physics.add.collider(this.player, this.palmeira3);
         this.physics.add.collider(this.player, this.palmeira4);
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("entradaCaverna",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("entradaCaverna",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("praiaMeio",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("praiaMeio",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         // posicao da floresta
@@ -177,6 +184,17 @@ class Praia extends Phaser.Scene {
         }
         if(this.player.y < this.florestaY){
             this.player.y = this.florestaY;
+        }
+    }
+
+    colEasterEgg(player,easterEgg){   
+        this.this.easterEggs.push(this.nome);
+        easterEgg.destroy();
+        if(this.this.tempo>=gameSettings.descEasterEggs){
+            this.this.tempo-=gameSettings.descEasterEggs;
+        }
+        else{
+            this.this.tempo=0;
         }
     }
 

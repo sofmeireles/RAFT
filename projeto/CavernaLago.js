@@ -11,6 +11,7 @@ class CavernaLago extends Phaser.Scene {
         this.listaPaus=data.listaPaus;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.easterEggs=data.easterEggs;
     }
     create(){
         console.log("cavernaLago page");
@@ -178,7 +179,7 @@ class CavernaLago extends Phaser.Scene {
 
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaMeio",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 450});
+            this.scene.start("cavernaMeio",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 130, posY: 450});
         });
         
         //posição do cenario fora da gruta
@@ -295,7 +296,7 @@ class CavernaLago extends Phaser.Scene {
             this.player.x=350;
             this.player.y=355;
 
-            this.scene.start("lago",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 350, posY: 160});
+            this.scene.start("lago",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 350, posY: 160});
             //this.scene.start("pergunta",{background:this.background, listaPerguntas:this.listaPerguntas, player:this.player, sceneName:"cavernaLago"});
         }
     }

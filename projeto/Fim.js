@@ -12,6 +12,7 @@ class Fim extends Phaser.Scene {
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.easterEggs=data.easterEggs;
     }
     create(){
         console.log("fim page");
@@ -19,6 +20,23 @@ class Fim extends Phaser.Scene {
         this.background = this.add.image(0,0,"fim");
         this.background.setOrigin(0,0);
 
+        this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
+        this.player.setCollideWorldBounds(true);
+        this.player.setBounce(0.2);
+        this.player.body.width = 70;
+        this.player.body.height = 110;
+        this.player.body.setSize(this.player.body.width, this.player.body.height, true);
+        this.player.setScale(config.scalePlayer);
+        this.player.x = this.posX;
+        this.player.y = this.posY;
+        this.lookingRight = true;
+
+
+        if(this.easterEggs.includes("bulbasaur")==false){
+            this.easterEgg = this.physics.add.staticGroup();
+            this.easterEgg.create(20,40,'bulbasaur');
+            this.physics.add.collider(this.player, this.easterEgg,this.colEasterEgg, null, { this: this, nome: "bulbasaur"});
+        }
         
         this.contaPaus=this.listaPaus.length;
         this.add.image(configContaPaus.posX,configContaPaus.posY+25,'pau');
@@ -92,17 +110,6 @@ class Fim extends Phaser.Scene {
         this.jangadaFinal.setScale(0.5);
         this.jangadaFinal.visible = false;
 
-        this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
-        this.player.setCollideWorldBounds(true);
-        this.player.setBounce(0.2);
-        this.player.body.width = 70;
-        this.player.body.height = 110;
-        this.player.body.setSize(this.player.body.width, this.player.body.height, true);
-        this.player.setScale(config.scalePlayer);
-        this.player.x = this.posX;
-        this.player.y = this.posY;
-        this.lookingRight = true;
-
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
@@ -118,7 +125,7 @@ class Fim extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra2);
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("praiaMeio",{chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("praiaMeio",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         // posicao da floresta
@@ -263,6 +270,16 @@ class Fim extends Phaser.Scene {
             this.scene.start("cenaFinal",{nameuser:this.nameuser,pontuacao:Math.floor(this.starTime)});
         }
 
+    }
+    colEasterEgg(player,easterEgg){   
+        this.this.easterEggs.push(this.nome);
+        easterEgg.destroy();
+        if(this.this.tempo>=gameSettings.descEasterEggs){
+            this.this.tempo-=gameSettings.descEasterEggs;
+        }
+        else{
+            this.this.tempo=0;
+        }
     }
 
 }

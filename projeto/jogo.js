@@ -1,5 +1,6 @@
 var gameSettings = {
     playerSpeed: 300,
+    descEasterEggs: 5,
 }
 
 var configTimer = {
@@ -51,7 +52,7 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true
+            //debug: true
         }
     }
 }

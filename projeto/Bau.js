@@ -12,6 +12,7 @@ class Bau extends Phaser.Scene {
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.easterEggs=data.easterEggs;
     }
     create(){
         console.log("bau page");
@@ -120,7 +121,7 @@ class Bau extends Phaser.Scene {
         this.setaR.create(670,400,'setaRight');
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("inicio",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("inicio",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
 
@@ -200,14 +201,14 @@ class Bau extends Phaser.Scene {
             if(this.chave==true){
                 this.flag=1;
                 console.log("chave");
-                this.scene.launch("mensagemBau",{flag:this.aberto,chave:true,background:this.background, sceneName:"bau"});
+                this.scene.launch("mensagemBau",{easterEggs:this.easterEggs,flag:this.aberto,chave:true,background:this.background, sceneName:"bau"});
                 this.incrementaPaus();
                 this.incrementaPaus();
                 this.incrementaPaus();
                 this.aberto=1;
             }
             else{
-                this.scene.launch("mensagemBau",{flag:this.aberto,chave:false,background:this.background, sceneName:"bau"});
+                this.scene.launch("mensagemBau",{easterEggs:this.easterEggs,flag:this.aberto,chave:false,background:this.background, sceneName:"bau"});
             }
             if(this.flag==1){
                 console.log('ola');

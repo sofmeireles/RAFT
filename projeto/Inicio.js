@@ -12,6 +12,7 @@ class Inicio extends Phaser.Scene {
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.easterEggs=data.easterEggs;
     }
     create(){
         console.log("inicio page");
@@ -37,12 +38,6 @@ class Inicio extends Phaser.Scene {
 
 
         console.log(this.firstTime);
-
-        this.bulba = this.physics.add.sprite(250, 450, 'bulbasaur');
-        this.bulba.body.width = 20;
-        this.bulba.body.height = 20;
-        this.bulba.setSize(this.bulba.body.width, this.bulba.body.height, true);
-        this.bulba.setImmovable();
 
         this.fogueira = this.physics.add.sprite(490, 370, 'fogueira');
         this.fogueira.setCollideWorldBounds(true);
@@ -104,18 +99,16 @@ class Inicio extends Phaser.Scene {
         this.setaL = this.physics.add.staticGroup();
         this.setaL.create(30,400,'setaLeft');
 
-
-        this.physics.add.collider(this.player, this.bulba);
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("floresta",{chave:this.chave,firstTime: this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("floresta",{easterEggs:this.easterEggs,chave:this.chave,firstTime: this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser, listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.setaD,()=> {
-            this.scene.start("praiaMeio",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
+            this.scene.start("praiaMeio",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("bau",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("bau",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
 
         this.physics.add.collider(this.player, this.mesa);

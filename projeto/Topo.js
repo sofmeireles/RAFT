@@ -12,6 +12,7 @@ class Topo extends Phaser.Scene {
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.easterEggs=data.easterEggs;
     }
     create(){
         console.log("topo page");
@@ -42,12 +43,6 @@ class Topo extends Phaser.Scene {
         this.cliff.create(300, 680, 'cliff');
         this.cliff.create(385, 630, 'cliff');
 
-        this.dino = this.physics.add.sprite(300, 600, 'dino');
-        this.dino.body.width = 50;
-        this.dino.body.height = 50;
-        this.dino.setSize(this.dino.body.width, this.dino.body.height, true);
-        this.dino.setImmovable();
-        this.dino.setScale(0.5);
 
         this.pedra1 = this.physics.add.sprite(400, 500, 'pedra');
         this.pedra2 = this.physics.add.sprite(390, 485, 'pedra');
@@ -94,6 +89,12 @@ class Topo extends Phaser.Scene {
         this.player.x = this.posX;
         this.player.y = this.posY;
 
+        if(this.easterEggs.includes("yoshi")==false){
+            this.easterEgg = this.physics.add.staticGroup();
+            this.easterEgg.create(300,600,'yoshi');
+            this.physics.add.collider(this.player, this.easterEgg,this.colEasterEgg, null, { this: this, nome: "yoshi"});
+        }
+
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
@@ -107,9 +108,8 @@ class Topo extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra1);
         this.physics.add.collider(this.player, this.pedra2);
         this.physics.add.collider(this.player, this.cliff);
-        this.physics.add.collider(this.player, this.dino);
         this.physics.add.collider(this.player, this.setaL,()=> {
-        this.scene.start("preTopo",{chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
+        this.scene.start("preTopo",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
 
         // limites
@@ -126,20 +126,17 @@ class Topo extends Phaser.Scene {
         console.log(this.listaPaus);
         if(this.listaPaus.includes("pauTopo1")==false){
             this.pau1 = this.physics.add.staticGroup();
-            console.log('oi1');
             this.pau1.create(x+esp,y,'pau');
             this.physics.add.collider(this.player, this.pau1,this.incrementaPaus, null, { this: this, nomepau: "pauTopo1"});
         }
 
         if(this.listaPaus.includes("pauTopo2")==false){
-            console.log('oi2');
             this.pau2 = this.physics.add.staticGroup();
             this.pau2.create(x+2*esp,y,'pau');
             this.physics.add.collider(this.player, this.pau2,this.incrementaPaus, null, { this: this, nomepau: "pauTopo2"});
         }
 
         if(this.listaPaus.includes("pauTopo3")==false){
-            console.log('oi3');
             this.pau3 = this.physics.add.staticGroup();
             this.pau3.create(x+3*esp,y,'pau');
             this.physics.add.collider(this.player, this.pau3,this.incrementaPaus, null, { this: this, nomepau: "pauTopo3"});
@@ -209,5 +206,15 @@ class Topo extends Phaser.Scene {
         this.this.listaPaus.push(this.nomepau);
         this.this.textoContaPaus.setText('x '+this.this.contaPaus);
         pau.destroy();
+    }
+    colEasterEgg(player,easterEgg){   
+        this.this.easterEggs.push(this.nome);
+        easterEgg.destroy();
+        if(this.this.tempo>=gameSettings.descEasterEggs){
+            this.this.tempo-=gameSettings.descEasterEggs;
+        }
+        else{
+            this.this.tempo=0;
+        }
     }
 }

@@ -11,6 +11,7 @@ class CavernaMeio extends Phaser.Scene {
         this.nameuser = data.nameuser;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.easterEggs=data.easterEggs;
     }
     create(){
         console.log("cavernaMeio page");
@@ -32,12 +33,6 @@ class CavernaMeio extends Phaser.Scene {
         if(this.chave==true){
             this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         }
-
-        this.ghost = this.physics.add.sprite(300, 600, 'ghost');
-        this.ghost.body.width = 50;
-        this.ghost.body.height = 50;
-        this.ghost.setSize(this.ghost.body.width, this.ghost.body.height, true);
-        this.ghost.setImmovable();
 
         this.pedra1 = this.physics.add.sprite(440, 460, 'pedra');
         this.pedra2 = this.physics.add.sprite(100, 400, 'pedra');
@@ -120,6 +115,11 @@ class CavernaMeio extends Phaser.Scene {
         this.player.y = this.posY;
         this.lookingRight = true;
 
+        if(this.easterEggs.includes("ghost")==false){
+            this.easterEgg = this.physics.add.staticGroup();
+            this.easterEgg.create(420,250,'ghost');
+            this.physics.add.collider(this.player, this.easterEgg,this.colEasterEgg, null, { this: this, nome: "ghost"});
+        }
 
 
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -134,7 +134,6 @@ class CavernaMeio extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra2);
         this.physics.add.collider(this.player, this.pedra4);
         this.physics.add.collider(this.player, this.pedra5);
-        this.physics.add.collider(this.player, this.ghost);
 
         this.physics.add.collider(this.rato1, this.pedra1, ()=>{
             this.rato1.y += 10;
@@ -169,11 +168,11 @@ class CavernaMeio extends Phaser.Scene {
         });
 
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("cavernaF",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY:400});
+            this.scene.start("cavernaF",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY:400});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("cavernaLago",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
+            this.scene.start("cavernaLago",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
         });
         
         //posição do cenario fora da gruta
@@ -293,5 +292,15 @@ class CavernaMeio extends Phaser.Scene {
         this.this.listaPaus.push(this.nomepau);
         this.this.textoContaPaus.setText('x '+this.this.contaPaus);
         pau.destroy();
+    }
+    colEasterEgg(player,easterEgg){   
+        this.this.easterEggs.push(this.nome);
+        easterEgg.destroy();
+        if(this.this.tempo>=gameSettings.descEasterEggs){
+            this.this.tempo-=gameSettings.descEasterEggs;
+        }
+        else{
+            this.this.tempo=0;
+        }
     }
 }

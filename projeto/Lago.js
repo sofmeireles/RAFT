@@ -11,6 +11,7 @@ class Lago extends Phaser.Scene {
         this.nameuser=data.nameuser;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.easterEggs=data.easterEggs;
     }
     create(){
         console.log("lago page");
@@ -187,7 +188,7 @@ class Lago extends Phaser.Scene {
         if (this.player.x > this.entradaesquerda && this.player.x < this.entradadireita && this.player.y < this.limiteY){
             this.player.setVelocity(0);
             this.scene.pause();
-            this.scene.launch("pergunta",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
+            this.scene.launch("pergunta",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
         }
     }
 
@@ -200,6 +201,6 @@ class Lago extends Phaser.Scene {
     handlerGolem(){
         this.player.setVelocity(0);
         this.scene.pause();
-        this.scene.launch("pergunta",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
+        this.scene.launch("pergunta",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus,nameuser:this.nameuser,tempo:this.tempoAtual, background:this.background, player:this.player,listaPerguntas:this.listaPerguntas, sceneName:"lago"});
     }
 }

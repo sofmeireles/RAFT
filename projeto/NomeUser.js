@@ -16,6 +16,7 @@ class NomeUser extends Phaser.Scene {
         this.btnProxc.visible=false;
 
         this.listaPaus=[];
+        this.easterEggs=[];
 
         this.textoi = ["Ótimo, qual é o teu nome?"];
 
@@ -59,7 +60,7 @@ class NomeUser extends Phaser.Scene {
                 this.game.canvas.style.cursor = "default";
                 this.crialistaperguntas();
                 this.nameuser=inputText.value;
-                this.scene.start("inicio",{chave:false,firstTime:0,listaPaus: this.listaPaus, nameuser:this.nameuser, listaPerguntas:this.listaPerguntas,tempo:0, posX: 400, posY: 400});
+                this.scene.start("inicio",{easterEggs:this.easterEggs,chave:false,firstTime:0,listaPaus: this.listaPaus, nameuser:this.nameuser, listaPerguntas:this.listaPerguntas,tempo:0, posX: 400, posY: 400});
             }
             else{
                 this.fala.setVisible(false);

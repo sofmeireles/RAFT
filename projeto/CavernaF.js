@@ -12,6 +12,7 @@ class CavernaF extends Phaser.Scene {
         this.listaPaus=data.listaPaus;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.easterEggs=data.easterEggs;
     }
     create(){
         console.log("cavernaF page");
@@ -186,11 +187,11 @@ class CavernaF extends Phaser.Scene {
         });
 
         this.physics.add.collider(this.player, this.setaU,()=> {
-            this.scene.start("entradaCaverna",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 30, posY: 370});
+            this.scene.start("entradaCaverna",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 30, posY: 370});
         });
 
         this.physics.add.collider(this.player, this.setaL,()=> {
-            this.scene.start("cavernaMeio",{chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 450});
+            this.scene.start("cavernaMeio",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,listaPaus:this.listaPaus,nameuser:this.nameuser,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 450});
         });
 
         // posicao da floresta
