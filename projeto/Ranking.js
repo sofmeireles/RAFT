@@ -37,7 +37,9 @@ class Ranking extends Phaser.Scene {
         
         //var pontos = this.cache.json.get('pontuacao');
         var pontos=JSON.parse(localStorage.getItem('pontuacao'));
-
+        if(pontos==null){
+            pontos=[];
+        }
         var tamanho = Object.keys(pontos).length;
         var y = 210;
         var xNome = 250;
