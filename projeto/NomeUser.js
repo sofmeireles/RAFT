@@ -6,6 +6,7 @@ class NomeUser extends Phaser.Scene {
         console.log('nomeUser')
         this.background = this.add.image(0,0,"balao");
         this.background.setOrigin(0,0);
+        this.flag=0;
 
         //btn prox
         this.btnProx = this.add.image(480,435,'btnProx');

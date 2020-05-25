@@ -28,9 +28,14 @@ class CenaFinal extends Phaser.Scene {
 
         //this.resetRank();
         var pontos = JSON.parse(localStorage.getItem('pontuacao'));
+        if(pontos==null){
+            pontos=[];
+        }
         console.log(this.pontuacao);
+        console.log(this.nameuser);
         var novo={nome:this.nameuser,pontuacao:this.pontuacao};
         pontos.push(novo);
+        //pontos.pop();
         localStorage.setItem('pontuacao',JSON.stringify(pontos)); 
 
          //intercoes btnProx
@@ -49,7 +54,9 @@ class CenaFinal extends Phaser.Scene {
          
          this.btnProx.on("pointerup", ()=>{
              console.log("up Prox");
-             this.scene.start('menu1');
+             this.registry.destroy();
+             this.events.off();
+             this.scene.start('load');
          });
     }
 

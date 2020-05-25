@@ -199,7 +199,6 @@ class Fim extends Phaser.Scene {
                 if(this.transp>1){
                     this.transp=1;
                 }
-                console.log(this.transp);
                 this.veil.fillStyle('0x000000',this.transp);
                 this.veil.fillRect(0,0,config.width, config.height);
             }
