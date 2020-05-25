@@ -34,6 +34,34 @@ class PraiaMeio extends Phaser.Scene {
         });
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
+        this.palmeira1 = this.physics.add.sprite(40, 230, 'palmeirabound');
+        this.palmeira1.setCollideWorldBounds(true);
+        this.palmeira1.body.width = 11;
+        this.palmeira1.body.height = 10;
+        this.palmeira1.setSize(this.palmeira1.body.width, this.palmeira1.height, true);
+        this.palmeira1.setImmovable();
+
+        this.palmeira2 = this.physics.add.sprite(335, 220, 'palmeirabound');
+        this.palmeira2.setCollideWorldBounds(true);
+        this.palmeira2.body.width = 11;
+        this.palmeira2.body.height = 10;
+        this.palmeira2.setSize(this.palmeira2.body.width, this.palmeira2.height, true);
+        this.palmeira2.setImmovable();
+
+        this.pedra1 = this.physics.add.sprite(90, 290, 'pedrapraia');
+        this.pedra1.setCollideWorldBounds(true);
+        this.pedra1.body.width = 10;
+        this.pedra1.body.height = 5;
+        this.pedra1.setSize(this.pedra1.body.width, this.pedra1.height, true);
+        this.pedra1.setImmovable();
+
+        this.palmeira3 = this.physics.add.sprite(485, 400, 'palmeirabound');
+        this.palmeira3.setCollideWorldBounds(true);
+        this.palmeira3.body.width = 11;
+        this.palmeira3.body.height = 10;
+        this.palmeira3.setSize(this.palmeira3.body.width, this.palmeira3.height, true);
+        this.palmeira3.setImmovable();
+
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
@@ -54,6 +82,11 @@ class PraiaMeio extends Phaser.Scene {
         this.setaL.create(30,400,'setaLeft');
         this.setaU = this.physics.add.staticGroup();
         this.setaU.create(350,130,'setaUp');
+
+        this.physics.add.collider(this.player, this.palmeira1);
+        this.physics.add.collider(this.player, this.palmeira2);
+        this.physics.add.collider(this.player, this.palmeira3);
+        this.physics.add.collider(this.player, this.pedra1);
 
         this.physics.add.collider(this.player, this.setaU,()=> {
             this.scene.start("inicio",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 570});

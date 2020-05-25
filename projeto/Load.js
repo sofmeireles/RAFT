@@ -86,6 +86,12 @@ class Load extends Phaser.Scene {
         this.load.image('yoshi', './resources/dino.png');
         this.load.image('bulbasaur', './resources/bulbasaur.png');
 
+
+        this.load.spritesheet('flappy', './resources/flappy1.png', {
+           frameWidth: 50,
+           frameHeight: 40
+        });
+
         this.load.spritesheet('rato', './resources/ratospsheet.png', {
             frameWidth: 40,
             frameHeight: 39
@@ -122,6 +128,13 @@ class Load extends Phaser.Scene {
     create(){
 
         this.add.text(20,20,"Carregando o jogo...",{font: '40px Arial', fill:'balck'});
+
+        this.anims.create({
+            key: "flappybird",
+            frames: this.anims.generateFrameNumbers("flappy"),
+            frameRate: 10,
+            repeat:-1
+        });
 
         this.anims.create({
             key: "ratodireita",
