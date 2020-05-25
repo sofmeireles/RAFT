@@ -33,6 +33,12 @@ class CavernaMeio extends Phaser.Scene {
             this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         }
 
+        this.ghost = this.physics.add.sprite(300, 600, 'ghost');
+        this.ghost.body.width = 50;
+        this.ghost.body.height = 50;
+        this.ghost.setSize(this.ghost.body.width, this.ghost.body.height, true);
+        this.ghost.setImmovable();
+
         this.pedra1 = this.physics.add.sprite(440, 460, 'pedra');
         this.pedra2 = this.physics.add.sprite(100, 400, 'pedra');
         this.pedra4 = this.physics.add.sprite(170, 550, 'pedra');
@@ -128,6 +134,7 @@ class CavernaMeio extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra2);
         this.physics.add.collider(this.player, this.pedra4);
         this.physics.add.collider(this.player, this.pedra5);
+        this.physics.add.collider(this.player, this.ghost);
 
         this.physics.add.collider(this.rato1, this.pedra1, ()=>{
             this.rato1.y += 10;
@@ -155,7 +162,7 @@ class CavernaMeio extends Phaser.Scene {
             this.rato2.y += 10;
         });
         this.physics.add.collider(this.rato2, this.pedra4, ()=>{
-            this.rat2.y += 10;
+            this.rato2.y += 10;
         });
         this.physics.add.collider(this.rato2, this.pedra5, ()=>{
             this.rato2.y += 10;
