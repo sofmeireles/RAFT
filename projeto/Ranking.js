@@ -5,7 +5,7 @@ class Ranking extends Phaser.Scene {
 
     create(){
         console.log("ranking page");
-        this.background = this.add.image(0,0,"ajuda");
+        this.background = this.add.image(0,0,"rank");
         this.background.setOrigin(0,0);
 
 
