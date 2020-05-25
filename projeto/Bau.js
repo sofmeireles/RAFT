@@ -34,9 +34,9 @@ class Bau extends Phaser.Scene {
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
         this.plataforma = this.physics.add.staticGroup();
-        this.plataforma.create(config.width/4, 260, 'plataforma');
-        this.plataforma.create(config.width/2, 260, 'plataforma');
-        this.plataforma.create(config.width*0.65, 260, 'plataforma');
+        this.plataforma.create(config.width/4, 215, 'relva');
+        this.plataforma.create(config.width/2, 215, 'relva');
+        this.plataforma.create(config.width*0.65, 215, 'relva');
 
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);

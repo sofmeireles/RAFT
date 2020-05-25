@@ -36,6 +36,9 @@ class Praia extends Phaser.Scene {
             this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         }
 
+        this.pedra = this.physics.add.sprite(100, 420, 'pedrapraiagrande');
+        this.pedra = this.physics.add.sprite(125, 480, 'pedrapraiagrande');
+
         this.palmeira1 = this.physics.add.sprite(185, 230, 'palmeirabound');
         this.palmeira1.setCollideWorldBounds(true);
         this.palmeira1.body.width = 11;
