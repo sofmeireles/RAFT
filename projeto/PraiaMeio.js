@@ -32,6 +32,11 @@ class PraiaMeio extends Phaser.Scene {
         });
         this.text = this.add.text(configTimer.posX, configTimer.y, 'Tempo: '+ this.tempo, { font: configTimer.font, fill: configTimer.color});
 
+        this.patrik = this.physics.add.sprite(250, 450, 'patrik');
+        this.patrik.body.width = 50;
+        this.patrik.body.height = 20;
+        this.patrik.setSize(this.patrik.body.width, this.patrik.body.height, true);
+        this.patrik.setImmovable();
 
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
@@ -65,6 +70,7 @@ class PraiaMeio extends Phaser.Scene {
         this.physics.add.collider(this.player, this.setaL,()=> {
             this.scene.start("praia",{chave:this.chave,firstTime:this.firstTime,nameuser: this.nameuser,listaPaus: this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 570, posY: 400});
         });
+        this.physics.add.collider(this.player, this.patrik);
 
         // posicao da floresta
         this.mar = 450;

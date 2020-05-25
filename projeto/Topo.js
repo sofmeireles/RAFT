@@ -42,6 +42,13 @@ class Topo extends Phaser.Scene {
         this.cliff.create(300, 680, 'cliff');
         this.cliff.create(385, 630, 'cliff');
 
+        this.dino = this.physics.add.sprite(300, 600, 'dino');
+        this.dino.body.width = 50;
+        this.dino.body.height = 50;
+        this.dino.setSize(this.dino.body.width, this.dino.body.height, true);
+        this.dino.setImmovable();
+        this.dino.setScale(0.5);
+
         this.pedra1 = this.physics.add.sprite(400, 500, 'pedra');
         this.pedra2 = this.physics.add.sprite(390, 485, 'pedra');
         this.pedra1.setCollideWorldBounds(true);
@@ -100,6 +107,7 @@ class Topo extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra1);
         this.physics.add.collider(this.player, this.pedra2);
         this.physics.add.collider(this.player, this.cliff);
+        this.physics.add.collider(this.player, this.dino);
         this.physics.add.collider(this.player, this.setaL,()=> {
         this.scene.start("preTopo",{chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
         });
