@@ -139,7 +139,7 @@ class GorilaFight extends Phaser.Scene {
             this.player.anims.play("rightdown", true);
         }
         else if (this.cursors.up.isDown && this.player.body.touching.down){
-            this.player.setVelocityY(-gameSettings.playerSpeed);
+            this.player.setVelocityY(-500); // valor necessário para o boneco chegar às plataformas
         }
 
         else{
@@ -181,7 +181,7 @@ class GorilaFight extends Phaser.Scene {
         this.setaR = this.physics.add.staticGroup();
         this.setaR.create(670,config.height-50,'setaRight');
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("pregorila",{flag:1,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 600});
+            this.scene.start("pregorila",{flag:1,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 600});
         }); 
     }
 

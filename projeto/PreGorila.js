@@ -78,6 +78,7 @@ class PreGorila extends Phaser.Scene {
         });
 
         this.btnCont.on("pointerup", ()=>{
+            this.game.canvas.style.cursor = "default";
             if(this.flag==0){
                 this.scene.start("gorilafight",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 600});
             }
