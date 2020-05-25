@@ -14,9 +14,6 @@ class Lago extends Phaser.Scene {
         this.easterEggs=data.easterEggs;
     }
     create(){
-        console.log("lago page");
-        console.log(this.listaPerguntas);
-        console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"lago");
         this.background.setOrigin(0,0);
         /* this.golem=this.add.image(350,150,'golem');
@@ -89,8 +86,6 @@ class Lago extends Phaser.Scene {
     update(){
         this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
         this.text.setText('Tempo: '+ this.tempoAtual);
-        //console.log(this.listaPerguntas);
-        //console.log(this.tempo);
 
         if(this.cursors.left.isDown && this.cursors.up.isUp && this.cursors.down.isUp){
             this.player.setVelocityX(-gameSettings.playerSpeed);

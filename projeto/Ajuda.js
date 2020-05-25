@@ -7,8 +7,6 @@ class Ajuda extends Phaser.Scene {
     }
 
     create(){
-        console.log("ajuda page");
-        console.log(this.flag);
         if(this.flag==null){
             this.background = this.add.image(0,0,"ajuda");
             this.background.setOrigin(0,0);
@@ -31,17 +29,14 @@ class Ajuda extends Phaser.Scene {
         this.btnVoltar.setInteractive();
 
         this.btnVoltar.on("pointerover", ()=>{
-            //console.log("over Voltar");
             this.game.canvas.style.cursor = "pointer";
             this.btnVoltarc.visible=true;
         });
         this.btnVoltar.on("pointerout", ()=>{
-            //console.log("out Voltar");
             this.game.canvas.style.cursor = "default";
             this.btnVoltarc.visible=false;
         });
         this.btnVoltar.on("pointerup", ()=>{
-            //onsole.log("up Voltar");
             this.game.canvas.style.cursor = "default";
             if(this.flag==null){
                 this.scene.start("menu1");

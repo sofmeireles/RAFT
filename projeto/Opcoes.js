@@ -4,7 +4,6 @@ class Opcoes extends Phaser.Scene {
     }
     
     create(){
-        console.log("opcoes page");
         this.background = this.add.image(0,0,"opcoes");
         this.background.setOrigin(0,0);
         
@@ -49,17 +48,14 @@ class Opcoes extends Phaser.Scene {
         this.btnVoltar.setInteractive();
 
         this.btnVoltar.on("pointerover", ()=>{
-            console.log("over Voltar");
             this.game.canvas.style.cursor = "pointer";
             this.btnVoltarc.visible=true;
         });
         this.btnVoltar.on("pointerout", ()=>{
-            console.log("out Voltar");
             this.game.canvas.style.cursor = "default";
             this.btnVoltarc.visible=false;
         });
         this.btnVoltar.on("pointerup", ()=>{
-            console.log("up Voltar");
             this.game.canvas.style.cursor = "default";
             this.scene.start("menu1")
         });
@@ -69,20 +65,16 @@ class Opcoes extends Phaser.Scene {
         this.btnMaisM.setInteractive();
 
         this.btnMaisM.on("pointerover", ()=>{
-            console.log("over MaisM");
             this.game.canvas.style.cursor = "pointer";
             this.btnMaiscM.visible=true;
         });
         this.btnMaisM.on("pointerout", ()=>{
-            console.log("out MaisM");
             this.game.canvas.style.cursor = "default";
             this.btnMaiscM.visible=false;
         });
         this.btnMaisM.on("pointerup", ()=>{
-            console.log("up MaisM");
             if(music.volume < 1){
                 music.volume += 0.2;
-                console.log(music.volume)
             }
         });
 
@@ -90,17 +82,14 @@ class Opcoes extends Phaser.Scene {
         this.btnMenosM.setInteractive();
 
         this.btnMenosM.on("pointerover", ()=>{
-            console.log("over MenosM");
             this.game.canvas.style.cursor = "pointer";
             this.btnMenoscM.visible=true;
         });
         this.btnMenosM.on("pointerout", ()=>{
-            console.log("out MenosM");
             this.game.canvas.style.cursor = "default";
             this.btnMenoscM.visible=false;
         });
         this.btnMenosM.on("pointerup", ()=>{
-            console.log("up MenosM");
             if(music.volume > 0){
                 var cond = 0.2;
                 if((music.volume - cond) < 0){
@@ -108,7 +97,6 @@ class Opcoes extends Phaser.Scene {
                 } else{
                     music.volume -= cond;
                 }
-                console.log(music.volume)
             }
             
         });
@@ -117,17 +105,14 @@ class Opcoes extends Phaser.Scene {
         this.btnMuteM.setInteractive();
 
         this.btnMuteM.on("pointerover", ()=>{
-            console.log("over MuteM");
             this.game.canvas.style.cursor = "pointer";
             this.btnMutecM.visible=true;
         });
         this.btnMuteM.on("pointerout", ()=>{
-            console.log("out MuteM");
             this.game.canvas.style.cursor = "default";
             this.btnMutecM.visible=false;
         });
         this.btnMuteM.on("pointerup", ()=>{
-            console.log("up MuteM");
             this.btnMuteM.visible = false;
             this.btnMutecM.visible = false;
             this.btnUnmuteM.visible = true;
@@ -138,17 +123,14 @@ class Opcoes extends Phaser.Scene {
         this.btnUnmuteM.setInteractive();
 
         this.btnUnmuteM.on("pointerover", ()=>{
-            console.log("over UnmuteM");
             this.game.canvas.style.cursor = "pointer";
             this.btnUnmutecM.visible=true;
         });
         this.btnUnmuteM.on("pointerout", ()=>{
-            console.log("out UnmuteM");
             this.game.canvas.style.cursor = "default";
             this.btnUnmutecM.visible=false;
         });
         this.btnUnmuteM.on("pointerup", ()=>{
-            console.log("up UnmuteM");
             this.btnUnmutecM.visible = false;
             this.btnUnmuteM.visible = false;
             this.btnMuteM.visible = true;

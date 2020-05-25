@@ -8,11 +8,9 @@ class Inicial extends Phaser.Scene {
         this.load.image("btnComecar","./resources/btns/btncomecar.png"); 
         this.load.image("btnComecarc","./resources/claros/btncomecarc.png");
         this.load.audio('musica','./resources/musica.mp3');
-        console.log('page inicial1');
     }
 
     create(){
-        console.log('page inicial');
         this.background = this.add.image(0,0,"capaInicio");
         this.background.setOrigin(0,0);
 
@@ -27,17 +25,14 @@ class Inicial extends Phaser.Scene {
         this.btnComecar.setInteractive();
 
         this.btnComecar.on("pointerover", ()=>{
-            console.log("over Comecar");
             this.game.canvas.style.cursor = "pointer";
             this.btnComecarc.visible=true;
         });
         this.btnComecar.on("pointerout", ()=>{
-            console.log("out Comecar");
             this.game.canvas.style.cursor = "default";
             this.btnComecarc.visible=false;
         });
         this.btnComecar.on("pointerup", ()=>{
-            console.log("up Comecar");
             this.game.canvas.style.cursor = "default";
             this.musica = this.sound.add("musica", musicaConfig);
             music = this.musica;
