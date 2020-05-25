@@ -53,6 +53,14 @@ class PraiaMeio extends Phaser.Scene {
         this.pedra1.setSize(this.pedra1.body.width, this.pedra1.height, true);
         this.pedra1.setImmovable();
 
+        this.pedra = this.physics.add.sprite(100, 550, 'pedrapraiagrande');
+        this.pedra2 = this.physics.add.sprite(90, 500, 'pedrapraia');
+        this.pedra2.setCollideWorldBounds(true);
+        this.pedra2.body.width = 10;
+        this.pedra2.body.height = 5;
+        this.pedra2.setSize(this.pedra2.body.width, this.pedra2.height, true);
+        this.pedra2.setImmovable();
+
         this.palmeira3 = this.physics.add.sprite(485, 400, 'palmeirabound');
         this.palmeira3.setCollideWorldBounds(true);
         this.palmeira3.body.width = 11;
@@ -85,6 +93,7 @@ class PraiaMeio extends Phaser.Scene {
         this.physics.add.collider(this.player, this.palmeira2);
         this.physics.add.collider(this.player, this.palmeira3);
         this.physics.add.collider(this.player, this.pedra1);
+        this.physics.add.collider(this.player, this.pedra2);
 
         this.physics.add.collider(this.player, this.setaU,()=> {
             this.scene.start("inicio",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,nameuser: this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 570});
