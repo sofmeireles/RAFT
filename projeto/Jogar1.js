@@ -4,7 +4,6 @@ class Jogar1 extends Phaser.Scene {
     }
 
     create(){
-        console.log('jogar1')
         this.background = this.add.image(0,0,"balao");
         this.background.setOrigin(0,0);
 
@@ -33,17 +32,14 @@ class Jogar1 extends Phaser.Scene {
         this.btnProx.setInteractive();
 
         this.btnProx.on("pointerover", ()=>{
-            console.log("over Prox");
             this.game.canvas.style.cursor = "pointer";
             this.btnProxc.visible=true;
         });
         this.btnProx.on("pointerout", ()=>{
-            console.log("out Prox");
             this.game.canvas.style.cursor = "default";
             this.btnProxc.visible=false;
         });
         this.btnProx.on("pointerup", ()=>{
-            console.log("up Prox");
             this.game.canvas.style.cursor = "default";
             this.scene.start("nomeUser")
         });

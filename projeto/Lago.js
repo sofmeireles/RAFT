@@ -14,9 +14,6 @@ class Lago extends Phaser.Scene {
         this.easterEggs=data.easterEggs;
     }
     create(){
-        console.log("lago page");
-        console.log(this.listaPerguntas);
-        console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"lago");
         this.background.setOrigin(0,0);
         /* this.golem=this.add.image(350,150,'golem');
@@ -89,11 +86,10 @@ class Lago extends Phaser.Scene {
     update(){
         this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
         this.text.setText('Tempo: '+ this.tempoAtual);
-        //console.log(this.listaPerguntas);
-        //console.log(this.tempo);
 
         if(this.cursors.left.isDown && this.cursors.up.isUp && this.cursors.down.isUp){
             this.player.setVelocityX(-gameSettings.playerSpeed);
+            this.player.setVelocityY(0);
             this.player.anims.play("left", true);
             this.lookingRight = false;
         }
@@ -111,6 +107,7 @@ class Lago extends Phaser.Scene {
         }
         else if(this.cursors.right.isDown && this.cursors.up.isUp && this.cursors.down.isUp){
             this.player.setVelocityX(gameSettings.playerSpeed);
+            this.player.setVelocityY(0);
             this.player.anims.play("right", true);
             this.lookingRight = true;
         }
@@ -128,14 +125,17 @@ class Lago extends Phaser.Scene {
         }
         else if(this.cursors.up.isDown && this.cursors.left.isUp && this.cursors.right.isUp){
             this.player.setVelocityY(-gameSettings.playerSpeed);
+            this.player.setVelocityX(0);
             this.player.anims.play("back", true);
         }
         else if (this.cursors.down.isDown && this.cursors.left.isUp && this.cursors.right.isUp){
             this.player.setVelocityY(gameSettings.playerSpeed);
+            this.player.setVelocityX(0);
             this.player.anims.play("right", true);
         }
         else{
-            this.player.setVelocity(0);
+            this.player.setVelocityX(0);
+            this.player.setVelocityY(0);
             if(this.lookingRight){
                 this.player.anims.play("stopdireita");
             }

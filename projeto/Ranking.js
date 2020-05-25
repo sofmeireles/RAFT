@@ -4,7 +4,6 @@ class Ranking extends Phaser.Scene {
     }
 
     create(){
-        console.log("ranking page");
         this.background = this.add.image(0,0,"rank");
         this.background.setOrigin(0,0);
 
@@ -20,17 +19,14 @@ class Ranking extends Phaser.Scene {
         this.btnVoltar.setInteractive();
 
         this.btnVoltar.on("pointerover", ()=>{
-            console.log("over Voltar");
             this.game.canvas.style.cursor = "pointer";
             this.btnVoltarc.visible=true;
         });
         this.btnVoltar.on("pointerout", ()=>{
-            console.log("out Voltar");
             this.game.canvas.style.cursor = "default";
             this.btnVoltarc.visible=false;
         });
         this.btnVoltar.on("pointerup", ()=>{
-            console.log("up Voltar");
             this.game.canvas.style.cursor = "default";
             this.scene.start("menu1")
         });

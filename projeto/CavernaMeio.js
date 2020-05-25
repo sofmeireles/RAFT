@@ -199,6 +199,7 @@ class CavernaMeio extends Phaser.Scene {
 
         if(this.cursors.left.isDown && this.cursors.up.isUp && this.cursors.down.isUp){
             this.player.setVelocityX(-gameSettings.playerSpeed);
+            this.player.setVelocityY(0);
             this.player.anims.play("left", true);
             this.lookingRight = false;
         }
@@ -216,6 +217,7 @@ class CavernaMeio extends Phaser.Scene {
         }
         else if(this.cursors.right.isDown && this.cursors.up.isUp && this.cursors.down.isUp){
             this.player.setVelocityX(gameSettings.playerSpeed);
+            this.player.setVelocityY(0);
             this.player.anims.play("right", true);
             this.lookingRight = true;
         }
@@ -233,14 +235,17 @@ class CavernaMeio extends Phaser.Scene {
         }
         else if(this.cursors.up.isDown && this.cursors.left.isUp && this.cursors.right.isUp){
             this.player.setVelocityY(-gameSettings.playerSpeed);
+            this.player.setVelocityX(0);
             this.player.anims.play("back", true);
         }
         else if (this.cursors.down.isDown && this.cursors.left.isUp && this.cursors.right.isUp){
             this.player.setVelocityY(gameSettings.playerSpeed);
+            this.player.setVelocityX(0);
             this.player.anims.play("right", true);
         }
         else{
-            this.player.setVelocity(0);
+            this.player.setVelocityX(0);
+            this.player.setVelocityY(0);
             if(this.lookingRight){
                 this.player.anims.play("stopdireita");
             }

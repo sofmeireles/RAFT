@@ -124,7 +124,7 @@ class Topo extends Phaser.Scene {
         this.physics.add.collider(this.player, this.pedra2);
         this.physics.add.collider(this.player, this.cliff);
         this.physics.add.collider(this.player, this.setaL,()=> {
-        this.scene.start("preTopo",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 350, posY: 230});
+        this.scene.start("preTopo",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempoAtual, posX: 360, posY: 340});
         });
 
         // limites
@@ -162,41 +162,63 @@ class Topo extends Phaser.Scene {
     update(){
         this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
         this.text.setText('Tempo: '+ this.tempoAtual);
-    
-        if (this.cursors.left.isDown){
+
+        if(this.cursors.left.isDown && this.cursors.up.isUp && this.cursors.down.isUp){
             this.player.setVelocityX(-gameSettings.playerSpeed);
+            this.player.setVelocityY(0);
             this.player.anims.play("left", true);
-            //console.log("x " + this.player.x);
+            this.lookingRight = false;
         }
-        else if (this.cursors.right.isDown){
-            this.player.setVelocityX(gameSettings.playerSpeed);
-            this.player.anims.play("right", true);
-            //console.log("x " + this.player.x);
-        }
-        else if (this.cursors.up.isDown || this.cursors.down.isDown){
-            this.player.setVelocityX(0);
-
-        }
-
-        if (this.cursors.up.isDown){
+        else if (this.cursors.left.isDown && this.cursors.up.isDown){
+            this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.setVelocityY(-gameSettings.playerSpeed);
             this.player.anims.play("back", true);
-            //console.log("y " + this.player.y);
+            this.lookingRight = false;
         }
-        else if (this.cursors.down.isDown){
+        else if (this.cursors.left.isDown && this.cursors.down.isDown){
+            this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.setVelocityY(gameSettings.playerSpeed);
-            this.player.anims.play("right", true);
-            //console.log("y " + this.player.y);
+            this.player.anims.play("leftdown", true);
+            this.lookingRight = false;
         }
-        else if (this.cursors.left.isDown || this.cursors.right.isDown){
+        else if(this.cursors.right.isDown && this.cursors.up.isUp && this.cursors.down.isUp){
+            this.player.setVelocityX(gameSettings.playerSpeed);
             this.player.setVelocityY(0);
+            this.player.anims.play("right", true);
+            this.lookingRight = true;
+        }
+        else if (this.cursors.right.isDown && this.cursors.up.isDown){
+            this.player.setVelocityX(gameSettings.playerSpeed);
+            this.player.setVelocityY(-gameSettings.playerSpeed);
+            this.player.anims.play("back", true);
+            this.lookingRight = true;
+        }
+        else if (this.cursors.right.isDown && this.cursors.down.isDown){
+            this.player.setVelocityX(gameSettings.playerSpeed);
+            this.player.setVelocityY(gameSettings.playerSpeed);
+            this.player.anims.play("rightdown", true);
+            this.lookingRight = true;
+        }
+        else if(this.cursors.up.isDown && this.cursors.left.isUp && this.cursors.right.isUp){
+            this.player.setVelocityY(-gameSettings.playerSpeed);
+            this.player.setVelocityX(0);
+            this.player.anims.play("back", true);
+        }
+        else if (this.cursors.down.isDown && this.cursors.left.isUp && this.cursors.right.isUp){
+            this.player.setVelocityY(gameSettings.playerSpeed);
+            this.player.setVelocityX(0);
+            this.player.anims.play("right", true);
         }
         else{
-            this.player.setVelocityY(0);
             this.player.setVelocityX(0);
-            this.player.anims.play("stop");
+            this.player.setVelocityY(0);
+            if(this.lookingRight){
+                this.player.anims.play("stopdireita");
+            }
+            else{
+                this.player.anims.play("stopesquerda");
+            }
         }
-        
         if(Phaser.Input.Keyboard.JustDown(this.pause)){
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"topo"});
