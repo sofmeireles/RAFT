@@ -33,13 +33,28 @@ class PreGorila extends Phaser.Scene {
         if(this.chave==true){
             this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         }
+        // Texto a correr
+        this.linha = [];
+
+        this.indexP = 0;
+        this.indexL = 0;
+
+        this.delayP = 100;
+        this.delayL = 100;
 
         if (this.flag==0){
-            var text=this.add.text(x,y,"Uh uh uh ah ah! Sou o\ngorila protetor desta parte da ilha.\nPara provares que mereces andar\npor aqui tens de passar este\ndesafio.",{font: "20px Helvetica", fill: 'black'});
+            this.textoi = ["Uh uh uh ah ah! Sou o","gorila protetor desta parte da ilha.",
+        "Agora podes andar livremente pela","por aqui tens de passar este","desafio"];
+            this.text=this.add.text(x,y,'',{font: "20px Helvetica", fill: 'black'});
+            this.avancaLinha();
         }
         else{
-            var text=this.add.text(x,y,"Uh uh uh ah ah!\nParabéns! Venceste o desafio!\nAgora podes andar livremente pela\nilha!",{font: "20px Helvetica", fill: 'black'});
+            this.textoi = ["Uh uh uh ah ah!","Parabéns! Venceste o desafio!",
+        "Agora podes andar livremente pela","ilha!"];
+            this.text=this.add.text(x,y,'',{font: "20px Helvetica", fill: 'black'});
+            this.avancaLinha();
         }
+
 
         //btn continuar
         this.btnCont = this.add.image(500,470,'btnContinuar');
@@ -71,5 +86,36 @@ class PreGorila extends Phaser.Scene {
             }
         });
 
+
+
+    }
+
+    avancaLinha(){
+        if(this.indexL == this.textoi.length){
+            return;
+        }
+
+        this.linha = this.textoi[this.indexL].split(' ');
+
+        this.indexP = 0;
+
+        this.time.addEvent({ delay: this.delayP, callback: this.avancaPalavra, callbackScope: this, repeat: this.linha.length});
+
+        this.indexL++;
+    }
+
+    avancaPalavra(){
+
+        if(this.linha[this.indexP] == null){
+            return;
+        }else{
+            this.text.text = this.text.text.concat(this.linha[this.indexP] + " ");
+            this.indexP++;
+        }
+    
+        if (this.indexP === this.linha.length){
+            this.text.text = this.text.text.concat("\n");
+            this.time.addEvent({delay: this.delayL, callback: this.avancaLinha, callbackScope: this});
+        }
     }
 }

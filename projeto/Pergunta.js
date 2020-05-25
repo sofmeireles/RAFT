@@ -37,11 +37,22 @@ class Pergunta extends Phaser.Scene {
             this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         }
 
+        // Texto a correr
+        this.linha = [];
+
+        this.indexP = 0;
+        this.indexL = 0;
+
+        this.delayP = 100;
+        this.delayL = 100;
+
         if(tam==0){
             this.respCorreta(true,1);
         }
         else{
-            var text=this.add.text(x,y,"Olá sou o troll do lago e\numa vez que entraste só\nte poderei deixar sair\nse responderes corretamente\na uma questão",{font: "20px Helvetica", fill: 'black'});
+            this.textoi = ["Olá! Sou o troll do lago e","uma vez que entraste só","te poderei deixar sair","se responderes corretamente","a uma questão"];
+            this.texto=this.add.text(x,y,'',{font: "20px Helvetica", fill: 'black'});
+            this.avancaLinha();
 
             //btn continuar
             this.btnCont = this.add.image(550,400,'btnContinuar');
@@ -64,7 +75,7 @@ class Pergunta extends Phaser.Scene {
             });
 
             this.btnCont.on("pointerup", ()=>{
-                text.setText('');
+                this.texto.setText('');
                 this.btnCont.destroy();
                 this.btnContc.destroy();
                 this.gerapergunta();
@@ -262,5 +273,34 @@ class Pergunta extends Phaser.Scene {
                 this.scene.resume(this.sceneName,{firstTime:this.firstTime,listaPerguntas:this.listaPerguntas,tempo:this.tempo});
             }
         });
+    }
+
+    avancaLinha(){
+        if(this.indexL == this.textoi.length){
+            return;
+        }
+
+        this.linha = this.textoi[this.indexL].split(' ');
+
+        this.indexP = 0;
+
+        this.time.addEvent({ delay: this.delayP, callback: this.avancaPalavra, callbackScope: this, repeat: this.linha.length});
+
+        this.indexL++;
+    }
+
+    avancaPalavra(){
+
+        if(this.linha[this.indexP] == null){
+            return;
+        }else{
+            this.texto.text = this.texto.text.concat(this.linha[this.indexP] + " ");
+            this.indexP++;
+        }
+    
+        if (this.indexP === this.linha.length){
+            this.texto.text = this.texto.text.concat("\n");
+            this.time.addEvent({delay: this.delayL, callback: this.avancaLinha, callbackScope: this});
+        }
     }
 }
