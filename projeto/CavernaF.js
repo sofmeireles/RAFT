@@ -137,6 +137,7 @@ class CavernaF extends Phaser.Scene {
         this.player.setScale(config.scalePlayer);
         this.player.x = this.posX;
         this.player.y = this.posY;
+        this.lookingRight = true;
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);

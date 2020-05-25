@@ -95,8 +95,8 @@ class Load extends Phaser.Scene {
             frameHeight: 94
         });
         this.load.spritesheet("boneco", "./resources/BONECO.png", {
-            frameWidth: 120,
-            frameHeight: 120
+            frameWidth: 75,
+            frameHeight: 117
         });
 
         this.load.spritesheet("gorila", "./resources/gorilaspsheet.png", {
@@ -149,22 +149,41 @@ class Load extends Phaser.Scene {
             repeat:-1
         });
         this.anims.create({
-            key: "right",
+            key: "leftdown",
             frames: this.anims.generateFrameNumbers("boneco", {start:2, end:3}),
             frameRate: 10,
             repeat:-1
         });
         this.anims.create({
-            key: "back",
-            frames: this.anims.generateFrameNumbers("boneco", {start:4, end:6}),
+            key: "rightdown",
+            frames: this.anims.generateFrameNumbers("boneco", {start:4, end:5}),
+            frameRate: 10,
+            repeat:-1
+        });
+
+        this.anims.create({
+            key: "right",
+            frames: this.anims.generateFrameNumbers("boneco", {start:6, end:7}),
             frameRate: 10,
             repeat:-1
         });
         this.anims.create({
-            key: "stop",
-            frames: [{key:"boneco", frame: 7}],
+            key: "back",
+            frames: this.anims.generateFrameNumbers("boneco", {start:8, end:10}),
+            frameRate: 10,
+            repeat:-1
+        });
+        this.anims.create({
+            key: "stopdireita",
+            frames: [{key:"boneco", frame: 6}],
             frameRate: 10,
         });
+        this.anims.create({
+            key: "stopesquerda",
+            frames: [{key:"boneco", frame: 1}],
+            frameRate: 10,
+        });
+
 
         this.anims.create({
             key: "bananas",

@@ -40,6 +40,34 @@ class Fim extends Phaser.Scene {
 
         this.textoEscrito = this.add.text(250,510,texto,{font: "18px Helvetica", fill: 'black'});
 
+        this.palmeira1 = this.physics.add.sprite(45, 215, 'palmeirabound');
+        this.palmeira1.setCollideWorldBounds(true);
+        this.palmeira1.body.width = 11;
+        this.palmeira1.body.height = 10;
+        this.palmeira1.setSize(this.palmeira1.body.width, this.palmeira1.height, true);
+        this.palmeira1.setImmovable();
+
+        this.palmeira2 = this.physics.add.sprite(295, 215, 'palmeirabound');
+        this.palmeira2.setCollideWorldBounds(true);
+        this.palmeira2.body.width = 11;
+        this.palmeira2.body.height = 10;
+        this.palmeira2.setSize(this.palmeira2.body.width, this.palmeira2.height, true);
+        this.palmeira2.setImmovable();
+
+        this.pedra1 = this.physics.add.sprite(90, 290, 'pedrapraia');
+        this.pedra1.setCollideWorldBounds(true);
+        this.pedra1.body.width = 10;
+        this.pedra1.body.height = 5;
+        this.pedra1.setSize(this.pedra1.body.width, this.pedra1.height, true);
+        this.pedra1.setImmovable();
+
+        this.pedra2 = this.physics.add.sprite(340, 290, 'pedrapraia');
+        this.pedra2.setCollideWorldBounds(true);
+        this.pedra2.body.width = 10;
+        this.pedra2.body.height = 10;
+        this.pedra2.setSize(this.pedra2.body.width, this.pedra2.height, true);
+        this.pedra2.setImmovable();
+
         this.jangadaEstragada = this.physics.add.sprite(420, 520, 'jangada');
         this.jangadaEstragada.body.width = 50;
         this.jangadaEstragada.body.height = 50;
@@ -64,6 +92,7 @@ class Fim extends Phaser.Scene {
         this.player.setScale(config.scalePlayer);
         this.player.x = this.posX;
         this.player.y = this.posY;
+        this.lookingRight = true;
 
 
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -72,7 +101,12 @@ class Fim extends Phaser.Scene {
         
 
         this.setaL = this.physics.add.staticGroup();
-        this.setaL.create(20,400,'setaLeft');
+        this.setaL.create(20,470,'setaLeft');
+
+        this.physics.add.collider(this.player, this.palmeira1);
+        this.physics.add.collider(this.player, this.palmeira2);
+        this.physics.add.collider(this.player, this.pedra1);
+        this.physics.add.collider(this.player, this.pedra2);
 
         this.physics.add.collider(this.player, this.setaL,()=> {
             this.scene.start("praiaMeio",{chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 570, posY: 400});
@@ -90,39 +124,57 @@ class Fim extends Phaser.Scene {
     update(){
         this.tempoAtual=Math.floor(this.tempo+this.timer.getElapsedSeconds());
         this.text.setText('Tempo: '+ this.tempoAtual);
-    
-        if (this.cursors.left.isDown){
+
+        if(this.cursors.left.isDown && this.cursors.up.isUp && this.cursors.down.isUp){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
-            console.log("x " + this.player.x);
+            this.lookingRight = false;
         }
-        else if (this.cursors.right.isDown){
-            this.player.setVelocityX(gameSettings.playerSpeed);
-            this.player.anims.play("right", true);
-            console.log("x " + this.player.x);
-        }
-        else if (this.cursors.up.isDown || this.cursors.down.isDown){
-            this.player.setVelocityX(0);
-
-        }
-
-        if (this.cursors.up.isDown){
+        else if (this.cursors.left.isDown && this.cursors.up.isDown){
+            this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.setVelocityY(-gameSettings.playerSpeed);
             this.player.anims.play("back", true);
-            console.log("y " + this.player.y);
+            this.lookingRight = false;
         }
-        else if (this.cursors.down.isDown){
+        else if (this.cursors.left.isDown && this.cursors.down.isDown){
+            this.player.setVelocityX(-gameSettings.playerSpeed);
+            this.player.setVelocityY(gameSettings.playerSpeed);
+            this.player.anims.play("leftdown", true);
+            this.lookingRight = false;
+        }
+        else if(this.cursors.right.isDown && this.cursors.up.isUp && this.cursors.down.isUp){
+            this.player.setVelocityX(gameSettings.playerSpeed);
+            this.player.anims.play("right", true);
+            this.lookingRight = true;
+        }
+        else if (this.cursors.right.isDown && this.cursors.up.isDown){
+            this.player.setVelocityX(gameSettings.playerSpeed);
+            this.player.setVelocityY(-gameSettings.playerSpeed);
+            this.player.anims.play("back", true);
+            this.lookingRight = true;
+        }
+        else if (this.cursors.right.isDown && this.cursors.down.isDown){
+            this.player.setVelocityX(gameSettings.playerSpeed);
+            this.player.setVelocityY(gameSettings.playerSpeed);
+            this.player.anims.play("rightdown", true);
+            this.lookingRight = true;
+        }
+        else if(this.cursors.up.isDown && this.cursors.left.isUp && this.cursors.right.isUp){
+            this.player.setVelocityY(-gameSettings.playerSpeed);
+            this.player.anims.play("back", true);
+        }
+        else if (this.cursors.down.isDown && this.cursors.left.isUp && this.cursors.right.isUp){
             this.player.setVelocityY(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
-            console.log("y " + this.player.y);
-        }
-        else if (this.cursors.left.isDown || this.cursors.right.isDown){
-            this.player.setVelocityY(0);
         }
         else{
-            this.player.setVelocityY(0);
-            this.player.setVelocityX(0);
-            this.player.anims.play("stop");
+            this.player.setVelocity(0);
+            if(this.lookingRight){
+                this.player.anims.play("stopdireita");
+            }
+            else{
+                this.player.anims.play("stopesquerda");
+            }
         }
         
         if(Phaser.Input.Keyboard.JustDown(this.pause)){

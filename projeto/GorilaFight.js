@@ -27,6 +27,7 @@ class GorilaFight extends Phaser.Scene {
         this.player.y = this.posY;
         this.player.setScale(config.scalePlayer);
         this.player.setGravityY(1000);
+        this.lookingRight = true;
         this.gorila=this.add.sprite(config.width/2,50,"gorila");
         this.gorila.setScale(0.5);
         this.cursors = this.input.keyboard.createCursorKeys();
@@ -122,7 +123,7 @@ class GorilaFight extends Phaser.Scene {
         }
         else if (this.cursors.left.isDown && this.cursors.up.isDown && !this.player.body.touching.down){
             this.player.setVelocityX(-gameSettings.playerSpeed);
-            this.player.anims.play("left", true);
+            this.player.anims.play("leftdown", true);
         }
         else if (this.cursors.right.isDown && this.cursors.up.isUp && this.player.body.touching.down) {
             this.player.setVelocityX(gameSettings.playerSpeed);
@@ -135,7 +136,7 @@ class GorilaFight extends Phaser.Scene {
         }
         else if (this.cursors.right.isDown && this.cursors.up.isDown && !this.player.body.touching.down){
             this.player.setVelocityX(gameSettings.playerSpeed);
-            this.player.anims.play("right", true);
+            this.player.anims.play("rightdown", true);
         }
         else if (this.cursors.up.isDown && this.player.body.touching.down){
             this.player.setVelocityY(-gameSettings.playerSpeed);
