@@ -20,6 +20,13 @@ class Fim extends Phaser.Scene {
         this.background = this.add.image(0,0,"fim");
         this.background.setOrigin(0,0);
 
+        this.jangadaFinal = this.physics.add.sprite(420, 520, 'jangadaFinal');
+        //this.jangadaFinal.body.width = 50;
+        //this.jangadaFinal.body.height = 50;
+        this.jangadaFinal.body.setSize(this.jangadaFinal.body.width, this.jangadaFinal.body.height, true);
+        this.jangadaFinal.setScale(0.5);
+        this.jangadaFinal.visible = false;
+
         this.player=this.physics.add.sprite(config.width/2,config.height/2,'boneco');
         this.player.setCollideWorldBounds(true);
         this.player.setBounce(0.2);
@@ -103,12 +110,6 @@ class Fim extends Phaser.Scene {
         this.jangadaEstragada.setImmovable();
         // this.physics.add.overlap(this.player, this.jangada, this.handleJangada, null, this);
 
-        this.jangadaFinal = this.physics.add.sprite(420, 520, 'jangadaFinal');
-        //this.jangadaFinal.body.width = 50;
-        //this.jangadaFinal.body.height = 50;
-        this.jangadaFinal.body.setSize(this.jangadaFinal.body.width, this.jangadaFinal.body.height, true);
-        this.jangadaFinal.setScale(0.5);
-        this.jangadaFinal.visible = false;
 
 
         this.cursors = this.input.keyboard.createCursorKeys();
