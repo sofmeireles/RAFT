@@ -94,6 +94,22 @@ class Topo extends Phaser.Scene {
         this.player.x = this.posX;
         this.player.y = this.posY;
 
+        this.flappy1 = this.physics.add.sprite(150, 150, 'flappy');
+        this.flappy1.setBounce(1);
+        this.flappy1.body.width = 20;
+        this.flappy1.body.height = 10;
+        this.flappy1.body.setSize(this.flappy1.body.width, this.flappy1.body.height, true);
+        this.flappy1.setScale(0.9);
+        this.flappy1.play("flappybird");
+
+        this.flappy2 = this.physics.add.sprite(75, 75, 'flappy');
+        this.flappy2.setBounce(1);
+        this.flappy2.body.width = 20;
+        this.flappy2.body.height = 10;
+        this.flappy2.body.setSize(this.flappy2.body.width, this.flappy2.body.height, true);
+        this.flappy2.setScale(0.9);
+        this.flappy2.play("flappybird");
+
 
         this.cursors = this.input.keyboard.createCursorKeys();
         this.pause = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
@@ -191,8 +207,22 @@ class Topo extends Phaser.Scene {
         }
         
         this.colCenario();
+        this.moverFlappyDireita(this.flappy1, 3);
+        this.moverFlappyDireita(this.flappy2, 2);
     }
 
+    moverFlappyDireita(flappy, speed){
+        flappy.x += speed;
+        if(flappy.x > config.width){
+            this.resetFlappyDireita(flappy);
+        }
+    }
+
+    resetFlappyDireita(flappy){
+        flappy.x = 0;
+        var randomY = Phaser.Math.Between(0, config.height/4)
+        flappy.y = randomY;
+    }
     colCenario(){
         if (this.player.y < this.limiteCima){
             this.player.y=this.limiteCima;
