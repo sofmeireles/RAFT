@@ -4,7 +4,7 @@ class Menu1 extends Phaser.Scene {
     }
 
     create(){
-        //image set up
+        //this.scene.restart();
         this.background = this.add.image(0,0,"capa");
         this.background.setOrigin(0,0);
 

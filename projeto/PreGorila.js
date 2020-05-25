@@ -11,10 +11,11 @@ class PreGorila extends Phaser.Scene {
         this.listaPaus=data.listaPaus;
         this.firstTime=data.firstTime;
         this.chave=data.chave;
+        this.flag=data.flag;
     }
     create(){
         var x=350;
-        var y=200;
+        var y=250;
         this.pausApanhados=0;
         this.player = this.physics.add.sprite(350, 350, 'boneco');
         this.player.setVisible(false);
@@ -32,8 +33,28 @@ class PreGorila extends Phaser.Scene {
         if(this.chave==true){
             this.imChave=this.add.image(configContaPaus.posX-70,configContaPaus.posY+25,'chave');
         }
+        // Texto a correr
+        this.linha = [];
 
-        var text=this.add.text(x,y,"uh uh uh ah ah\nuh uh uh ah ah\nuh uh uh ah ah\nuh uh uh ah ah\nuh uh uh ah ah",{font: "35px Helvetica", fill: 'black'});
+        this.indexP = 0;
+        this.indexL = 0;
+
+        this.delayP = 100;
+        this.delayL = 100;
+
+        if (this.flag==0){
+            this.textoi = ["Uh uh uh ah ah! Sou o","gorila protetor desta parte da ilha.",
+        "Agora podes andar livremente pela","por aqui tens de passar este","desafio"];
+            this.text=this.add.text(x,y,'',{font: "20px Helvetica", fill: 'black'});
+            this.avancaLinha();
+        }
+        else{
+            this.textoi = ["Uh uh uh ah ah!","Parabéns! Venceste o desafio!",
+        "Agora podes andar livremente pela","ilha!"];
+            this.text=this.add.text(x,y,'',{font: "20px Helvetica", fill: 'black'});
+            this.avancaLinha();
+        }
+
 
         //btn continuar
         this.btnCont = this.add.image(500,470,'btnContinuar');
@@ -50,14 +71,51 @@ class PreGorila extends Phaser.Scene {
             this.btnContc.visible=true;
         });
 
+
         this.btnCont.on("pointerout", ()=>{
             this.game.canvas.style.cursor = "default";
             this.btnContc.visible=false;
         });
 
         this.btnCont.on("pointerup", ()=>{
-            this.scene.start("gorilafight",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 600});                
+            if(this.flag==0){
+                this.scene.start("gorilafight",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 600});
+            }
+            else{
+                this.scene.start("floresta",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 350, posY: 350});
+            }
         });
 
+
+
+    }
+
+    avancaLinha(){
+        if(this.indexL == this.textoi.length){
+            return;
+        }
+
+        this.linha = this.textoi[this.indexL].split(' ');
+
+        this.indexP = 0;
+
+        this.time.addEvent({ delay: this.delayP, callback: this.avancaPalavra, callbackScope: this, repeat: this.linha.length});
+
+        this.indexL++;
+    }
+
+    avancaPalavra(){
+
+        if(this.linha[this.indexP] == null){
+            return;
+        }else{
+            this.text.text = this.text.text.concat(this.linha[this.indexP] + " ");
+            this.indexP++;
+        }
+    
+        if (this.indexP === this.linha.length){
+            this.text.text = this.text.text.concat("\n");
+            this.time.addEvent({delay: this.delayL, callback: this.avancaLinha, callbackScope: this});
+        }
     }
 }

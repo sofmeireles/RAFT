@@ -169,7 +169,7 @@ class CavernaLago extends Phaser.Scene {
             this.rato2.y += 10;
         });
         this.physics.add.collider(this.rato2, this.pedra4, ()=>{
-            this.rat2.y += 10;
+            this.rato2.y += 10;
         });
         this.physics.add.collider(this.rato2, this.pedra5, ()=>{
             this.rato2.y += 10;

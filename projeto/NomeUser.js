@@ -6,6 +6,7 @@ class NomeUser extends Phaser.Scene {
         console.log('nomeUser')
         this.background = this.add.image(0,0,"balao");
         this.background.setOrigin(0,0);
+        this.flag=0;
 
         //btn prox
         this.btnProx = this.add.image(480,435,'btnProx');
@@ -16,9 +17,18 @@ class NomeUser extends Phaser.Scene {
 
         this.listaPaus=[];
 
-        var textoi="Ótimo, qual é o teu nome?";
+        this.textoi = ["Ótimo, qual é o teu nome?"];
 
-        var fala = this.add.text(300,280,textoi,{font: "19px Helvetica", fill: 'black'});
+        this.linha = [];
+
+        this.indexP = 0;
+        this.indexL = 0;
+
+        this.delayP = 100;
+        this.delayL = 100;
+
+        this.fala = this.add.text(300,280,'',{font: "19px Helvetica", fill: 'black'});
+        this.avancaLinha();
 
         var element = this.add.dom(425, 350).createFromCache('nameform');
         console.log(element);
@@ -52,11 +62,14 @@ class NomeUser extends Phaser.Scene {
                 this.scene.start("inicio",{chave:false,firstTime:0,listaPaus: this.listaPaus, nameuser:this.nameuser, listaPerguntas:this.listaPerguntas,tempo:0, posX: 400, posY: 400});
             }
             else{
-                fala.setVisible(false);
+                this.fala.setVisible(false);
                 this.add.text(300,280,"QUAL É O TEU NOME???",{font: "19px Helvetica", fontWeight:"bold", fill: 'black'});
             }
         });
+
+
     }
+
     crialistaperguntas(){
         var perguntas = this.cache.json.get('perguntas');
         var count = Object.keys(perguntas).length;
@@ -64,6 +77,35 @@ class NomeUser extends Phaser.Scene {
 
         for(var i=0;i<count;i++){
             this.listaPerguntas.push(perguntas[i]);
+        }
+    }
+
+    avancaLinha(){
+        if(this.indexL == this.textoi.length){
+            return;
+        }
+
+        this.linha = this.textoi[this.indexL].split(' ');
+
+        this.indexP = 0;
+
+        this.time.addEvent({ delay: this.delayP, callback: this.avancaPalavra, callbackScope: this, repeat: this.linha.length});
+
+        this.indexL++;
+    }
+
+    avancaPalavra(){
+
+        if(this.linha[this.indexP] == null){
+            return;
+        }else{
+            this.fala.text = this.fala.text.concat(this.linha[this.indexP] + " ");
+            this.indexP++;
+        }
+    
+        if (this.indexP === this.linha.length){
+            this.fala.text = this.fala.text.concat("\n");
+            this.time.addEvent({delay: this.delayL, callback: this.avancaLinha, callbackScope: this});
         }
     }
     

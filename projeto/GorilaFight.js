@@ -181,7 +181,7 @@ class GorilaFight extends Phaser.Scene {
         this.setaR = this.physics.add.staticGroup();
         this.setaR.create(670,config.height-50,'setaRight');
         this.physics.add.collider(this.player, this.setaR,()=> {
-            this.scene.start("floresta",{chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempoAtual, posX: 130, posY: 400});
+            this.scene.start("pregorila",{flag:1,chave:this.chave,firstTime:this.firstTime,listaPaus: this.listaPaus, nameuser: this.nameuser,listaPerguntas:this.listaPerguntas,tempo:this.tempo, posX: 130, posY: 600});
         }); 
     }
 

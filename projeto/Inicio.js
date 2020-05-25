@@ -14,7 +14,6 @@ class Inicio extends Phaser.Scene {
         this.chave=data.chave;
     }
     create(){
-        console.log(this.nameuser);
         console.log("inicio page");
         this.background = this.add.image(0,0,"floresta");
         this.background.setOrigin(0,0);
@@ -120,6 +119,11 @@ class Inicio extends Phaser.Scene {
         this.floresta = 220;
         this.conta=0;
 
+        //fade
+        /* this.transp=0.5;
+        this.veil=this.add.graphics({x:0,y:0});
+        this.veil.fillStyle('0xffffff',0.5); */
+
     }
 
 
@@ -185,6 +189,18 @@ class Inicio extends Phaser.Scene {
             this.scene.pause();
             this.scene.launch("pausa",{background:this.background, sceneName:"inicio"});
         }
+        /* if(this.tempoAtual-this.tempo<5){
+            this.transp-=0.01;
+            if(this.transp<0){
+                this.transp=0;
+                this.veil.destroy();
+            }
+            else{
+                console.log(this.transp);
+                this.veil.fillStyle('0x000000',this.transp);
+                this.veil.fillRect(0,0,config.width, config.height);
+            }
+        } */
 
         this.colCenario();
     }

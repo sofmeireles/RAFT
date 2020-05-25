@@ -15,9 +15,19 @@ class Jogar1 extends Phaser.Scene {
         this.btnProxc.setScale(0.295);
         this.btnProxc.visible=false;
 
-        var textoi="Olá! O meu nome é Papi Chulo!\nEstou preso nesta ilha há 10 anos,\npor ter sido acusado, injustamente,\nde ter roubado a Mona Lisa.\nPreciso de ajuda para fugir daqui!\nAjudas-me?";
+        this.textoi= ["Olá! O meu nome é Papi Chulo!", "Estou preso nesta ilha há 10 anos,", "por ter sido acusado, injustamente,","de ter roubado a Mona Lisa.","Preciso de ajuda para fugir daqui!","Ajudas-me?"]
+        // Texto a correr
+        this.linha = [];
 
-        var intro=this.add.text(300,280,textoi,{font: "19px Helvetica", fill: 'black'});
+        this.indexP = 0;
+        this.indexL = 0;
+
+        this.delayP = 100;
+        this.delayL = 100;
+
+        this.intro=this.add.text(300,280,'',{font: "19px Helvetica", fill: 'black'});
+
+        this.avancaLinha();
 
         //intercoes btnProx
         this.btnProx.setInteractive();
@@ -39,4 +49,34 @@ class Jogar1 extends Phaser.Scene {
         });
 
     }
+
+    avancaLinha(){
+        if(this.indexL == this.textoi.length){
+            return;
+        }
+
+        this.linha = this.textoi[this.indexL].split(' ');
+
+        this.indexP = 0;
+
+        this.time.addEvent({ delay: this.delayP, callback: this.avancaPalavra, callbackScope: this, repeat: this.linha.length});
+
+        this.indexL++;
+    }
+
+    avancaPalavra(){
+
+        if(this.linha[this.indexP] == null){
+            return;
+        }else{
+            this.intro.text = this.intro.text.concat(this.linha[this.indexP] + " ");
+            this.indexP++;
+        }
+    
+        if (this.indexP === this.linha.length){
+            this.intro.text = this.intro.text.concat("\n");
+            this.time.addEvent({delay: this.delayL, callback: this.avancaLinha, callbackScope: this});
+        }
+    }
+
 }
