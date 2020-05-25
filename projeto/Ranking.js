@@ -48,8 +48,6 @@ class Ranking extends Phaser.Scene {
         }
  
         lista.sort(this.compare);
-        console.log(pontos);
-        console.log(lista);
 
 
         for(var i=0;i<10;i++){

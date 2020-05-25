@@ -3,7 +3,6 @@ class NomeUser extends Phaser.Scene {
         super("nomeUser");
     }
     create(){
-        console.log('nomeUser')
         this.background = this.add.image(0,0,"balao");
         this.background.setOrigin(0,0);
         this.flag=0;
@@ -32,26 +31,21 @@ class NomeUser extends Phaser.Scene {
         this.avancaLinha();
 
         var element = this.add.dom(425, 350).createFromCache('nameform');
-        console.log(element);
 
         //intercoes btnProx
         this.btnProx.setInteractive();
 
         this.btnProx.on("pointerover", ()=>{
-            console.log("over Prox");
             this.game.canvas.style.cursor = "pointer";
             this.btnProxc.visible=true;
         });
         this.btnProx.on("pointerout", ()=>{
-            console.log("out Prox");
             this.game.canvas.style.cursor = "default";
             this.btnProxc.visible=false;
         });
         
         this.btnProx.on("pointerup", ()=>{
-            console.log("up Prox");
             var inputText = element.getChildByName('nameField');
-            console.log(inputText.value);
 
             if (inputText.value !== ''){
                 this.flag=1;

@@ -96,7 +96,6 @@ class Pausa extends Phaser.Scene {
         this.btnMaisM.on("pointerup", ()=>{
             if(music.volume < 1){
                 music.volume += 0.2;
-                console.log(music.volume)
             }
         });
 

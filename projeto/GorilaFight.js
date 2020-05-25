@@ -15,7 +15,6 @@ class GorilaFight extends Phaser.Scene {
 
     }
     create(){
-        console.log('gorila fight');
         this.background = this.add.image(0,0,"cenarioluta");
         this.background.setOrigin(0,0);
         this.player = this.physics.add.sprite(100, 630, 'boneco');
@@ -117,7 +116,6 @@ class GorilaFight extends Phaser.Scene {
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
             this.lookingRight = false;
-            //console.log("x " + this.player.x);
         }
         else if(this.cursors.left.isDown && this.cursors.up.isUp && !this.player.body.touching.down){
             this.player.setVelocityX(-gameSettings.playerSpeed);
@@ -133,7 +131,6 @@ class GorilaFight extends Phaser.Scene {
             this.player.setVelocityX(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
             this.lookingRight = true;
-            //console.log("x " + this.player.x);
         }
         else if (this.cursors.right.isDown && this.cursors.up.isUp && !this.player.body.touching.down){
             this.player.setVelocityX(gameSettings.playerSpeed);

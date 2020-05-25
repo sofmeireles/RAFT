@@ -15,8 +15,6 @@ class Praia extends Phaser.Scene {
         this.easterEggs=data.easterEggs;
     }
     create(){
-        console.log("praia page");
-        console.log("tempo: "+this.tempo);
         this.background = this.add.image(0,0,"praia");
         this.background.setOrigin(0,0);
         
