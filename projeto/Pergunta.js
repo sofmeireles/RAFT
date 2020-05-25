@@ -212,8 +212,10 @@ class Pergunta extends Phaser.Scene {
     respCorreta(valor,flag){
         var x=400;
         var y=250;
+        var sem=0;
         if (flag==1){
-            this.add.text(x,y,"Já não há\nperguntas!",{font: "30px Helvetica", fill: 'black'});
+            this.textoF=this.add.text(x,y,"Olha, paciência,\n\nestudasses!",{font: "30px Helvetica", fill: 'black'});
+            var sem=1;
             valor==true;
         }
         else{
@@ -259,17 +261,22 @@ class Pergunta extends Phaser.Scene {
         this.btnCont.on("pointerup", ()=>{
             this.game.canvas.style.cursor = "default";
             //this.veil.destroy();
-            this.imagem.destroy();
             if(valor==true){
                 //this.veil.destroy();
-                this.imagem.destroy();
-                this.scene.stop(this.sceneName);
-                this.scene.stop();
-                this.scene.start("cavernaLago",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempo, posX: 350, posY: 280});
+                if(sem==0){
+                    this.imagem.destroy();
+                    this.scene.stop(this.sceneName);
+                    this.scene.stop();
+                    this.scene.start("cavernaLago",{easterEggs:this.easterEggs,chave:this.chave,firstTime:this.firstTime,nameuser:this.nameuser,listaPaus:this.listaPaus,listaPerguntas:this.listaPerguntas, tempo:this.tempo, posX: 350, posY: 280});
+           
+                }
+                else{
+                    this.perdeu();
+                }
+                
             }
             else{
                 this.game.canvas.style.cursor = "default";
-                //this.veil.destroy();
                 this.imagem.destroy();
                 this.scene.stop();
                 this.scene.resume(this.sceneName,{firstTime:this.firstTime,listaPerguntas:this.listaPerguntas,tempo:this.tempo});
@@ -305,5 +312,59 @@ class Pergunta extends Phaser.Scene {
             this.texto.text = this.texto.text.concat("\n");
             this.time.addEvent({delay: this.delayL, callback: this.avancaLinha, callbackScope: this});
         }
+    }
+
+    perdeu(){
+        var x=400;
+        var y=250;
+        this.btnCont.destroy();
+        this.btnContc.destroy();
+        this.textoi="Perdeu, burro!";
+        this.textoF.setText(this.textoi);
+
+        //btn sair
+        this.btnSair = this.add.image(550,400,'btnSair');
+        this.btnSair.setScale(0.07);
+        this.btnSairc = this.add.image(550,400,'btnSairc');
+        this.btnSairc.setScale(0.3);
+        this.btnSairc.visible=false;
+
+        //interações do btnSair
+        this.btnSair.setInteractive();
+
+        this.btnSair.on("pointerover", ()=>{
+            //console.log("over Sair");
+            this.game.canvas.style.cursor = "pointer";
+            this.btnSairc.visible=true;
+        });
+        this.btnSair.on("pointerout", ()=>{
+            //console.log("out Sair");
+            this.game.canvas.style.cursor = "default";
+            this.btnSairc.visible=false;
+        });
+        this.btnSair.on("pointerup", ()=>{
+            //this.game.canvas.style.cursor = "default";
+            this.scene.stop();
+            this.scene.stop(this.sceneName);
+            this.scene.stop("inicio");
+            this.scene.stop("cavernaLago");
+            this.scene.stop("pergunta");
+            this.scene.stop("praia");
+            this.scene.stop("cavernaMeio");
+            this.scene.stop("cavernaF");
+            this.scene.stop("entradaCaverna");
+            this.scene.stop("praiaMeio");
+            this.scene.stop("gorilafight");
+            this.scene.stop("fim");
+            this.scene.stop("floresta");
+            this.scene.stop("preTopo");
+            this.scene.stop("bau");
+            this.scene.stop("jangada");
+            this.scene.stop("topo");
+            this.scene.start("menu1");
+            //console.log("up Sair");
+        });
+
+
     }
 }

@@ -32,7 +32,6 @@ class CenaFinal extends Phaser.Scene {
         }
         var novo={nome:this.nameuser,pontuacao:this.pontuacao};
         pontos.push(novo);
-        //pontos.pop();
         localStorage.setItem('pontuacao',JSON.stringify(pontos)); 
 
          //intercoes btnProx
