@@ -58,6 +58,7 @@ class Pergunta extends Phaser.Scene {
             //btn continuar
             this.btnCont = this.add.image(550,400,'btnContinuar');
             this.btnCont.setScale(0.2);
+            this.btnCont.visible = false;
             this.btnContc = this.add.image(550,400,'btnContinuarc');
             this.btnContc.setScale(0.2);
             this.btnContc.visible=false;
@@ -278,6 +279,7 @@ class Pergunta extends Phaser.Scene {
 
     avancaLinha(){
         if(this.indexL == this.textoi.length){
+            this.btnCont.visible = true;
             return;
         }
 
