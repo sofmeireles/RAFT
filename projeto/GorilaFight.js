@@ -116,28 +116,34 @@ class GorilaFight extends Phaser.Scene {
         if (this.cursors.left.isDown && this.cursors.up.isUp && this.player.body.touching.down){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
+            this.lookingRight = false;
             //console.log("x " + this.player.x);
         }
         else if(this.cursors.left.isDown && this.cursors.up.isUp && !this.player.body.touching.down){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("left", true);
+            this.lookingRight = false;
         }
         else if (this.cursors.left.isDown && this.cursors.up.isDown && !this.player.body.touching.down){
             this.player.setVelocityX(-gameSettings.playerSpeed);
             this.player.anims.play("leftdown", true);
+            this.lookingRight = false;
         }
         else if (this.cursors.right.isDown && this.cursors.up.isUp && this.player.body.touching.down) {
             this.player.setVelocityX(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
+            this.lookingRight = true;
             //console.log("x " + this.player.x);
         }
         else if (this.cursors.right.isDown && this.cursors.up.isUp && !this.player.body.touching.down){
             this.player.setVelocityX(gameSettings.playerSpeed);
             this.player.anims.play("right", true);
+            this.lookingRight = true;
         }
         else if (this.cursors.right.isDown && this.cursors.up.isDown && !this.player.body.touching.down){
             this.player.setVelocityX(gameSettings.playerSpeed);
             this.player.anims.play("rightdown", true);
+            this.lookingRight = true
         }
         else if (this.cursors.up.isDown && this.player.body.touching.down){
             this.player.setVelocityY(-500); // valor necessário para o boneco chegar às plataformas
@@ -146,7 +152,13 @@ class GorilaFight extends Phaser.Scene {
         else{
             //this.player.setVelocityY(0);
             this.player.setVelocityX(0);
-            this.player.anims.play("stop");
+            if(this.lookingRight){
+                this.player.anims.play("stopdireita");
+            }
+            else{
+                this.player.anims.play("stopesquerda");
+            }
+
         }
 
         if(Phaser.Input.Keyboard.JustDown(this.pause)){
